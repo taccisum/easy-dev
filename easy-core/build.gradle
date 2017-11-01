@@ -1,6 +1,8 @@
 dependencies {
     compile (
             [group: 'org.springframework.boot', name: 'spring-boot-starter-validation'],
+            [group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'],
+            [group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'],
     )
     optional "org.springframework.boot:spring-boot-configuration-processor"
     compileJava.dependsOn(processResources)
