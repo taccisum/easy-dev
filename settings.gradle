@@ -1,3 +1,8 @@
 rootProject.name = 'easy-dev'
 include 'easy-core'
-
+include 'easy-dao'
+include 'easy-service'
+include 'easy-web'
+include 'easy-caching'
+include 'easy-logging'
+include 'easy-test'
