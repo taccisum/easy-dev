@@ -1,5 +1,6 @@
 package cn.tac.framework.easydev.core.config;
 
+import cn.tac.framework.easydev.core.constant.GlobalConstant;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -8,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author tac
  * @since 01/11/2017
  */
-@ConfigurationProperties("easy-dev")
+@ConfigurationProperties(GlobalConstant.CONFIG_PROP_PREFIX)
 public class EasyDev {
     public EasyDev() {
         formatPattern = new FormatPattern();
