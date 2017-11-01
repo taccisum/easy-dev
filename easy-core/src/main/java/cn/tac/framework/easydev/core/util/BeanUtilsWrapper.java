@@ -1,4 +1,4 @@
-package util;
+package cn.tac.framework.easydev.core.util;
 
 import cn.tac.framework.easydev.core.exception.BeanUtilsException;
 import org.apache.commons.beanutils.PropertyUtilsBean;

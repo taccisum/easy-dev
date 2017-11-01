@@ -1,4 +1,4 @@
-package util;
+package cn.tac.framework.easydev.core.util;
 
 import java.util.UUID;
 

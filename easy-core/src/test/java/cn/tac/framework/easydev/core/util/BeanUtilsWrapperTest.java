@@ -1,12 +1,10 @@
-package util;
+package cn.tac.framework.easydev.core.util;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.Assert.*;
 
 /**
  * @author tac
