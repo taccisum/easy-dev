@@ -1,6 +1,6 @@
 package cn.tac.framework.easydev.core.config;
 
-import cn.tac.framework.easydev.core.config.app.Application4UnitTest;
+import cn.tac.framework.easydev.core.app.Application4UnitTest;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

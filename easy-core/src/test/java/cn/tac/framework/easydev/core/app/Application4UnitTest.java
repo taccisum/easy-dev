@@ -1,4 +1,4 @@
-package cn.tac.framework.easydev.core.config.app;
+package cn.tac.framework.easydev.core.app;
 
 import cn.tac.framework.easydev.core.annotation.EnableEasyDevCore;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Profile;
  * @since 01/11/2017
  */
 public class CoreBeanConfiguration {
-    @Bean("__coreBeanConfiguration")
+    @Bean
     @Profile({SpringProfiles.DEFAULT, SpringProfiles.DEV, SpringProfiles.TEST})
     public EasyDev EasyDev4DevAndTest() {
         EasyDev bean = new EasyDev();
@@ -20,7 +20,7 @@ public class CoreBeanConfiguration {
         return bean;
     }
 
-    @Bean("__coreBeanConfiguration")
+    @Bean
     @Profile(SpringProfiles.PROD)
     public EasyDev EasyDev4Prod() {
         EasyDev bean = new EasyDev();
