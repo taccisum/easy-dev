@@ -1,6 +1,7 @@
 package cn.tac.framework.easydev.core.annotation;
 
 import cn.tac.framework.easydev.core.bean.CoreBeanConfiguration;
+import cn.tac.framework.easydev.core.util.SpringUtils;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -14,7 +15,6 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Inherited
-@Import(CoreBeanConfiguration.class)
+@Import({CoreBeanConfiguration.class, SpringUtils.class})
 public @interface EnableEasyDevCore {
 }

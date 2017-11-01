@@ -1,5 +1,7 @@
 package cn.tac.framework.easydev.core.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -11,8 +13,8 @@ import org.springframework.stereotype.Component;
  * @author : tac
  * @since : 2017/5/13
  */
-@Component
 public class SpringUtils implements ApplicationContextAware {
+    private static Logger logger = LoggerFactory.getLogger(SpringUtils.class);
     public static String applicationName = null;
     public static String applicationAbbr = null;
 
@@ -36,6 +38,7 @@ public class SpringUtils implements ApplicationContextAware {
             try {
                 result = ctx.getBean(beanName, requiredType);
             } catch (Exception e) {
+                logger.error("getBean() error", e);
             }
         }
 
@@ -48,6 +51,7 @@ public class SpringUtils implements ApplicationContextAware {
             try {
                 result = ctx.getBean(requiredType);
             } catch (Exception e) {
+                logger.error("getBean() error", e);
             }
         }
 

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Profile;
 public class CoreBeanConfiguration {
     @Bean
     @Profile({SpringProfiles.DEFAULT, SpringProfiles.DEV, SpringProfiles.TEST})
-    public EasyDev EasyDev4DevAndTest() {
+    public EasyDev easyDev4DevAndTest() {
         EasyDev bean = new EasyDev();
         bean.getFormatPattern().setDate("yyyy-MM-dd");
         bean.getFormatPattern().setDatetime("yyyy-MM-dd HH:mm:ss");
@@ -22,7 +22,7 @@ public class CoreBeanConfiguration {
 
     @Bean
     @Profile(SpringProfiles.PROD)
-    public EasyDev EasyDev4Prod() {
+    public EasyDev easyDev4Prod() {
         EasyDev bean = new EasyDev();
         bean.getFormatPattern().setDate("yyyy-MM-dd");
         bean.getFormatPattern().setDatetime("yyyy-MM-dd HH:mm:ss");
