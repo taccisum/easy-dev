@@ -1,4 +1,5 @@
 dependencies {
+    compile project(':easy-core')
     compile(
             [group: 'javax.persistence', name: 'persistence-api', version: '1.0']
     )
