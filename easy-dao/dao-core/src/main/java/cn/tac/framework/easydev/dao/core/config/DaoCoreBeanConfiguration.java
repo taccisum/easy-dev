@@ -20,14 +20,14 @@ public class DaoCoreBeanConfiguration {
 
     @Bean
     @Profile({SpringProfiles.DEFAULT, SpringProfiles.DEV, SpringProfiles.TEST})
-    public DaoCore EasyDev4DevAndTest() {
+    public DaoCore daoCore4DevAndTest() {
         DaoCore bean = new DaoCore();
         return bean;
     }
 
     @Bean
     @Profile(SpringProfiles.PROD)
-    public DaoCore EasyDev4Prod() {
+    public DaoCore daoCore4Prod() {
         DaoCore bean = new DaoCore();
         return bean;
     }
