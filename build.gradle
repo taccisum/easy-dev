@@ -33,7 +33,7 @@ subprojects {
     sourceCompatibility = 1.8
 
     group 'cn.tac.framework'
-    version '2.0-SNAPSHOT'
+    version '2.1-SNAPSHOT'
 
     dependencies {
         compile(
@@ -43,6 +43,8 @@ subprojects {
                 ['org.springframework.boot:spring-boot-starter-test'],
         )
         optional "org.springframework.boot:spring-boot-devtools"
+        optional "org.springframework.boot:spring-boot-configuration-processor"
+        compileJava.dependsOn(processResources)
     }
 
     publishing {
