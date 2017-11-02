@@ -1,6 +1,5 @@
-package cn.tac.framework.easydev.core.bean;
+package cn.tac.framework.easydev.core.config;
 
-import cn.tac.framework.easydev.core.config.EasyCoreProperties;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -9,7 +8,7 @@ import org.springframework.context.annotation.Bean;
  */
 public class CoreBeanConfiguration {
     @Bean
-    public EasyCoreProperties easyCoreProperties4DevAndTest() {
+    public EasyCoreProperties easyCoreProperties() {
         EasyCoreProperties bean = new EasyCoreProperties();
         bean.getFormatPattern().setDate("yyyy-MM-dd");
         bean.getFormatPattern().setDatetime("yyyy-MM-dd HH:mm:ss");

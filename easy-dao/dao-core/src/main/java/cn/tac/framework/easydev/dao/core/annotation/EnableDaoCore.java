@@ -1,6 +1,6 @@
 package cn.tac.framework.easydev.dao.core.annotation;
 
-import cn.tac.framework.easydev.core.annotation.EnableEasyDevCore;
+import cn.tac.framework.easydev.core.annotation.EnableEasyCore;
 import cn.tac.framework.easydev.dao.core.config.DaoCoreBeanConfiguration;
 import org.springframework.context.annotation.Import;
 
@@ -13,7 +13,7 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@EnableEasyDevCore
+@EnableEasyCore
 @Import({DaoCoreBeanConfiguration.class})
 public @interface EnableDaoCore {
 }

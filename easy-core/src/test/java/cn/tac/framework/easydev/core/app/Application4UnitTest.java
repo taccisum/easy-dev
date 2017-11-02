@@ -1,6 +1,6 @@
 package cn.tac.framework.easydev.core.app;
 
-import cn.tac.framework.easydev.core.annotation.EnableEasyDevCore;
+import cn.tac.framework.easydev.core.annotation.EnableEasyCore;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
@@ -10,6 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 01/11/2017
  */
 @SpringBootApplication
-@EnableEasyDevCore
+@EnableEasyCore
 public class Application4UnitTest {
 }
