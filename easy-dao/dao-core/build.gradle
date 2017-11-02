@@ -1,0 +1,5 @@
+dependencies {
+    compile(
+            [group: 'javax.persistence', name: 'persistence-api', version: '1.0']
+    )
+}
