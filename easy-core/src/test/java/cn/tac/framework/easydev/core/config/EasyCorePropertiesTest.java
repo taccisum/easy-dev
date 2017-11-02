@@ -22,6 +22,5 @@ public class EasyCorePropertiesTest {
     public void testSimply() {
         Assert.assertEquals("yyyyMMdd", easyCoreProperties.getFormatPattern().getDate());
         Assert.assertEquals("yyyyMMddHHmmss", easyCoreProperties.getFormatPattern().getDatetime());
-        Assert.assertEquals(false, easyCoreProperties.isDebug());
     }
 }

@@ -1,9 +1,4 @@
-spring:
-  profiles:
-    active: test
-
 easy-dev:
   format-pattern:
     date: yyyyMMdd
     datetime: yyyyMMddHHmmss
-  debug: false

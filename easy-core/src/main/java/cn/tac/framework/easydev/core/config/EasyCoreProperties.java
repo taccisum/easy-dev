@@ -16,7 +16,6 @@ public class EasyCoreProperties {
     }
 
     private FormatPattern formatPattern;
-    private boolean debug;
 
     public FormatPattern getFormatPattern() {
         return formatPattern;
@@ -24,14 +23,6 @@ public class EasyCoreProperties {
 
     public void setFormatPattern(FormatPattern formatPattern) {
         this.formatPattern = formatPattern;
-    }
-
-    public boolean isDebug() {
-        return debug;
-    }
-
-    public void setDebug(boolean debug) {
-        this.debug = debug;
     }
 
     public class FormatPattern {
