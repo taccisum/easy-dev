@@ -9,5 +9,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 01/11/2017
  */
 @ConfigurationProperties(DaoConstant.CONFIG_PROP_PREFIX)
-public class DaoCore {
+public class DaoCoreProperties {
 }

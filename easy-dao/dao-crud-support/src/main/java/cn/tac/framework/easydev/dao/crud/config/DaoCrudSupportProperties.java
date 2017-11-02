@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 
 @ConfigurationProperties(DaoConstant.CONFIG_PROP_PREFIX)
-public class DaoCrudSupport {
+public class DaoCrudSupportProperties {
     private boolean boundaryDefault;
 
     public boolean isBoundaryDefault() {

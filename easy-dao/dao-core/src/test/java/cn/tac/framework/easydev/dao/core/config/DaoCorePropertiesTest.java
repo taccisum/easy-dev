@@ -14,12 +14,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @SpringBootTest(classes = Application4UnitTest.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-public class DaoCoreTest {
+public class DaoCorePropertiesTest {
     @Autowired
-    private DaoCore daoCore;
+    private DaoCoreProperties daoCoreProperties;
 
     @Test
     public void testSimply() {
-        Assert.assertNotNull(daoCore);
+        Assert.assertNotNull(daoCoreProperties);
     }
 }

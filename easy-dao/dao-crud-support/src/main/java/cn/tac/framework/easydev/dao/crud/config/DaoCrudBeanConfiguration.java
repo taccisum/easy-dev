@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Bean;
  */
 public class DaoCrudBeanConfiguration {
     @Bean
-    public DaoCrudSupport daoCrudSupport() {
-        DaoCrudSupport bean = new DaoCrudSupport();
+    public DaoCrudSupportProperties daoCrudSupport() {
+        DaoCrudSupportProperties bean = new DaoCrudSupportProperties();
         bean.setBoundaryDefault(true);
         return bean;
     }

@@ -17,8 +17,8 @@ public class DaoCoreBeanConfiguration {
     }
 
     @Bean
-    public DaoCore daoCore() {
-        DaoCore bean = new DaoCore();
+    public DaoCoreProperties daoCoreProperties() {
+        DaoCoreProperties bean = new DaoCoreProperties();
         return bean;
     }
 }
