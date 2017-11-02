@@ -1,5 +1,6 @@
 package cn.tac.framework.easydev.dao.core.pojo;
 
+import javax.persistence.Column;
 import java.util.Date;
 
 /**
