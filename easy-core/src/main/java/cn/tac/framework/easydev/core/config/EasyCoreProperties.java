@@ -10,8 +10,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 01/11/2017
  */
 @ConfigurationProperties(GlobalConstant.CONFIG_PROP_PREFIX)
-public class EasyDev {
-    public EasyDev() {
+public class EasyCoreProperties {
+    public EasyCoreProperties() {
         formatPattern = new FormatPattern();
     }
 

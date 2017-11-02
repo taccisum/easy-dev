@@ -1,6 +1,6 @@
 package cn.tac.framework.easydev.core.bean;
 
-import cn.tac.framework.easydev.core.config.EasyDev;
+import cn.tac.framework.easydev.core.config.EasyCoreProperties;
 import cn.tac.framework.easydev.core.constant.SpringProfiles;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Profile;
 public class CoreBeanConfiguration {
     @Bean
     @Profile({SpringProfiles.DEFAULT, SpringProfiles.DEV, SpringProfiles.TEST})
-    public EasyDev easyDev4DevAndTest() {
-        EasyDev bean = new EasyDev();
+    public EasyCoreProperties easyCoreProperties4DevAndTest() {
+        EasyCoreProperties bean = new EasyCoreProperties();
         bean.getFormatPattern().setDate("yyyy-MM-dd");
         bean.getFormatPattern().setDatetime("yyyy-MM-dd HH:mm:ss");
         bean.setDebug(true);
@@ -22,8 +22,8 @@ public class CoreBeanConfiguration {
 
     @Bean
     @Profile(SpringProfiles.PROD)
-    public EasyDev easyDev4Prod() {
-        EasyDev bean = new EasyDev();
+    public EasyCoreProperties easyCoreProperties4Prod() {
+        EasyCoreProperties bean = new EasyCoreProperties();
         bean.getFormatPattern().setDate("yyyy-MM-dd");
         bean.getFormatPattern().setDatetime("yyyy-MM-dd HH:mm:ss");
         bean.setDebug(false);

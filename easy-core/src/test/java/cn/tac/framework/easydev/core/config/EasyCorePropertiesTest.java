@@ -14,14 +14,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @SpringBootTest(classes = Application4UnitTest.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-public class EasyDevTest {
+public class EasyCorePropertiesTest {
     @Autowired
-    private EasyDev easyDev;
+    private EasyCoreProperties easyCoreProperties;
 
     @Test
     public void testSimply() {
-        Assert.assertEquals("yyyyMMdd", easyDev.getFormatPattern().getDate());
-        Assert.assertEquals("yyyyMMddHHmmss", easyDev.getFormatPattern().getDatetime());
-        Assert.assertEquals(false, easyDev.isDebug());
+        Assert.assertEquals("yyyyMMdd", easyCoreProperties.getFormatPattern().getDate());
+        Assert.assertEquals("yyyyMMddHHmmss", easyCoreProperties.getFormatPattern().getDatetime());
+        Assert.assertEquals(false, easyCoreProperties.isDebug());
     }
 }
