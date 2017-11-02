@@ -1,11 +1,9 @@
 package cn.tac.framework.easydev.dao.core.config;
 
-import cn.tac.framework.easydev.core.constant.SpringProfiles;
 import cn.tac.framework.easydev.dao.core.bean.DefaultRuntimeData4Dao;
 import cn.tac.framework.easydev.dao.core.bean.RuntimeData4Dao;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 
 /**
  * @author tac
@@ -19,15 +17,7 @@ public class DaoCoreBeanConfiguration {
     }
 
     @Bean
-    @Profile({SpringProfiles.DEFAULT, SpringProfiles.DEV, SpringProfiles.TEST})
-    public DaoCore daoCore4DevAndTest() {
-        DaoCore bean = new DaoCore();
-        return bean;
-    }
-
-    @Bean
-    @Profile(SpringProfiles.PROD)
-    public DaoCore daoCore4Prod() {
+    public DaoCore daoCore() {
         DaoCore bean = new DaoCore();
         return bean;
     }
