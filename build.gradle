@@ -14,6 +14,7 @@ buildscript {
 }
 
 allprojects {
+
     repositories {
         mavenLocal()
         maven {
@@ -27,6 +28,7 @@ subprojects {
     apply plugin: 'java'
     apply plugin: "org.springframework.boot"
     apply plugin: 'propdeps-idea'
+    apply plugin: 'maven-publish'
 
     sourceCompatibility = 1.8
 
@@ -41,5 +43,49 @@ subprojects {
                 ['org.springframework.boot:spring-boot-starter-test'],
         )
         optional "org.springframework.boot:spring-boot-devtools"
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                artifact sourceJar {
+                    classifier "sources"
+                }
+                pom.withXml {
+                    asNode().dependencies.'*'.findAll() {
+                        it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
+                            dep.name == it.artifactId.text()
+                        }
+                    }.each() {
+                        it.scope*.value = 'compile'
+                    }
+                }
+            }
+        }
+
+        repositories {
+            def NEXUS_URL = "http://172.10.10.66:8081/nexus/content/repositories"
+            if (project.version.endsWith("SNAPSHOT")) {
+                NEXUS_URL = "$NEXUS_URL/snapshots/"
+            } else {
+                NEXUS_URL = "$NEXUS_URL/releases/"
+            }
+
+            maven {
+                url "$buildDir/repo"
+            }
+            maven {
+                url NEXUS_URL
+                credentials {
+                    username = "admin"
+                    password = "admin123"
+                }
+            }
+        }
+    }
+
+    task sourceJar(type: Jar) {
+        from sourceSets.main.allJava
     }
 }
