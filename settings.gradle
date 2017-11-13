@@ -36,4 +36,6 @@ include 'easy-logging:logging-logback-support'
 findProject(':easy-logging:logging-logback-support')?.name = 'logging-logback-support'
 include 'easy-logging:logging-logstash-support'
 findProject(':easy-logging:logging-logstash-support')?.name = 'logging-logstash-support'
+include 'easy-starter'
+include 'sample'
 

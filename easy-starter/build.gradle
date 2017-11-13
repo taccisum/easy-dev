@@ -1,0 +1,4 @@
+dependencies {
+    compile project (":easy-core")
+    compile project (":easy-dao")
+}

@@ -26,8 +26,8 @@ public class EasyCoreProperties {
     }
 
     public class FormatPattern {
-        private String date;
-        private String datetime;
+        private String date = "yyyy-MM-dd";
+        private String datetime = "yyyy-MM-dd HH:mm:ss";
 
         public String getDate() {
             return date;
