@@ -1,7 +1,7 @@
 package cn.tac.framework.easydev.core.util;
 
-import cn.tac.framework.easydev.core.config.EasyCoreProperties;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +14,16 @@ import java.util.UUID;
  * @since 02/08/2017
  */
 public abstract class IDUtils {
-    private static String emptyUUID;
-    //todo:: 在使用spring boot devtools热部署时，如果修改了compactUUID的配置，可能会出现问题
-    private static Boolean compactUUID = null;
+    public static final boolean COMPACT_UUID_DEFAULT = true;
+    private static String compactEmptyUUID;
+    private static String nonCompactEmptyUUID;
 
     public static String UUID() {
-        check();
-        if (compactUUID) {
+        return UUID(COMPACT_UUID_DEFAULT);
+    }
+
+    public static String UUID(boolean compact) {
+        if (compact) {
             return UUID.randomUUID().toString().replace("-", "");
         } else {
             return UUID.randomUUID().toString();
@@ -28,34 +31,37 @@ public abstract class IDUtils {
     }
 
     public static String emptyUUID() {
-        if (emptyUUID == null) {
-            emptyUUID = buildEmptyUUID();
-        }
-        return emptyUUID;
+        return emptyUUID(COMPACT_UUID_DEFAULT);
     }
 
-    private static void check() {
-        if (compactUUID == null) {
-            EasyCoreProperties easyCoreProperties = SpringUtils.getBean(EasyCoreProperties.class);
-            compactUUID = easyCoreProperties == null ? true : easyCoreProperties.isCompactUUID();
+    public static String emptyUUID(boolean compact) {
+        if (compact) {
+            if (StringUtils.isBlank(compactEmptyUUID)) {
+                compactEmptyUUID = buildEmptyUUID(compact);
+            }
+            return compactEmptyUUID;
+        } else {
+            if (StringUtils.isBlank(nonCompactEmptyUUID)) {
+                nonCompactEmptyUUID = buildEmptyUUID(compact);
+            }
+            return nonCompactEmptyUUID;
         }
     }
 
-    private static String buildEmptyUUID() {
-        check();
-        List<Integer> ls = Lists.newArrayList(8, 4, 4, 16);
+    private static String buildEmptyUUID(boolean compact) {
+        List<Integer> ls = Lists.newArrayList(8, 4, 4, 4, 12);
         StringBuilder sb = new StringBuilder();
 
         for (int i : ls) {
             for (int j : range(i)) {
                 sb.append(0);
             }
-            if (compactUUID) {
+            if (!compact) {
                 sb.append("-");
             }
         }
         String id = sb.toString();
-        if (compactUUID) {
+        if (!compact) {
             id = id.substring(0, id.length() - 1);
         }
         return id;

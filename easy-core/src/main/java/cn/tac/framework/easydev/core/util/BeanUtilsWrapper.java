@@ -12,8 +12,6 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * todo:: 编写单元测试
- *
  * BeanUtils facade
  * 1. 对bean utils的调用做封装，若后续对性能有要求，可以很方便替换成更高效的bean utils<br/>
  * 2. 可以根据需求很方便地集成不同的第三方BeanUtils方法到该类
