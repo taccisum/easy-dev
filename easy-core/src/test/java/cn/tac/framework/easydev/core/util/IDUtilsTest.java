@@ -3,8 +3,6 @@ package cn.tac.framework.easydev.core.util;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * @author tac
  * @since 01/11/2017

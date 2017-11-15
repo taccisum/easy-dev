@@ -1,6 +1,7 @@
 package cn.tac.framework.easydev.autoconfigure;
 
 import cn.tac.framework.easydev.core.config.EasyCoreProperties;
+import cn.tac.framework.easydev.core.util.SpringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,5 +22,6 @@ public class EasyCoreAutoConfigurationTest {
     @Test
     public void testSimply() {
         Assert.assertNotNull(easyCoreProperties);
+        Assert.assertNotNull(SpringUtils.getBean(EasyCoreProperties.class));
     }
 }
