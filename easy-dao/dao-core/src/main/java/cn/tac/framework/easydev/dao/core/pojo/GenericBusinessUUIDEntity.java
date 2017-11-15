@@ -1,6 +1,7 @@
 package cn.tac.framework.easydev.dao.core.pojo;
 
-import cn.tac.framework.easydev.core.util.IDUtils;
+import cn.tac.framework.easydev.dao.core.strategy.id.IDGenerator;
+import cn.tac.framework.easydev.dao.core.strategy.id.UUIDGenerator;
 
 /**
  * 通用的UUID主键的业务实体基类
@@ -10,7 +11,7 @@ import cn.tac.framework.easydev.core.util.IDUtils;
  */
 public abstract class GenericBusinessUUIDEntity extends GenericBusinessEntity<String> {
     @Override
-    protected String newId() {
-        return IDUtils.UUID();
+    public IDGenerator<String> getIDGenerator() {
+        return UUIDGenerator.instance();
     }
 }

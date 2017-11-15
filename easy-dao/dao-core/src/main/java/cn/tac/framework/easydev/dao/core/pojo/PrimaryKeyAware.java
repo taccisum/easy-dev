@@ -1,5 +1,7 @@
 package cn.tac.framework.easydev.dao.core.pojo;
 
+import cn.tac.framework.easydev.dao.core.strategy.id.IDGenerator;
+
 /**
  * 主键
  *
@@ -9,4 +11,6 @@ package cn.tac.framework.easydev.dao.core.pojo;
 public interface PrimaryKeyAware<PK> {
     PK getId();
     void setId(PK id);
+
+    IDGenerator<PK> getIDGenerator();
 }

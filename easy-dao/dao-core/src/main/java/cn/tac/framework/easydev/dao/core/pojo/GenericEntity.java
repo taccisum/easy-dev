@@ -1,14 +1,14 @@
 package cn.tac.framework.easydev.dao.core.pojo;
 
 
-import cn.tac.framework.easydev.core.util.SpringUtils;
-import cn.tac.framework.easydev.dao.core.bean.RuntimeData4Dao;
+import cn.tac.framework.easydev.dao.core.strategy.deletedflag.DeletedFlagMapping;
+import cn.tac.framework.easydev.dao.core.strategy.deletedflag.IntegerDeletedFlagMapping;
+import cn.tac.framework.easydev.dao.core.util.EntityUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OrderBy;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -23,11 +23,20 @@ import java.util.Date;
  *     </ul>
  * </p>
  *
+ * <p>
+ *     实际应用中，也可以继承{@link MinEntityStructure}（保证实体的最小结构），通过实现所需接口的形式来构建属于你自己的实体模型基类
+ * </p>
+ *
  * @author : tac
  * @since : 2017/11/1
  */
 @Entity
-public abstract class GenericEntity<PK> implements PrimaryKeyAware<PK>, EntityInfoAware, DeletedFlagAware, InitializingEntity, Serializable {
+public abstract class GenericEntity<PK> implements
+        MinEntityStructure<PK>,
+        EntityInfoAware,
+        DeletedFlagAware<Integer>,
+        InitializingEntity,
+        DefaultValue4ParticularFieldsAware {
     public static final String ID_FIELD_NAME = "id";
     public static final String CREATED_BY_FIELD_NAME = "created_by";
     public static final String CREATED_ON_FIELD_NAME = "created_on";
@@ -110,29 +119,21 @@ public abstract class GenericEntity<PK> implements PrimaryKeyAware<PK>, EntityIn
         this.deletedFlag = enableFlag;
     }
 
-    /**
-     * {@inheritDoc}
-     *
-     * @see #newId()
-     * @see #setDef()
-     */
     @Override
     public void init(){
-        setId(newId());
-        setCreatedBy(SpringUtils.getBean(RuntimeData4Dao.class).userId());
-        setCreatedOn(new Date());
-        setUpdatedBy(null);
-        setUpdatedOn(null);
-        setDeletedFlag(0);
-
-        setDef();
+        EntityUtils.init(this);
     }
 
     /**
      * 在派生类中可以通过改写该方法来为某些字段赋于默认值
      */
-    protected void setDef(){
+    @Override
+    public void initDefaultValue() {
+        //do nothing
     }
 
-    protected abstract PK newId();
+    @Override
+    public DeletedFlagMapping<Integer> getDeletedFlagMapping() {
+        return IntegerDeletedFlagMapping.instance();
+    }
 }

@@ -9,9 +9,9 @@ import javax.persistence.Column;
  * @since 15/11/2017
  */
 public abstract class GenericBusinessEntity<PK> extends GenericEntity<PK> implements BusinessInfoAware {
-    public static final String ORG_ID_FIELD_NAME = "organization_id";
+    public static final String ORGANIZATION_ID_FIELD_NAME = "organization_id";
 
-    @Column(name = ORG_ID_FIELD_NAME)
+    @Column(name = ORGANIZATION_ID_FIELD_NAME)
     private String organizationId;
 
     @Override
