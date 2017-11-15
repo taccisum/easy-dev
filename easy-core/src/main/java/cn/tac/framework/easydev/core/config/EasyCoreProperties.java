@@ -15,7 +15,17 @@ public class EasyCoreProperties {
         formatPattern = new FormatPattern();
     }
 
+    private boolean compactUUID = true;
+
     private FormatPattern formatPattern;
+
+    public boolean isCompactUUID() {
+        return compactUUID;
+    }
+
+    public void setCompactUUID(boolean compactUUID) {
+        this.compactUUID = compactUUID;
+    }
 
     public FormatPattern getFormatPattern() {
         return formatPattern;
