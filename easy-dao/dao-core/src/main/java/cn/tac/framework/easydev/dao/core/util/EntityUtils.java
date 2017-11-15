@@ -1,11 +1,7 @@
 package cn.tac.framework.easydev.dao.core.util;
 
-import cn.tac.framework.easydev.core.util.SpringUtils;
 import cn.tac.framework.easydev.dao.core.bean.RuntimeData4Dao;
-import cn.tac.framework.easydev.dao.core.pojo.DefaultValue4ParticularFieldsAware;
-import cn.tac.framework.easydev.dao.core.pojo.DeletedFlagAware;
-import cn.tac.framework.easydev.dao.core.pojo.EntityInfoAware;
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.*;
 
 import java.util.Date;
 
@@ -13,17 +9,26 @@ import java.util.Date;
  * @author tac
  * @since 15/11/2017
  */
-public abstract class EntityUtils {
-    public static void init(MinEntityStructure entity){
+public class EntityUtils {
+    private static RuntimeData4Dao runtimeData4Dao;
+
+    public void setRuntimeData4Dao(RuntimeData4Dao runtimeData4Dao) {
+        EntityUtils.runtimeData4Dao = runtimeData4Dao;
+    }
+
+    public static void init(MinEntityStructure entity) {
         initPrimaryKey(entity);
-        if(entity instanceof EntityInfoAware){
+        if (entity instanceof EntityInfoAware) {
             initEntityInfo((EntityInfoAware) entity);
         }
-        if(entity instanceof DeletedFlagAware){
+        if (entity instanceof DeletedFlagAware) {
             initDeletedFlag(((DeletedFlagAware) entity));
         }
-        if(entity instanceof DefaultValue4ParticularFieldsAware){
+        if (entity instanceof DefaultValue4ParticularFieldsAware) {
             initDefaultValue((DefaultValue4ParticularFieldsAware) entity);
+        }
+        if (entity instanceof BusinessInfoAware) {
+            initBusinessInfo((BusinessInfoAware) entity);
         }
     }
 
@@ -32,7 +37,7 @@ public abstract class EntityUtils {
     }
 
     private static void initEntityInfo(EntityInfoAware entity) {
-        entity.setCreatedBy(SpringUtils.getBean(RuntimeData4Dao.class).userId());
+        entity.setCreatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
         entity.setCreatedOn(new Date());
         entity.setUpdatedBy(null);
         entity.setUpdatedOn(null);
@@ -44,5 +49,9 @@ public abstract class EntityUtils {
 
     private static void initDefaultValue(DefaultValue4ParticularFieldsAware entity) {
         entity.initDefaultValue();
+    }
+
+    private static void initBusinessInfo(BusinessInfoAware entity) {
+        entity.setOrganizationId(runtimeData4Dao == null ? null : runtimeData4Dao.organizationId());
     }
 }

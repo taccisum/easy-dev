@@ -15,5 +15,4 @@ public class ActionTest {
     private void doGreetAction(Action action) {
         action.doAction();
     }
-
 }
