@@ -3,6 +3,7 @@ package cn.tac.framework.easydev.dao.core.util;
 import cn.tac.framework.easydev.dao.core.bean.RuntimeData4Dao;
 import cn.tac.framework.easydev.dao.core.pojo.GenericBusinessUUIDEntity;
 import cn.tac.framework.easydev.dao.core.strategy.deletedflag.IntegerDeletedFlagMapping;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,6 +36,7 @@ public class EntityUtilsTest {
     public void init() throws Exception {
         FooEntity entity = new FooEntity();
         EntityUtils.init(entity);
+        System.out.println(entity);
         assertThat(entity.getId()).isNotBlank();
         assertThat(entity.getCreatedBy()).isEqualTo(USER_ID);
         assertThat(entity.getCreatedOn()).isNotNull();
@@ -60,6 +62,20 @@ public class EntityUtilsTest {
         @Override
         public void initDefaultValue() {
             bar1 = BAR1_DEFAULT;
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this)
+                    .append("id", getId())
+                    .append("createdBy", getCreatedBy())
+                    .append("createdOn", getCreatedOn())
+                    .append("updatedBy", getUpdatedBy())
+                    .append("updatedOn", getUpdatedOn())
+                    .append("deletedFlag", getDeletedFlag())
+                    .append("organizationId", getOrganizationId())
+                    .append("bar1", bar1)
+                    .toString();
         }
     }
 }
