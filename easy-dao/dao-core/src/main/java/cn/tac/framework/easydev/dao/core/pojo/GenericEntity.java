@@ -23,13 +23,11 @@ import java.util.Date;
  *     </ul>
  * </p>
  *
- * @see IGenericModel
  * @author : tac
  * @since : 2017/11/1
  */
-
 @Entity
-public abstract class GenericModel<PK> implements IGenericModel<PK>, Serializable {
+public abstract class GenericEntity<PK> implements PrimaryKeyAware<PK>, EntityInfoAware, DeletedFlagAware, InitializingEntity, Serializable {
     public static final String ID_FIELD_NAME = "id";
     public static final String CREATED_BY_FIELD_NAME = "created_by";
     public static final String CREATED_ON_FIELD_NAME = "created_on";
