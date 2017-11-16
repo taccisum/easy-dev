@@ -31,7 +31,7 @@ public class SampleApplication {
         @Override
         public void afterPropertiesSet() throws Exception {
             System.out.println(easyCoreProperties.getFormatPattern().getDatetime());
-            System.out.println(daoCrudSupportProperties.isBoundaryDefault());
+            System.out.println(daoCrudSupportProperties.isBoundary());
         }
     }
 }

@@ -9,13 +9,31 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(DaoConstant.CONFIG_PROP_PREFIX)
 public class DaoCrudSupportProperties {
-    private boolean boundaryDefault = true;
+    private boolean boundary = true;
+    private boolean containDeleted = false;
+    private boolean logicDeleted= true;
 
-    public boolean isBoundaryDefault() {
-        return boundaryDefault;
+    public boolean isBoundary() {
+        return boundary;
     }
 
-    public void setBoundaryDefault(boolean boundaryDefault) {
-        this.boundaryDefault = boundaryDefault;
+    public void setBoundary(boolean boundary) {
+        this.boundary = boundary;
+    }
+
+    public boolean isContainDeleted() {
+        return containDeleted;
+    }
+
+    public void setContainDeleted(boolean containDeleted) {
+        this.containDeleted = containDeleted;
+    }
+
+    public boolean isLogicDeleted() {
+        return logicDeleted;
+    }
+
+    public void setLogicDeleted(boolean logicDeleted) {
+        this.logicDeleted = logicDeleted;
     }
 }

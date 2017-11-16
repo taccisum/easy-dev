@@ -32,6 +32,17 @@ public class EntityUtils {
         }
     }
 
+    public static void initUpdatingInfo(EntityInfoAware entity) {
+        entity.setUpdatedOn(new Date());
+        entity.setUpdatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
+    }
+
+    public static void setBoundary4Query(MinEntityStructure entity) {
+        if (entity instanceof BusinessInfoAware) {
+            setBusinessBoundary4Query((BusinessInfoAware) entity);
+        }
+    }
+
     private static void initPrimaryKey(MinEntityStructure entity) {
         entity.setId(entity.getIDGenerator().generate(null));
     }
@@ -52,6 +63,10 @@ public class EntityUtils {
     }
 
     private static void initBusinessInfo(BusinessInfoAware entity) {
+        entity.setOrganizationId(runtimeData4Dao == null ? null : runtimeData4Dao.organizationId());
+    }
+
+    private static void setBusinessBoundary4Query(BusinessInfoAware entity) {
         entity.setOrganizationId(runtimeData4Dao == null ? null : runtimeData4Dao.organizationId());
     }
 }
