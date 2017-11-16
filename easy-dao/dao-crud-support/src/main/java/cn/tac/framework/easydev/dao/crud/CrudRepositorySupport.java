@@ -1,5 +1,7 @@
 package cn.tac.framework.easydev.dao.crud;
 
+import cn.tac.framework.easydev.dao.core.CrudMapperSupport;
+import cn.tac.framework.easydev.dao.core.RepositorySkeleton;
 import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
 import cn.tac.framework.easydev.dao.crud.config.DaoCrudSupportProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author tac
  * @since 02/11/2017
  */
-public abstract class CrudRepositorySupport<E extends MinEntityStructure<PK>, PK>
+public abstract class CrudRepositorySupport<E extends MinEntityStructure<PK>, PK> extends RepositorySkeleton<E, PK>
         implements
         CreationRepositorySupport<E, PK>,
         RetrievalRepositorySupport<E, PK>,
@@ -18,20 +20,8 @@ public abstract class CrudRepositorySupport<E extends MinEntityStructure<PK>, PK
         DeletionRepositorySupport<E, PK> {
     private DaoCrudSupportProperties daoCrudSupportProperties;
 
-    protected CrudMapperSupport<E> mapper;
-
-    /**
-     * 由于java泛型的局限性，需要为DAO手动提供实体的类型引用
-     */
-    protected Class<E> typeReference;
     public CrudRepositorySupport(CrudMapperSupport<E> mapper, Class<E> typeReference) {
-        this.mapper = mapper;
-        this.typeReference = typeReference;
-    }
-
-    @Autowired
-    public void setDaoCrudSupportProperties(DaoCrudSupportProperties daoCrudSupportProperties) {
-        this.daoCrudSupportProperties = daoCrudSupportProperties;
+        super(mapper, typeReference);
     }
 
     @Override
@@ -39,23 +29,8 @@ public abstract class CrudRepositorySupport<E extends MinEntityStructure<PK>, PK
         return daoCrudSupportProperties;
     }
 
-    @Override
-    public CrudMapperSupport<E> getMapper() {
-        return mapper;
-    }
-
-    @Override
-    public Class<E> getEntityClass() {
-        return typeReference;
-    }
-
-    @Override
-    public E newEntityInstance() {
-        try {
-            return typeReference.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+    @Autowired
+    public void setDaoCrudSupportProperties(DaoCrudSupportProperties daoCrudSupportProperties) {
+        this.daoCrudSupportProperties = daoCrudSupportProperties;
     }
 }

@@ -1,4 +1,4 @@
-package cn.tac.framework.easydev.dao.crud;
+package cn.tac.framework.easydev.dao.core.api;
 
 import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
 

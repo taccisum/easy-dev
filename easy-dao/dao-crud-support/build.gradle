@@ -1,6 +1,3 @@
 dependencies {
     compile project(':easy-dao:dao-core')
-    compile (
-            [group: 'tk.mybatis', name: 'mapper', version: '3.4.4'],
-    )
 }

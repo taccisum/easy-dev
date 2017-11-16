@@ -1,5 +1,6 @@
 package cn.tac.framework.easydev.dao.crud;
 
+import cn.tac.framework.easydev.dao.core.api.CrudMapperAware;
 import cn.tac.framework.easydev.dao.core.pojo.InitializingEntity;
 import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
 

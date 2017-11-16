@@ -1,4 +1,4 @@
-package cn.tac.framework.easydev.dao.crud;
+package cn.tac.framework.easydev.dao.core;
 
 
 import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
@@ -19,7 +19,7 @@ import tk.mybatis.mapper.common.Mapper;
  * </p>
  *
  * <b>
- *     规定：所有的mapper均不能在程序开发中直接使用，而是应该通过派生自{@link CrudRepositorySupport}的类进行封装后，通过
+ *     规定：所有的mapper均不能在程序开发中直接使用，而是应该通过派生自{@link RepositorySkeleton}的类进行封装后，通过
  *     该派生类代理进行调用
  * </b>
  *

@@ -1,5 +1,7 @@
 package cn.tac.framework.easydev.dao.crud;
 
+import cn.tac.framework.easydev.dao.core.api.CrudMapperAware;
+import cn.tac.framework.easydev.dao.core.api.EntityClassAware;
 import cn.tac.framework.easydev.dao.core.pojo.DeletedFlagAware;
 import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
 
