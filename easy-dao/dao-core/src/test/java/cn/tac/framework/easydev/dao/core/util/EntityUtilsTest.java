@@ -1,8 +1,10 @@
 package cn.tac.framework.easydev.dao.core.util;
 
 import cn.tac.framework.easydev.dao.core.bean.RuntimeData4Dao;
-import cn.tac.framework.easydev.dao.core.pojo.GenericBusinessUUIDEntity;
+import cn.tac.framework.easydev.dao.core.pojo.GenericBusinessEntity;
 import cn.tac.framework.easydev.dao.core.strategy.deletedflag.IntegerDeletedFlagMapping;
+import cn.tac.framework.easydev.dao.core.strategy.id.IDGenerator;
+import cn.tac.framework.easydev.dao.core.strategy.id.UUIDGenerator;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,7 +49,7 @@ public class EntityUtilsTest {
         assertThat(entity.getBar1()).isEqualTo(FooEntity.BAR1_DEFAULT);
     }
 
-    static class FooEntity extends GenericBusinessUUIDEntity {
+    static class FooEntity extends GenericBusinessEntity<String> {
         public static final String BAR1_DEFAULT = "bar1";
         private String bar1;
 
@@ -76,6 +78,11 @@ public class EntityUtilsTest {
                     .append("organizationId", getOrganizationId())
                     .append("bar1", bar1)
                     .toString();
+        }
+
+        @Override
+        public IDGenerator<String> getIDGenerator() {
+            return UUIDGenerator.instance();
         }
     }
 }
