@@ -6,7 +6,7 @@ import cn.tac.framework.easydev.dao.core.strategy.SingletonRegistry;
  * 自增主键生成器
  *
  * @author tac
- * @since 15/11/2017
+ * @since 2.0
  */
 public class AutoIncrementPrimaryKeyGenerator implements IDGenerator<Integer> {
     private AutoIncrementPrimaryKeyGenerator() {

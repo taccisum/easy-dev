@@ -7,7 +7,7 @@ import cn.tac.framework.easydev.dao.core.strategy.SingletonRegistry;
  * UUID生成器
  *
  * @author tac
- * @since 15/11/2017
+ * @since 2.0
  */
 public class UUIDGenerator implements IDGenerator<String> {
     private UUIDGenerator() {
