@@ -6,7 +6,7 @@ import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
 
 /**
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 public abstract class RepositorySkeleton<E extends MinEntityStructure<PK>, PK> implements CrudMapperAware<E>, EntityClassAware<E> {
     protected CrudMapperSupport<E> mapper;
