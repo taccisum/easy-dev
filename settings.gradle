@@ -38,4 +38,8 @@ include 'easy-logging:logging-logstash-support'
 findProject(':easy-logging:logging-logstash-support')?.name = 'logging-logstash-support'
 include 'easy-starter'
 include 'sample'
+include 'easy-service:service-crud-support'
+findProject(':easy-service:service-crud-support')?.name = 'service-crud-support'
+include 'easy-service:service-core'
+findProject(':easy-service:service-core')?.name = 'service-core'
 

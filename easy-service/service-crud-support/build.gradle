@@ -1,0 +1,4 @@
+dependencies {
+    compile project(":easy-service:service-core")
+    compile group: 'com.github.pagehelper', name: 'pagehelper', version: '5.0.0'
+}

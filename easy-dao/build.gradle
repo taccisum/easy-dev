@@ -1,3 +1,5 @@
 dependencies {
     compile project(':easy-dao:dao-crud-support')
+    compile project(':easy-dao:dao-middle-support')
+    compile project(':easy-dao:dao-tree-support')
 }
