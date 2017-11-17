@@ -15,7 +15,7 @@ public class SingletonRegistry<T> {
     public static final SingletonRegistry<DeletedFlagMapping> DELETED_FLAG_MAPPING = new SingletonRegistry<>();
     public static final SingletonRegistry<IDGenerator> ID_GENERATOR = new SingletonRegistry<>();
 
-    private SingletonRegistry() {
+    SingletonRegistry() {
     }
 
     private Map<Class<? extends T>, T> instances = new HashMap<>();
