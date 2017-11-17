@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author tac
- * @since 16/11/2017
+ * @since 2.0
  */
 public class EntityUtilsTest {
     public static final String ORG_ID = "taccisum";
@@ -38,7 +38,6 @@ public class EntityUtilsTest {
     public void init() throws Exception {
         FooEntity entity = new FooEntity();
         EntityUtils.init(entity);
-        System.out.println(entity);
         assertThat(entity.getId()).isNotBlank();
         assertThat(entity.getCreatedBy()).isEqualTo(USER_ID);
         assertThat(entity.getCreatedOn()).isNotNull();
@@ -47,6 +46,21 @@ public class EntityUtilsTest {
         assertThat(entity.getDeletedFlag()).isEqualTo(IntegerDeletedFlagMapping.instance().getEnableFlag());
         assertThat(entity.getOrganizationId()).isEqualTo(ORG_ID);
         assertThat(entity.getBar1()).isEqualTo(FooEntity.BAR1_DEFAULT);
+    }
+
+    @Test
+    public void initUpdatingInfo() throws Exception {
+        FooEntity entity = new FooEntity();
+        EntityUtils.initUpdatingInfo(entity);
+        assertThat(entity.getUpdatedBy()).isEqualTo(USER_ID);
+        assertThat(entity.getUpdatedOn()).isNotNull();
+    }
+
+    @Test
+    public void setBoundary4Query() throws Exception {
+        FooEntity entity = new FooEntity();
+        EntityUtils.setBoundary4Query(entity);
+        assertThat(entity.getOrganizationId()).isEqualTo(ORG_ID);
     }
 
     static class FooEntity extends GenericBusinessEntity<String> {

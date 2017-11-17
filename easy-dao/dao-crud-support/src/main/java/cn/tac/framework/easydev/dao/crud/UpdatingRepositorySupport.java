@@ -23,9 +23,7 @@ public interface UpdatingRepositorySupport<E extends MinEntityStructure<PK>, PK>
 
         boolean _boundary = boundary == null ? getDaoCrudSupportProperties().isBoundary() : boundary;
         boolean _containDeleted = containDeleted == null ? getDaoCrudSupportProperties().isContainDeleted() : containDeleted;
-        if(entity instanceof EntityInfoAware){
-            EntityUtils.initUpdatingInfo((EntityInfoAware) entity);
-        }
+        EntityUtils.initUpdatingInfo(entity);
         if(_boundary){
             //todo:: 排除隔离的数据
         }

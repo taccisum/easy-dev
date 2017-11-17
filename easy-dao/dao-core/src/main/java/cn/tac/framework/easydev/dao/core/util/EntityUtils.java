@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * @author tac
- * @since 15/11/2017
+ * @since 2.0
  */
 public class EntityUtils {
     private static RuntimeData4Dao runtimeData4Dao;
@@ -32,9 +32,12 @@ public class EntityUtils {
         }
     }
 
-    public static void initUpdatingInfo(EntityInfoAware entity) {
-        entity.setUpdatedOn(new Date());
-        entity.setUpdatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
+    public static void initUpdatingInfo(MinEntityStructure entity) {
+        if(entity instanceof EntityInfoAware){
+            EntityInfoAware _entity = ((EntityInfoAware) entity);
+            _entity.setUpdatedOn(new Date());
+            _entity.setUpdatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
+        }
     }
 
     public static void setBoundary4Query(MinEntityStructure entity) {
