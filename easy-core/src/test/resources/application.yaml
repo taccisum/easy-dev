@@ -2,3 +2,8 @@ easy-dev:
   format-pattern:
     date: yyyyMMdd
     datetime: yyyyMMddHHmmss
+
+---
+spring:
+  profiles: spring-utils
+foo: bar
