@@ -8,7 +8,7 @@ import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
  * 通用的新增方法
  *
  * @author tac
- * @since 16/11/2017
+ * @since 2.0
  */
 public interface CreationRepositorySupport<E extends MinEntityStructure<PK>, PK> extends CrudMapperAware<E> {
     default int insert(E entity) {

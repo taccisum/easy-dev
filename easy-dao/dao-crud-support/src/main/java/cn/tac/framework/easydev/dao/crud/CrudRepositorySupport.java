@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * 通用的crud repository基类，用于对mapper的操作做一些封装，以简化编码工作
  *
  * @author tac
- * @since 02/11/2017
+ * @since 2.0
  */
 public abstract class CrudRepositorySupport<E extends MinEntityStructure<PK>, PK> extends RepositorySkeleton<E, PK>
         implements

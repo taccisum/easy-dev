@@ -1,0 +1,14 @@
+logging:
+  level:
+    cn.tac.framework: trace
+---
+spring:
+  profiles: creation-repository-support
+  datasource:
+    username: sa
+    password: sa
+    schema: classpath:hsql/schema/creation-repository-support.sql
+    data: classpath:hsql/data/creation-repository-support.sql
+    url: jdbc:hsqldb:mem:hsql_db
+---
+

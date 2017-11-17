@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.OrderBy;
 import java.util.Date;
 
@@ -32,22 +31,16 @@ import java.util.Date;
  * @since : 2017/11/1
  */
 @Entity
-public abstract class GenericEntity<PK> implements
-        MinEntityStructure<PK>,
+public abstract class GenericEntity<PK> extends MinEntityStructure<PK> implements
         EntityInfoAware,
         DeletedFlagAware<Integer>,
         InitializingEntity,
         DefaultValue4ParticularFieldsAware {
-    public static final String ID_FIELD_NAME = "id";
     public static final String CREATED_BY_FIELD_NAME = "created_by";
     public static final String CREATED_ON_FIELD_NAME = "created_on";
     public static final String UPDATED_BY_FIELD_NAME = "updated_by";
     public static final String UPDATED_ON_FIELD_NAME = "updated_on";
     public static final String DELETED_FLAG_FIELD_NAME = "deleted_flag";
-
-    @Id
-    @Column(name = ID_FIELD_NAME)
-    private PK id;
 
     @Column(name = CREATED_BY_FIELD_NAME)
     @JsonIgnore
@@ -69,16 +62,6 @@ public abstract class GenericEntity<PK> implements
     @Column(name = DELETED_FLAG_FIELD_NAME)
     @JsonIgnore
     private Integer deletedFlag;
-
-    @Override
-    public PK getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(PK id) {
-        this.id = id;
-    }
 
     @Override
     public String getCreatedBy() {

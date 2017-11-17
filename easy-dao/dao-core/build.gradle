@@ -2,7 +2,8 @@ dependencies {
     compile project(':easy-core')
     compile(
             [group: 'javax.persistence', name: 'persistence-api', version: '1.0'],
-            [group: 'tk.mybatis', name: 'mapper', version: '3.4.4'],
+            [group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '1.3.1'],
+            [group: 'tk.mybatis', name: 'mapper-spring-boot-starter', version: '1.1.5'],
     )
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind'
     compile group: 'io.swagger', name: 'swagger-annotations', version: '1.5.16'

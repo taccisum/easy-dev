@@ -10,7 +10,7 @@ import cn.tac.framework.easydev.dao.crud.api.DaoCrudSupportPropertiesAware;
  * 通用的删除方法
  *
  * @author tac
- * @since 16/11/2017
+ * @since 2.0
  */
 public interface DeletionRepositorySupport<E extends MinEntityStructure<PK>, PK>
         extends CrudMapperAware<E>, EntityClassAware<E>, DaoCrudSupportPropertiesAware {

@@ -13,7 +13,7 @@ import java.util.List;
  * 通用查询方法
  *
  * @author tac
- * @since 16/11/2017
+ * @since 2.0
  */
 public interface RetrievalRepositorySupport<E extends MinEntityStructure<PK>, PK>
         extends CrudMapperAware<E>, EntityClassAware<E>, DaoCrudSupportPropertiesAware {
