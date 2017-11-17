@@ -4,6 +4,7 @@ import cn.tac.framework.easydev.dao.core.api.CrudMapperAware;
 import cn.tac.framework.easydev.dao.core.api.EntityClassAware;
 import cn.tac.framework.easydev.dao.core.pojo.DeletedFlagAware;
 import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.crud.api.DaoCrudSupportPropertiesAware;
 
 /**
  * 通用的删除方法
