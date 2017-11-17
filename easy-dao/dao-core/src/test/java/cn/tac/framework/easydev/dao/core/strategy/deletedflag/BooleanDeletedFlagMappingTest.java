@@ -13,7 +13,7 @@ public class BooleanDeletedFlagMappingTest {
     public void testSimply() {
         DeletedFlagMapping<Boolean> instance = BooleanDeletedFlagMapping.instance();
         assertThat(instance).isNotNull();
-        assertThat(instance.getEnableFlag()).isEqualTo(true);
-        assertThat(instance.getDisableFlag()).isEqualTo(false);
+        assertThat(instance.getEnableFlag()).isEqualTo(BooleanDeletedFlagMapping.ENABLE_FLAG);
+        assertThat(instance.getDisableFlag()).isEqualTo(BooleanDeletedFlagMapping.DISABLE_FLAG);
     }
 }

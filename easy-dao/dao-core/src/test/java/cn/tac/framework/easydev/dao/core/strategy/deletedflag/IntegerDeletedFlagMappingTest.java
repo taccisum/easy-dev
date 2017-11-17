@@ -13,7 +13,7 @@ public class IntegerDeletedFlagMappingTest {
     public void testSimply() throws Exception {
         DeletedFlagMapping<Integer> instance = IntegerDeletedFlagMapping.instance();
         assertThat(instance).isNotNull();
-        assertThat(instance.getEnableFlag()).isEqualTo(1);
-        assertThat(instance.getDisableFlag()).isEqualTo(0);
+        assertThat(instance.getEnableFlag()).isEqualTo(IntegerDeletedFlagMapping.ENABLE_FLAG);
+        assertThat(instance.getDisableFlag()).isEqualTo(IntegerDeletedFlagMapping.DISABLE_FLAG);
     }
 }

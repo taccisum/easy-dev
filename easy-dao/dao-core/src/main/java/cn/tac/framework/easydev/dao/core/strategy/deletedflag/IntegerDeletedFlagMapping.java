@@ -7,6 +7,9 @@ import cn.tac.framework.easydev.dao.core.strategy.SingletonRegistry;
  * @since 2.0
  */
 public class IntegerDeletedFlagMapping implements DeletedFlagMapping<Integer> {
+    public static final int ENABLE_FLAG = 1;
+    public static final int DISABLE_FLAG = 0;
+
     private IntegerDeletedFlagMapping(){}
 
     public static DeletedFlagMapping<Integer> instance(){
@@ -15,11 +18,11 @@ public class IntegerDeletedFlagMapping implements DeletedFlagMapping<Integer> {
 
     @Override
     public Integer getEnableFlag() {
-        return 1;
+        return ENABLE_FLAG;
     }
 
     @Override
     public Integer getDisableFlag() {
-        return 0;
+        return DISABLE_FLAG;
     }
 }

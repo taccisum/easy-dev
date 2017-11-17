@@ -7,6 +7,9 @@ import cn.tac.framework.easydev.dao.core.strategy.SingletonRegistry;
  * @since 2.0
  */
 public class BooleanDeletedFlagMapping implements DeletedFlagMapping<Boolean> {
+    public static final boolean ENABLE_FLAG = true;
+    public static final boolean DISABLE_FLAG = false;
+
     private BooleanDeletedFlagMapping(){}
 
     public static DeletedFlagMapping<Boolean> instance(){
@@ -15,11 +18,11 @@ public class BooleanDeletedFlagMapping implements DeletedFlagMapping<Boolean> {
 
     @Override
     public Boolean getEnableFlag() {
-        return true;
+        return ENABLE_FLAG;
     }
 
     @Override
     public Boolean getDisableFlag() {
-        return false;
+        return DISABLE_FLAG;
     }
 }
