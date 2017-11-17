@@ -2,7 +2,6 @@ package cn.tac.framework.easydev.core.util;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
@@ -17,7 +16,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringUtilsTest.class)
-@SpringBootApplication
 @Import(SpringUtils.class)
 @ActiveProfiles("spring-utils")
 public class SpringUtilsTest {
