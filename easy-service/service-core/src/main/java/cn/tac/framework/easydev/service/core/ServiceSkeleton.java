@@ -11,7 +11,7 @@ import cn.tac.framework.easydev.service.core.api.RepositoryAware;
 public abstract class ServiceSkeleton<E extends MinEntityStructure<PK>, PK> implements RepositoryAware<E, PK> {
     private RepositorySkeleton repository;
 
-    public ServiceSkeleton(RepositorySkeleton repository) {
+    public ServiceSkeleton(RepositorySkeleton<E, PK> repository) {
         this.repository = repository;
     }
 

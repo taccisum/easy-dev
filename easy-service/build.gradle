@@ -3,3 +3,7 @@ subprojects {
         compile project(":easy-dao")
     }
 }
+
+dependencies {
+    compile project(":easy-service:service-crud-support")
+}

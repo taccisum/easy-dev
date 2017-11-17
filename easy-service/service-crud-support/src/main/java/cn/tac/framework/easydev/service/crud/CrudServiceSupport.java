@@ -1,9 +1,8 @@
 package cn.tac.framework.easydev.service.crud;
 
-import cn.tac.framework.easydev.dao.core.RepositorySkeleton;
 import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.crud.CrudRepositorySupport;
 import cn.tac.framework.easydev.service.core.ServiceSkeleton;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 通用的支持CRUD操作的Service
@@ -17,8 +16,7 @@ public abstract class CrudServiceSupport<E extends MinEntityStructure<PK>, PK> e
         DeletionServiceSupport<E, PK>,
         RetrievalServiceSupport<E, PK>,
         UpdatingServiceSupport<E, PK> {
-    @Autowired
-    public CrudServiceSupport(RepositorySkeleton repository) {
+    public CrudServiceSupport(CrudRepositorySupport<E, PK> repository) {
         super(repository);
     }
 }
