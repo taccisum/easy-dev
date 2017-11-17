@@ -4,6 +4,7 @@ package cn.tac.framework.easydev.dao.core.pojo;
 import cn.tac.framework.easydev.dao.core.strategy.deletedflag.DeletedFlagMapping;
 import cn.tac.framework.easydev.dao.core.strategy.deletedflag.IntegerDeletedFlagMapping;
 import cn.tac.framework.easydev.dao.core.util.EntityUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,16 +48,26 @@ public abstract class GenericEntity<PK> implements
     @Id
     @Column(name = ID_FIELD_NAME)
     private PK id;
+
     @Column(name = CREATED_BY_FIELD_NAME)
+    @JsonIgnore
     private String createdBy;
+
     @OrderBy("desc")
     @Column(name = CREATED_ON_FIELD_NAME)
+    @JsonIgnore
     private Date createdOn;
+
     @Column(name = UPDATED_BY_FIELD_NAME)
+    @JsonIgnore
     private String updatedBy;
+
     @Column(name = UPDATED_ON_FIELD_NAME)
+    @JsonIgnore
     private Date updatedOn;
+
     @Column(name = DELETED_FLAG_FIELD_NAME)
+    @JsonIgnore
     private Integer deletedFlag;
 
     @Override
