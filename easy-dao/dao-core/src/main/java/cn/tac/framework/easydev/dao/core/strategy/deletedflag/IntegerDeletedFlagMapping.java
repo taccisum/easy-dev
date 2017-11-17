@@ -4,7 +4,7 @@ import cn.tac.framework.easydev.dao.core.strategy.SingletonRegistry;
 
 /**
  * @author tac
- * @since 15/11/2017
+ * @since 2.0
  */
 public class IntegerDeletedFlagMapping implements DeletedFlagMapping<Integer> {
     private IntegerDeletedFlagMapping(){}
