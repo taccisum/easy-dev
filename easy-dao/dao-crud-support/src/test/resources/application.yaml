@@ -1,14 +1,23 @@
 logging:
   level:
     cn.tac.framework: trace
+
+---
+spring:
+  profiles: crud-repository-support
+  datasource:
+    username: sa
+    password: sa
+    url: jdbc:hsqldb:mem:hsql_db
 ---
 spring:
   profiles: creation-repository-support
   datasource:
-    username: sa
-    password: sa
     schema: classpath:hsql/schema/creation-repository-support.sql
     data: classpath:hsql/data/creation-repository-support.sql
-    url: jdbc:hsqldb:mem:hsql_db
 ---
-
+spring:
+  profiles: deletion-repository-support
+  datasource:
+    schema: classpath:hsql/schema/deletion-repository-support.sql
+    data: classpath:hsql/data/deletion-repository-support.sql
