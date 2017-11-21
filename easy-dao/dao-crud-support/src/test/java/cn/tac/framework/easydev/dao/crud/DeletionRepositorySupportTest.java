@@ -4,7 +4,8 @@ import cn.tac.framework.easydev.dao.core.CrudMapperSupport;
 import cn.tac.framework.easydev.dao.core.RepositorySkeleton;
 import cn.tac.framework.easydev.dao.core.pojo.DeletedFlagAware;
 import cn.tac.framework.easydev.dao.core.pojo.GenericEntity;
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.GenericMinEntity;
+import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.dao.core.strategy.deletedflag.DeletedFlagMapping;
 import cn.tac.framework.easydev.dao.core.strategy.deletedflag.IntegerDeletedFlagMapping;
 import cn.tac.framework.easydev.dao.core.strategy.id.IDGenerator;
@@ -87,7 +88,7 @@ public class DeletionRepositorySupportTest {
     }
 
     @Table(name = "foo")
-    public static class FooEntity4Deletion extends MinEntityStructure<String> implements DeletedFlagAware<Integer> {
+    public static class FooEntity4Deletion extends GenericMinEntity<String> implements DeletedFlagAware<Integer> {
         private String bar1;
         @Column(name = GenericEntity.DELETED_FLAG_FIELD_NAME)
         private Integer deletedFlag;

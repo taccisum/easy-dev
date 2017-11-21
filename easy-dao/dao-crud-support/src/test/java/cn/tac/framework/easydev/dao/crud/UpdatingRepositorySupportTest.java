@@ -3,10 +3,7 @@ package cn.tac.framework.easydev.dao.crud;
 import cn.tac.framework.easydev.dao.core.CrudMapperSupport;
 import cn.tac.framework.easydev.dao.core.RepositorySkeleton;
 import cn.tac.framework.easydev.dao.core.bean.RuntimeData4Dao;
-import cn.tac.framework.easydev.dao.core.pojo.DeletedFlagAware;
-import cn.tac.framework.easydev.dao.core.pojo.EntityInfoAware;
-import cn.tac.framework.easydev.dao.core.pojo.GenericEntity;
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.*;
 import cn.tac.framework.easydev.dao.core.strategy.deletedflag.DeletedFlagMapping;
 import cn.tac.framework.easydev.dao.core.strategy.deletedflag.IntegerDeletedFlagMapping;
 import cn.tac.framework.easydev.dao.core.strategy.id.IDGenerator;
@@ -131,7 +128,7 @@ public class UpdatingRepositorySupportTest {
     }
 
     @Table(name = "foo")
-    public static class FooEntity4Updating extends MinEntityStructure<String> implements EntityInfoAware, DeletedFlagAware<Integer> {
+    public static class FooEntity4Updating extends GenericMinEntity<String> implements EntityInfoAware, DeletedFlagAware<Integer> {
         private String bar1;
         private String bar2;
 

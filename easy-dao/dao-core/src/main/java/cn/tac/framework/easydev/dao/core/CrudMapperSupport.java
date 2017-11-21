@@ -1,7 +1,7 @@
 package cn.tac.framework.easydev.dao.core;
 
 
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
@@ -23,9 +23,9 @@ import tk.mybatis.mapper.common.Mapper;
  *     该派生类代理进行调用
  * </b>
  *
- * @author : tac
- * @since : 2017/11/2
+ * @author tac
+ * @since 2.0
  */
-public interface CrudMapperSupport<E extends MinEntityStructure> extends
+public interface CrudMapperSupport<E extends MinEntityStructureAware> extends
         Mapper<E>{
 }

@@ -1,8 +1,8 @@
 package cn.tac.framework.easydev.dao.crud;
 
 import cn.tac.framework.easydev.dao.core.CrudMapperSupport;
+import cn.tac.framework.easydev.dao.core.pojo.GenericMinEntity;
 import cn.tac.framework.easydev.dao.core.pojo.InitializingEntity;
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
 import cn.tac.framework.easydev.dao.core.strategy.id.IDGenerator;
 import cn.tac.framework.easydev.dao.core.strategy.id.UUIDGenerator;
 import cn.tac.framework.easydev.dao.core.util.EntityUtils;
@@ -75,7 +75,7 @@ public class CreationRepositorySupportTest {
     }
 
     @Table(name = "foo")
-    static class FooEntity4Creation extends MinEntityStructure<String> implements InitializingEntity {
+    static class FooEntity4Creation extends GenericMinEntity<String> implements InitializingEntity {
         private String bar1;
         private String bar2;
 

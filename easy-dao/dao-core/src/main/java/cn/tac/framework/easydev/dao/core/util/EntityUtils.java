@@ -16,7 +16,7 @@ public class EntityUtils {
         EntityUtils.runtimeData4Dao = runtimeData4Dao;
     }
 
-    public static void init(MinEntityStructure entity) {
+    public static void init(MinEntityStructureAware entity) {
         initPrimaryKey(entity);
         if (entity instanceof EntityInfoAware) {
             initEntityInfo((EntityInfoAware) entity);
@@ -32,7 +32,7 @@ public class EntityUtils {
         }
     }
 
-    public static void initUpdatingInfo(MinEntityStructure entity) {
+    public static void initUpdatingInfo(MinEntityStructureAware entity) {
         if(entity instanceof EntityInfoAware){
             EntityInfoAware _entity = ((EntityInfoAware) entity);
             _entity.setUpdatedOn(new Date());
@@ -40,13 +40,13 @@ public class EntityUtils {
         }
     }
 
-    public static void setBoundary4Query(MinEntityStructure entity) {
+    public static void setBoundary4Query(MinEntityStructureAware entity) {
         if (entity instanceof BusinessInfoAware) {
             setBusinessBoundary4Query((BusinessInfoAware) entity);
         }
     }
 
-    private static void initPrimaryKey(MinEntityStructure entity) {
+    private static void initPrimaryKey(MinEntityStructureAware entity) {
         entity.setId(entity.getIDGenerator().generate(null));
     }
 

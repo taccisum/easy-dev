@@ -1,6 +1,6 @@
 package cn.tac.framework.easydev.web.controller.crud;
 
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.service.crud.RetrievalServiceSupport;
 import cn.tac.framework.easydev.web.controller.core.api.ServiceAware;
 import cn.tac.framework.easydev.web.controller.crud.pojo.ListRequest;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author tac
  * @since 17/11/2017
  */
-public interface RetrievalControllerSupport<E extends MinEntityStructure<PK>, PK> extends ServiceAware<E, PK> {
+public interface RetrievalControllerSupport<E extends MinEntityStructureAware<PK>, PK> extends ServiceAware<E, PK> {
     default void checkRetrievalService() {
         if (!(getService() instanceof RetrievalServiceSupport)) {
             //todo::

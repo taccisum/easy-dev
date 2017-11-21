@@ -2,15 +2,12 @@ package cn.tac.framework.easydev.dao.core.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
-import java.io.Serializable;
 
 /**
- * 定义实体最小结构，所有的实体都应该实现此接口
- *
  * @author tac
  * @since 2.0
  */
-public abstract class MinEntityStructure<PK> implements PrimaryKeyAware<PK>, Serializable {
+public abstract class GenericMinEntity<PK> implements MinEntityStructureAware<PK> {
     public static final String ID_FIELD_NAME = "id";
 
     @Id

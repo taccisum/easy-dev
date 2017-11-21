@@ -3,7 +3,7 @@ package cn.tac.framework.easydev.dao.crud;
 import cn.tac.framework.easydev.dao.core.api.CrudMapperAware;
 import cn.tac.framework.easydev.dao.core.api.EntityClassAware;
 import cn.tac.framework.easydev.dao.core.pojo.DeletedFlagAware;
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.dao.crud.api.DaoCrudSupportPropertiesAware;
 
 /**
@@ -12,7 +12,7 @@ import cn.tac.framework.easydev.dao.crud.api.DaoCrudSupportPropertiesAware;
  * @author tac
  * @since 2.0
  */
-public interface DeletionRepositorySupport<E extends MinEntityStructure<PK>, PK>
+public interface DeletionRepositorySupport<E extends MinEntityStructureAware<PK>, PK>
         extends CrudMapperAware<E>, EntityClassAware<E>, DaoCrudSupportPropertiesAware {
     default int deleteByPrimaryKey(PK id) {
         return deleteByPrimaryKey(id, null);

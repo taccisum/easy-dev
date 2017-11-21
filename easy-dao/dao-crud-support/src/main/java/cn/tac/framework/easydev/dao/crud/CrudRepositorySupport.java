@@ -2,7 +2,7 @@ package cn.tac.framework.easydev.dao.crud;
 
 import cn.tac.framework.easydev.dao.core.CrudMapperSupport;
 import cn.tac.framework.easydev.dao.core.RepositorySkeleton;
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.dao.crud.config.DaoCrudSupportProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author tac
  * @since 2.0
  */
-public abstract class CrudRepositorySupport<E extends MinEntityStructure<PK>, PK> extends RepositorySkeleton<E, PK>
+public abstract class CrudRepositorySupport<E extends MinEntityStructureAware<PK>, PK> extends RepositorySkeleton<E, PK>
         implements
         CreationRepositorySupport<E, PK>,
         RetrievalRepositorySupport<E, PK>,

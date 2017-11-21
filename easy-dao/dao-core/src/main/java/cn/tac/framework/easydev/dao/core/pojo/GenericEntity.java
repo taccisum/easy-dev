@@ -24,14 +24,14 @@ import java.util.Date;
  * </p>
  *
  * <p>
- *     实际应用中，也可以继承{@link MinEntityStructure}（保证实体的最小结构），通过实现所需接口的形式来构建属于你自己的实体模型基类
+ *     实际应用中，也可以继承{@link MinEntityStructureAware}（保证实体的最小结构），通过实现所需接口的形式来构建属于你自己的实体模型基类
  * </p>
  *
- * @author : tac
- * @since : 2017/11/1
+ * @author tac
+ * @since 2.0
  */
 @Entity
-public abstract class GenericEntity<PK> extends MinEntityStructure<PK> implements
+public abstract class GenericEntity<PK> extends GenericMinEntity<PK> implements
         EntityInfoAware,
         DeletedFlagAware<Integer>,
         InitializingEntity,

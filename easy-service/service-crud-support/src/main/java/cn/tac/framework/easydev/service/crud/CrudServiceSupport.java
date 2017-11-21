@@ -1,6 +1,6 @@
 package cn.tac.framework.easydev.service.crud;
 
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.dao.crud.CrudRepositorySupport;
 import cn.tac.framework.easydev.service.core.ServiceSkeleton;
 
@@ -8,9 +8,9 @@ import cn.tac.framework.easydev.service.core.ServiceSkeleton;
  * 通用的支持CRUD操作的Service
  *
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
-public abstract class CrudServiceSupport<E extends MinEntityStructure<PK>, PK> extends ServiceSkeleton<E, PK>
+public abstract class CrudServiceSupport<E extends MinEntityStructureAware<PK>, PK> extends ServiceSkeleton<E, PK>
         implements
         CreationServiceSupport<E, PK>,
         DeletionServiceSupport<E, PK>,

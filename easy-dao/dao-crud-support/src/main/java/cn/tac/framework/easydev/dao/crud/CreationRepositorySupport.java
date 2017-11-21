@@ -2,7 +2,7 @@ package cn.tac.framework.easydev.dao.crud;
 
 import cn.tac.framework.easydev.dao.core.api.CrudMapperAware;
 import cn.tac.framework.easydev.dao.core.pojo.InitializingEntity;
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 
 /**
  * 通用的新增方法
@@ -10,7 +10,7 @@ import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
  * @author tac
  * @since 2.0
  */
-public interface CreationRepositorySupport<E extends MinEntityStructure<PK>, PK> extends CrudMapperAware<E> {
+public interface CreationRepositorySupport<E extends MinEntityStructureAware<PK>, PK> extends CrudMapperAware<E> {
     default int insert(E entity) {
         setInsertDefault(entity);
         return getMapper().insert(entity);
@@ -21,7 +21,7 @@ public interface CreationRepositorySupport<E extends MinEntityStructure<PK>, PK>
         return getMapper().insertSelective(entity);
     }
 
-    static void setInsertDefault(MinEntityStructure entity) {
+    static void setInsertDefault(MinEntityStructureAware entity) {
         if (entity instanceof InitializingEntity) {
             ((InitializingEntity) entity).init();
         }

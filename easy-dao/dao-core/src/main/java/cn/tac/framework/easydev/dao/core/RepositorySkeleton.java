@@ -2,13 +2,13 @@ package cn.tac.framework.easydev.dao.core;
 
 import cn.tac.framework.easydev.dao.core.api.CrudMapperAware;
 import cn.tac.framework.easydev.dao.core.api.EntityClassAware;
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 
 /**
  * @author tac
  * @since 2.0
  */
-public abstract class RepositorySkeleton<E extends MinEntityStructure<PK>, PK> implements CrudMapperAware<E>, EntityClassAware<E> {
+public abstract class RepositorySkeleton<E extends MinEntityStructureAware<PK>, PK> implements CrudMapperAware<E>, EntityClassAware<E> {
     protected CrudMapperSupport<E> mapper;
 
     /**

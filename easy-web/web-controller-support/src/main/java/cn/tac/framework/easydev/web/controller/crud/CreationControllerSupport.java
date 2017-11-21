@@ -1,6 +1,6 @@
 package cn.tac.framework.easydev.web.controller.crud;
 
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.service.crud.CreationServiceSupport;
 import cn.tac.framework.easydev.web.controller.core.api.ServiceAware;
 import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author tac
  * @since 17/11/2017
  */
-public interface CreationControllerSupport<E extends MinEntityStructure<PK>, PK> extends ServiceAware<E, PK> {
+public interface CreationControllerSupport<E extends MinEntityStructureAware<PK>, PK> extends ServiceAware<E, PK> {
     default void checkCreationService() {
         if (!(getService() instanceof CreationServiceSupport)) {
             //todo::

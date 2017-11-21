@@ -3,7 +3,7 @@ package cn.tac.framework.easydev.dao.crud;
 import cn.tac.framework.easydev.dao.core.api.CrudMapperAware;
 import cn.tac.framework.easydev.dao.core.api.EntityClassAware;
 import cn.tac.framework.easydev.dao.core.pojo.DeletedFlagAware;
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.dao.core.util.EntityUtils;
 import cn.tac.framework.easydev.dao.crud.api.DaoCrudSupportPropertiesAware;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * @author tac
  * @since 2.0
  */
-public interface RetrievalRepositorySupport<E extends MinEntityStructure<PK>, PK>
+public interface RetrievalRepositorySupport<E extends MinEntityStructureAware<PK>, PK>
         extends CrudMapperAware<E>, EntityClassAware<E>, DaoCrudSupportPropertiesAware {
     default List<E> select(E criteria) {
         return select(criteria, null, null);
@@ -57,11 +57,11 @@ public interface RetrievalRepositorySupport<E extends MinEntityStructure<PK>, PK
         return ls.size() > 0 ? ls.get(0) : null;
     }
 
-    static void filterByBoundary(MinEntityStructure entity) {
+    static void filterByBoundary(MinEntityStructureAware entity) {
         EntityUtils.setBoundary4Query(entity);
     }
 
-    static void filterDeleted(MinEntityStructure entity) {
+    static void filterDeleted(MinEntityStructureAware entity) {
         if (entity instanceof DeletedFlagAware) {
             DeletedFlagAware _entity = (DeletedFlagAware) entity;
             _entity.setDeletedFlag(_entity.getDeletedFlagMapping().getEnableFlag());

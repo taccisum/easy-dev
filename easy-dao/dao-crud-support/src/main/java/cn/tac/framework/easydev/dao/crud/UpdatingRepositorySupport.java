@@ -2,7 +2,7 @@ package cn.tac.framework.easydev.dao.crud;
 
 import cn.tac.framework.easydev.dao.core.api.CrudMapperAware;
 import cn.tac.framework.easydev.dao.core.api.EntityClassAware;
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructure;
+import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.dao.core.util.EntityUtils;
 import cn.tac.framework.easydev.dao.crud.api.DaoCrudSupportPropertiesAware;
 
@@ -13,7 +13,7 @@ import cn.tac.framework.easydev.dao.crud.api.DaoCrudSupportPropertiesAware;
  * @author tac
  * @since 2.0
  */
-public interface UpdatingRepositorySupport<E extends MinEntityStructure<PK>, PK>
+public interface UpdatingRepositorySupport<E extends MinEntityStructureAware<PK>, PK>
         extends CrudMapperAware<E>, EntityClassAware<E>, DaoCrudSupportPropertiesAware {
     default int updateByPrimaryKeySelective(E entity) {
         return updateByPrimaryKeySelective(entity, null, null);
