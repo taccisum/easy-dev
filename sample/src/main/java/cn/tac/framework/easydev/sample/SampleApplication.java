@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author tac
- * @since 13/11/2017
+ * @since 2.0
  */
 @SpringBootApplication
 public class SampleApplication {

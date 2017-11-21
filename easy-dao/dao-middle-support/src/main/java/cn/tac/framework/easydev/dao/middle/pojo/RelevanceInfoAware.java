@@ -2,7 +2,7 @@ package cn.tac.framework.easydev.dao.middle.pojo;
 
 /**
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 public interface RelevanceInfoAware<LPK, RPK> {
     LPK getSourceId();

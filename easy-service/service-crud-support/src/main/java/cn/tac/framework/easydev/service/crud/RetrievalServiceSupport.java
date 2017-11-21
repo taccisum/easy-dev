@@ -7,7 +7,7 @@ import com.github.pagehelper.PageInfo;
 
 /**
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 public interface RetrievalServiceSupport<E extends MinEntityStructureAware<PK>, PK> extends RepositoryAware<E, PK> {
     E get(PK pk);

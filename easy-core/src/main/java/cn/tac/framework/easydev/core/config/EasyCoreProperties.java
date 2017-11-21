@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * 与开发框架相关的一些全局配置
  *
  * @author tac
- * @since 01/11/2017
+ * @since 2.0
  */
 @ConfigurationProperties(GlobalConstant.CONFIG_PROP_PREFIX)
 public class EasyCoreProperties {

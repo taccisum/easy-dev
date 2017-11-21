@@ -4,7 +4,7 @@ package cn.tac.framework.easydev.dao.core.bean;
  * 运行时数据接口
  *
  * @author tac
- * @since 01/11/2017
+ * @since 2.0
  */
 public interface RuntimeData4Dao {
     /**

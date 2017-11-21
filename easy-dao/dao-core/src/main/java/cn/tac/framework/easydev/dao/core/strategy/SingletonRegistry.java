@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * @author tac
- * @since 15/11/2017
+ * @since 2.0
  */
 public class SingletonRegistry<T> {
     public static final SingletonRegistry<DeletedFlagMapping> DELETED_FLAG_MAPPING = new SingletonRegistry<>();

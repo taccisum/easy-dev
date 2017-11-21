@@ -5,7 +5,7 @@ import cn.tac.framework.easydev.dao.core.strategy.SingletonRegistry;
 
 /**
  * @author tac
- * @since 15/11/2017
+ * @since 2.0
  */
 public class NoSuchInstanceException extends EasyDevException {
     public <T> NoSuchInstanceException(SingletonRegistry<T> registry, Class<? extends T> clazz) {

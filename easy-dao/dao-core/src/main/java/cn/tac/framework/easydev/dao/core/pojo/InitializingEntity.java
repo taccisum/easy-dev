@@ -6,7 +6,7 @@ import cn.tac.framework.easydev.dao.core.util.EntityUtils;
  * 提供初始化一个新的实体某些字段的默认值
  *
  * @author tac
- * @since 15/11/2017
+ * @since 2.0
  */
 public interface InitializingEntity {
     /**

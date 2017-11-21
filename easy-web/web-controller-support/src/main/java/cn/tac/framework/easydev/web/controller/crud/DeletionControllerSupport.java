@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 public interface DeletionControllerSupport<E extends MinEntityStructureAware<PK>, PK> extends ServiceAware<E, PK> {
     default void checkDeletionService() {

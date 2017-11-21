@@ -6,7 +6,7 @@ import cn.tac.framework.easydev.dao.crud.config.DaoCrudSupportProperties;
  * 感知配置参数
  *
  * @author tac
- * @since 16/11/2017
+ * @since 2.0
  */
 public interface DaoCrudSupportPropertiesAware {
     DaoCrudSupportProperties getDaoCrudSupportProperties();

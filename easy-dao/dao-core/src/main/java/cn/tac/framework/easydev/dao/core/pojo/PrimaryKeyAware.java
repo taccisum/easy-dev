@@ -6,7 +6,7 @@ import cn.tac.framework.easydev.dao.core.strategy.id.IDGenerator;
  * 主键
  *
  * @author tac
- * @since 15/11/2017
+ * @since 2.0
  */
 public interface PrimaryKeyAware<PK> {
     PK getId();

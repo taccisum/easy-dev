@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 public interface CreationControllerSupport<E extends MinEntityStructureAware<PK>, PK> extends ServiceAware<E, PK> {
     default void checkCreationService() {

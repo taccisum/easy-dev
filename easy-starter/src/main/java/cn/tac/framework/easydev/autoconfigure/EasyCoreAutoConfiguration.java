@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 
 /**
  * @author tac
- * @since 13/11/2017
+ * @since 2.0
  */
 @Configuration
 @EnableConfigurationProperties(EasyCoreProperties.class)

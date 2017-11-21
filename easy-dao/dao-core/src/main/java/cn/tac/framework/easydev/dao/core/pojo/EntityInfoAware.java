@@ -6,7 +6,7 @@ import java.util.Date;
  * 与实体本身相关的信息记录
  *
  * @author tac
- * @since 15/11/2017
+ * @since 2.0
  */
 public interface EntityInfoAware {
     String getCreatedBy();

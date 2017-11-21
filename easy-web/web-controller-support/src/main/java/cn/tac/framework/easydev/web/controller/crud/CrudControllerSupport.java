@@ -6,7 +6,7 @@ import cn.tac.framework.easydev.web.controller.core.ControllerSkeleton;
 
 /**
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 public abstract class CrudControllerSupport<E extends MinEntityStructureAware<PK>, PK> extends ControllerSkeleton<E, PK>
         implements

@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * dao配置
  * @author tac
- * @since 01/11/2017
+ * @since 2.0
  */
 @ConfigurationProperties(DaoConstant.CONFIG_PROP_PREFIX)
 public class DaoCoreProperties {

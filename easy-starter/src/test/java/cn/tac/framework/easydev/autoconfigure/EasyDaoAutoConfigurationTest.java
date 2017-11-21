@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @author tac
- * @since 13/11/2017
+ * @since 2.0
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @RunWith(SpringRunner.class)

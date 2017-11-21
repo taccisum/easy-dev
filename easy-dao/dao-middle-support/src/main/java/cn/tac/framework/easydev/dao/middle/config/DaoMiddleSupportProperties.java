@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 @ConfigurationProperties(DaoConstant.CONFIG_PROP_PREFIX)
 public class DaoMiddleSupportProperties {

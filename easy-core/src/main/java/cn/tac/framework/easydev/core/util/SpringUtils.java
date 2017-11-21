@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * 提供与Spring相关的常用工具
- * @author : tac
- * @since : 2017/5/13
+ * @author tac
+ * @since 1.0
  */
 public class SpringUtils implements ApplicationContextAware {
     private static Logger logger = LoggerFactory.getLogger(SpringUtils.class);

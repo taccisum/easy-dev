@@ -8,7 +8,7 @@ import cn.tac.framework.easydev.service.crud.exception.NoSupportOperationExcepti
 
 /**
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 public interface CreationServiceSupport<E extends MinEntityStructureAware<PK>, PK> extends RepositoryAware<E, PK> {
     default E insert(E entity) {

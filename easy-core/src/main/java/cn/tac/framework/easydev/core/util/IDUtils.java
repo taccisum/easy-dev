@@ -11,7 +11,7 @@ import java.util.UUID;
  * ID生成器,用于生成ID
  *
  * @author tac
- * @since 02/08/2017
+ * @since 2.0
  */
 public abstract class IDUtils {
     public static final boolean COMPACT_UUID_DEFAULT = true;

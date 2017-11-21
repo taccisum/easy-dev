@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * 查询条件
  *
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 public class QueryCriteria extends ArrayList<QueryGroup> {
     private Integer index;

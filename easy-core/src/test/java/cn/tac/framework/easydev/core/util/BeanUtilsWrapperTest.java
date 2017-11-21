@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * @author tac
- * @since 01/11/2017
+ * @since 2.0
  */
 public class BeanUtilsWrapperTest {
     @Test

@@ -6,7 +6,7 @@ import cn.tac.framework.easydev.dao.middle.pojo.GenericMiddleEntity;
 
 /**
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 public abstract class MiddleEntityRepositorySupport<E extends GenericMiddleEntity<PK, LPK, RPK>, PK, LPK, RPK> extends RepositorySkeleton<E, PK>
         implements

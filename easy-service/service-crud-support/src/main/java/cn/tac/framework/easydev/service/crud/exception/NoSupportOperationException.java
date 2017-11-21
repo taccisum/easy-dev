@@ -4,7 +4,7 @@ import cn.tac.framework.easydev.core.exception.EasyDevException;
 
 /**
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 public class NoSupportOperationException extends EasyDevException {
     public NoSupportOperationException(String msg) {

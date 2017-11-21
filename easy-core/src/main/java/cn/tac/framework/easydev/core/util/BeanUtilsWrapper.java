@@ -19,8 +19,8 @@ import java.util.Set;
  * @see org.springframework.beans.BeanUtils
  * @see org.apache.commons.beanutils.BeanUtils
  *
- * @author : tac
- * @since : 2017/11/1
+ * @author tac
+ * @since 1.0
  */
 
 public abstract class BeanUtilsWrapper {

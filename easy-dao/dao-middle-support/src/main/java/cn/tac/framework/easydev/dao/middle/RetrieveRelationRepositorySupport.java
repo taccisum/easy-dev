@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 public interface RetrieveRelationRepositorySupport<E extends GenericMiddleEntity<PK, LPK, RPK>, PK, LPK, RPK>
         extends EntityClassAware<E> {

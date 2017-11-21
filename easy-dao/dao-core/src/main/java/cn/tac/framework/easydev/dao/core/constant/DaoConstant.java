@@ -4,7 +4,7 @@ import cn.tac.framework.easydev.core.constant.GlobalConstant;
 
 /**
  * @author tac
- * @since 02/11/2017
+ * @since 2.0
  */
 public interface DaoConstant {
     String CONFIG_PROP_PREFIX = GlobalConstant.CONFIG_PROP_PREFIX + ".dao";

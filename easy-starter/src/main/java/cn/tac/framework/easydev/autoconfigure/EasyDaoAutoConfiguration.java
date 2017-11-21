@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author tac
- * @since 13/11/2017
+ * @since 2.0
  */
 @Configuration
 @EnableConfigurationProperties({DaoCoreProperties.class, DaoCrudSupportProperties.class})

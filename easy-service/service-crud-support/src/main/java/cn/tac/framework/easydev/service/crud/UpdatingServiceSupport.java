@@ -5,7 +5,7 @@ import cn.tac.framework.easydev.service.core.api.RepositoryAware;
 
 /**
  * @author tac
- * @since 17/11/2017
+ * @since 2.0
  */
 public interface UpdatingServiceSupport<E extends MinEntityStructureAware<PK>, PK> extends RepositoryAware<E, PK> {
     //todo:: updateByPrimaryKeySelective
