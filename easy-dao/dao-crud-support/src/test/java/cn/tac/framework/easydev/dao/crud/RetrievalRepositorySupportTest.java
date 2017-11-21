@@ -1,11 +1,17 @@
 package cn.tac.framework.easydev.dao.crud;
 
+import cn.tac.framework.easydev.dao.core.CrudMapperSupport;
 import cn.tac.framework.easydev.dao.core.RepositorySkeleton;
 import cn.tac.framework.easydev.dao.core.bean.RuntimeData4Dao;
+import cn.tac.framework.easydev.dao.core.pojo.*;
+import cn.tac.framework.easydev.dao.core.strategy.deletedflag.DeletedFlagMapping;
+import cn.tac.framework.easydev.dao.core.strategy.deletedflag.IntegerDeletedFlagMapping;
+import cn.tac.framework.easydev.dao.core.strategy.id.IDGenerator;
+import cn.tac.framework.easydev.dao.core.strategy.id.UUIDGenerator;
 import cn.tac.framework.easydev.dao.core.util.EntityUtils;
 import cn.tac.framework.easydev.dao.crud.config.DaoCrudSupportProperties;
-import cn.tac.framework.easydev.dao.crud.mapper.FooMapper4Retrieval;
-import cn.tac.framework.easydev.dao.crud.pojo.FooEntity4Retrieval;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.ibatis.annotations.Mapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +25,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import tk.mybatis.mapper.autoconfigure.MapperAutoConfiguration;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -140,6 +148,69 @@ public class RetrievalRepositorySupportTest {
                     return "tac";
                 }
             };
+        }
+    }
+
+    @Mapper
+    public interface FooMapper4Retrieval extends CrudMapperSupport<FooEntity4Retrieval> {
+    }
+
+    @Table(name = "foo")
+    public static class FooEntity4Retrieval extends MinEntityStructure<String> implements DeletedFlagAware<Integer>, BusinessInfoAware {
+        private String bar1;
+
+        @Column(name = GenericEntity.DELETED_FLAG_FIELD_NAME)
+        private Integer deletedFlag;
+
+        @Column(name = GenericBusinessEntity.ORGANIZATION_ID_FIELD_NAME)
+        private String organizationId;
+
+        public String getBar1() {
+            return bar1;
+        }
+
+        public void setBar1(String bar1) {
+            this.bar1 = bar1;
+        }
+
+        @Override
+        public Integer getDeletedFlag() {
+            return deletedFlag;
+        }
+
+        @Override
+        public void setDeletedFlag(Integer deletedFlag) {
+            this.deletedFlag = deletedFlag;
+        }
+
+        @Override
+        public String getOrganizationId() {
+            return organizationId;
+        }
+
+        @Override
+        public void setOrganizationId(String organizationId) {
+            this.organizationId = organizationId;
+        }
+
+        @Override
+        public IDGenerator<String> getIDGenerator() {
+            return UUIDGenerator.instance();
+        }
+
+        @Override
+        public DeletedFlagMapping<Integer> getDeletedFlagMapping() {
+            return IntegerDeletedFlagMapping.instance();
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this)
+                    .append("id", getId())
+                    .append("bar1", bar1)
+                    .append("deletedFlag", deletedFlag)
+                    .append("organizationId", organizationId)
+                    .toString();
         }
     }
 }
