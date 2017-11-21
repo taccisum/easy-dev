@@ -21,3 +21,9 @@ spring:
   datasource:
     schema: classpath:hsql/schema/deletion-repository-support.sql
     data: classpath:hsql/data/deletion-repository-support.sql
+---
+spring:
+  profiles: retrieval-repository-support
+  datasource:
+    schema: classpath:hsql/schema/retrieval-repository-support.sql
+    data: classpath:hsql/data/retrieval-repository-support.sql

@@ -7,8 +7,8 @@ import cn.tac.framework.easydev.dao.core.strategy.SingletonRegistry;
  * @since 2.0
  */
 public class IntegerDeletedFlagMapping implements DeletedFlagMapping<Integer> {
-    public static final int ENABLE_FLAG = 1;
-    public static final int DISABLE_FLAG = 0;
+    public static final int ENABLE_FLAG = 0;
+    public static final int DISABLE_FLAG = 1;
 
     private IntegerDeletedFlagMapping(){}
 

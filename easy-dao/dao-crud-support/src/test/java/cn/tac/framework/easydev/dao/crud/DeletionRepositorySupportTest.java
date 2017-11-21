@@ -35,6 +35,7 @@ public class DeletionRepositorySupportTest {
     @Test
     public void testSimply() {
         assertThat(mapper).isNotNull();
+        assertThat(repository).isNotNull();
     }
 
     @Test

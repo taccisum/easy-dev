@@ -1,6 +1,7 @@
 package cn.tac.framework.easydev.dao.crud;
 
 import cn.tac.framework.easydev.dao.core.CrudMapperSupport;
+import cn.tac.framework.easydev.dao.core.bean.RuntimeData4Dao;
 import cn.tac.framework.easydev.dao.crud.mapper.FooMapper4Creation;
 import cn.tac.framework.easydev.dao.crud.pojo.FooEntity4Creation;
 import org.junit.Test;
