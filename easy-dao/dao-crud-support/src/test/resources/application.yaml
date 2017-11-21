@@ -27,3 +27,9 @@ spring:
   datasource:
     schema: classpath:hsql/schema/retrieval-repository-support.sql
     data: classpath:hsql/data/retrieval-repository-support.sql
+---
+spring:
+  profiles: updating-repository-support
+  datasource:
+    schema: classpath:hsql/schema/updating-repository-support.sql
+    data: classpath:hsql/data/updating-repository-support.sql
