@@ -44,36 +44,36 @@ public class DeleteRelationRepositorySupportTest {
     }
 
     @Test
-    public void separate() {
-        assertThat(repository.separate("uid_1")).isEqualTo(0);
-        assertThat(repository.separate("uid_1", 1, 2, 4)).isEqualTo(2);
+    public void unlink() {
+        assertThat(repository.unlink("uid_1")).isEqualTo(0);
+        assertThat(repository.unlink("uid_1", 1, 2, 4)).isEqualTo(2);
         assertThat(mapper.selectAll().size()).isEqualTo(8);
-        assertThat(repository.separate("uid_2", 1, 2, 4)).isEqualTo(1);
+        assertThat(repository.unlink("uid_2", 1, 2, 4)).isEqualTo(1);
         assertThat(mapper.selectAll().size()).isEqualTo(7);
     }
 
     @Test
-    public void separateInversely() {
-        assertThat(repository.separateInversely(6)).isEqualTo(0);
-        assertThat(repository.separateInversely(6, "uid_3", "uid_4", "uid_6")).isEqualTo(2);
+    public void unlinkInversely() {
+        assertThat(repository.unlinkInversely(6)).isEqualTo(0);
+        assertThat(repository.unlinkInversely(6, "uid_3", "uid_4", "uid_6")).isEqualTo(2);
         assertThat(mapper.selectAll().size()).isEqualTo(8);
-        assertThat(repository.separateInversely(7, "uid_3", "uid_4", "uid_6")).isEqualTo(1);
+        assertThat(repository.unlinkInversely(7, "uid_3", "uid_4", "uid_6")).isEqualTo(1);
         assertThat(mapper.selectAll().size()).isEqualTo(7);
     }
 
     @Test
-    public void separateAll() {
-        assertThat(repository.separateAll("uid_1")).isEqualTo(3);
+    public void unlinkAll() {
+        assertThat(repository.unlinkAll("uid_1")).isEqualTo(3);
         assertThat(mapper.selectAll().size()).isEqualTo(7);
-        assertThat(repository.separateAll("uid_2")).isEqualTo(2);
+        assertThat(repository.unlinkAll("uid_2")).isEqualTo(2);
         assertThat(mapper.selectAll().size()).isEqualTo(5);
     }
 
     @Test
-    public void separateAllInversely() {
-        assertThat(repository.separateAllInversely(6)).isEqualTo(3);
+    public void unlinkAllInversely() {
+        assertThat(repository.unlinkAllInversely(6)).isEqualTo(3);
         assertThat(mapper.selectAll().size()).isEqualTo(7);
-        assertThat(repository.separateAllInversely(7)).isEqualTo(2);
+        assertThat(repository.unlinkAllInversely(7)).isEqualTo(2);
         assertThat(mapper.selectAll().size()).isEqualTo(5);
     }
 

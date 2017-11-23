@@ -43,8 +43,8 @@ public class CreateRelationRepositorySupportTest {
     }
 
     @Test
-    public void relate() throws Exception {
-        assertThat(repository.relate("uid_1", 1, 2, 3, 4, 5)).isEqualTo(5);
+    public void link() throws Exception {
+        assertThat(repository.link("uid_1", 1, 2, 3, 4, 5)).isEqualTo(5);
         assertThat(mapper.selectAll().size()).isEqualTo(5);
         FooEntity4CreateRelation o = new FooEntity4CreateRelation();
         o.setSourceId("uid_1");
@@ -55,8 +55,8 @@ public class CreateRelationRepositorySupportTest {
     }
 
     @Test
-    public void relateInversely() throws Exception {
-        assertThat(repository.relateInversely(1, "uid_1", "uid_2", "uid_3", "uid_4")).isEqualTo(4);
+    public void linkInversely() throws Exception {
+        assertThat(repository.linkInversely(1, "uid_1", "uid_2", "uid_3", "uid_4")).isEqualTo(4);
         assertThat(mapper.selectAll().size()).isEqualTo(4);
         FooEntity4CreateRelation o1 = new FooEntity4CreateRelation();
         o1.setTargetId(1);

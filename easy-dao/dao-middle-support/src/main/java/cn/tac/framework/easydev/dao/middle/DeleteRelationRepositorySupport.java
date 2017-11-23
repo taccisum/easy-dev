@@ -12,7 +12,7 @@ import tk.mybatis.mapper.entity.Example;
  */
 public interface DeleteRelationRepositorySupport<E extends MinEntityStructureAware<PK> & RelevanceInfoAware<LPK, RPK>, PK, LPK, RPK>
         extends EntityClassAware<E>, CrudMapperAware<E> {
-    default int separate(LPK sourceId, RPK... targetIds) {
+    default int unlink(LPK sourceId, RPK... targetIds) {
         if (targetIds.length == 0) {
             return 0;
         }
@@ -29,7 +29,7 @@ public interface DeleteRelationRepositorySupport<E extends MinEntityStructureAwa
         return getMapper().deleteByExample(example);
     }
 
-    default int separateInversely(RPK targetId, LPK... sourceIds) {
+    default int unlinkInversely(RPK targetId, LPK... sourceIds) {
         if (sourceIds.length == 0) {
             return 0;
         }
@@ -46,13 +46,13 @@ public interface DeleteRelationRepositorySupport<E extends MinEntityStructureAwa
         return getMapper().deleteByExample(example);
     }
 
-    default int separateAll(LPK sourceId) {
+    default int unlinkAll(LPK sourceId) {
         E o = newEntityInstance();
         o.setSourceId(sourceId);
         return getMapper().delete(o);
     }
 
-    default int separateAllInversely(RPK targetId) {
+    default int unlinkAllInversely(RPK targetId) {
         E o = newEntityInstance();
         o.setTargetId(targetId);
         return getMapper().delete(o);

@@ -18,10 +18,10 @@ public abstract class MiddleEntityRepositorySupport<E extends GenericMiddleEntit
         super(mapper, typeReference);
     }
 
-    public int rerelate(LPK sourceId, RPK... targetIds) {
+    public int relink(LPK sourceId, RPK... targetIds) {
         int rowNum = 0;
-        rowNum += separate(sourceId);
-        rowNum += relate(sourceId, targetIds);
+        rowNum += unlinkAll(sourceId);
+        rowNum += link(sourceId, targetIds);
         return rowNum;
     }
 }

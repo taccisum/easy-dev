@@ -15,7 +15,7 @@ public interface CreateRelationRepositorySupport<E extends MinEntityStructureAwa
     /**
      * 关联id
      */
-    default int relate(LPK sourceId, RPK... targetIds) {
+    default int link(LPK sourceId, RPK... targetIds) {
         int rowNum = 0;
         //todo:: 批量插入数据，性能待优化
         for (RPK targetId : targetIds) {
@@ -33,7 +33,7 @@ public interface CreateRelationRepositorySupport<E extends MinEntityStructureAwa
     /**
      * 关联id（反向）
      */
-    default int relateInversely(RPK targetId, LPK... sourceIds) {
+    default int linkInversely(RPK targetId, LPK... sourceIds) {
         int rowNum = 0;
         //todo:: 批量插入数据，性能待优化
         for (LPK sourceId : sourceIds) {
