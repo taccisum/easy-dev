@@ -28,59 +28,68 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @MybatisTest
 @RunWith(SpringRunner.class)
-@ActiveProfiles({"crud-relation-repository-support", "create-relation-repository-support"})
+@ActiveProfiles({"crud-relation-repository-support", "delete-relation-repository-support"})
 @ImportAutoConfiguration(MapperAutoConfiguration.class)
-public class CreateRelationRepositorySupportTest {
+public class DeleteRelationRepositorySupportTest {
     @Autowired
-    private FooCreateRelationRepository repository;
+    private FooDeleteRelationRepository repository;
     @Autowired
-    private FooMapper4CreateRelation mapper;
+    private FooMapper4DeleteRelation mapper;
 
     @Test
     public void testSimply() {
         assertThat(repository).isNotNull();
         assertThat(mapper).isNotNull();
+        assertThat(mapper.selectAll().size()).isEqualTo(10);
     }
 
     @Test
-    public void relate() throws Exception {
-        assertThat(repository.relate("uid_1", 1, 2, 3, 4, 5)).isEqualTo(5);
+    public void separate() {
+        assertThat(repository.separate("uid_1", 1, 2, 4)).isEqualTo(2);
+        assertThat(mapper.selectAll().size()).isEqualTo(8);
+        assertThat(repository.separate("uid_2", 1, 2, 4)).isEqualTo(1);
+        assertThat(mapper.selectAll().size()).isEqualTo(7);
+    }
+
+    @Test
+    public void separateInversely() {
+        assertThat(repository.separateInversely(6, "uid_3", "uid_4", "uid_6")).isEqualTo(2);
+        assertThat(mapper.selectAll().size()).isEqualTo(8);
+        assertThat(repository.separateInversely(7, "uid_3", "uid_4", "uid_6")).isEqualTo(1);
+        assertThat(mapper.selectAll().size()).isEqualTo(7);
+    }
+
+    @Test
+    public void separateAll() {
+        assertThat(repository.separateAll("uid_1")).isEqualTo(3);
+        assertThat(mapper.selectAll().size()).isEqualTo(7);
+        assertThat(repository.separateAll("uid_2")).isEqualTo(2);
         assertThat(mapper.selectAll().size()).isEqualTo(5);
-        FooEntity4CreateRelation o = new FooEntity4CreateRelation();
-        o.setSourceId("uid_1");
-        assertThat(mapper.select(o).size()).isEqualTo(5);
-        FooEntity4CreateRelation o1 = new FooEntity4CreateRelation();
-        o1.setTargetId(5);
-        assertThat(mapper.select(o1).size()).isEqualTo(1);
     }
 
     @Test
-    public void relateInversely() throws Exception {
-        assertThat(repository.relateInversely(1, "uid_1", "uid_2", "uid_3", "uid_4")).isEqualTo(4);
-        assertThat(mapper.selectAll().size()).isEqualTo(4);
-        FooEntity4CreateRelation o1 = new FooEntity4CreateRelation();
-        o1.setTargetId(1);
-        assertThat(mapper.select(o1).size()).isEqualTo(4);
-        FooEntity4CreateRelation o = new FooEntity4CreateRelation();
-        o.setSourceId("uid_1");
-        assertThat(mapper.select(o).size()).isEqualTo(1);
+    public void separateAllInversely() {
+        assertThat(repository.separateAllInversely(6)).isEqualTo(3);
+        assertThat(mapper.selectAll().size()).isEqualTo(7);
+        assertThat(repository.separateAllInversely(7)).isEqualTo(2);
+        assertThat(mapper.selectAll().size()).isEqualTo(5);
     }
 
     @Repository
-    static class FooCreateRelationRepository extends RepositorySkeleton<FooEntity4CreateRelation, String>
-            implements CreateRelationRepositorySupport<FooEntity4CreateRelation, String, String, Integer> {
+    static class FooDeleteRelationRepository extends RepositorySkeleton<FooEntity4DeleteRelation, String>
+            implements DeleteRelationRepositorySupport<FooEntity4DeleteRelation, String, String, Integer> {
 
-        public FooCreateRelationRepository(FooMapper4CreateRelation mapper) {
-            super(mapper, FooEntity4CreateRelation.class);
+        public FooDeleteRelationRepository(FooMapper4DeleteRelation mapper) {
+            super(mapper, FooEntity4DeleteRelation.class);
         }
     }
 
     @Mapper
-    interface FooMapper4CreateRelation extends CrudMapperSupport<FooEntity4CreateRelation>{
+    interface FooMapper4DeleteRelation extends CrudMapperSupport<FooEntity4DeleteRelation> {
     }
 
     @Table(name = "foo")
-    public static class FooEntity4CreateRelation extends GenericMiddleEntity<String, String, Integer>{
+    public static class FooEntity4DeleteRelation extends GenericMiddleEntity<String, String, Integer> {
         @Column(name = "user_id")
         private String sourceId;
         @Column(name = "role_id")

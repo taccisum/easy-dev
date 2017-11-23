@@ -20,7 +20,7 @@ public abstract class MiddleEntityRepositorySupport<E extends GenericMiddleEntit
 
     public int rerelate(LPK sourceId, RPK... targetIds) {
         int rowNum = 0;
-        rowNum += unrelate(sourceId);
+        rowNum += separate(sourceId);
         rowNum += relate(sourceId, targetIds);
         return rowNum;
     }
