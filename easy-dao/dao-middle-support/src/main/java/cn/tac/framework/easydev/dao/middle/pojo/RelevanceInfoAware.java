@@ -1,6 +1,8 @@
 package cn.tac.framework.easydev.dao.middle.pojo;
 
 /**
+ * 关联信息
+ *
  * @author tac
  * @since 2.0
  */

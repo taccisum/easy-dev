@@ -1,0 +1,18 @@
+logging:
+  level:
+    cn.tac.framework: trace
+
+---
+spring:
+  profiles: crud-relation-repository-support
+  datasource:
+    username: sa
+    password: sa
+    url: jdbc:hsqldb:mem:hsql_db
+---
+spring:
+  profiles: create-relation-repository-support
+  datasource:
+    schema: classpath:hsql/schema/create-relation-repository-support.sql
+    data: classpath:hsql/data/create-relation-repository-support.sql
+---

@@ -1,31 +1,16 @@
 package cn.tac.framework.easydev.dao.middle.pojo;
 
+import cn.tac.framework.easydev.dao.core.pojo.GenericMinEntity;
 import cn.tac.framework.easydev.dao.core.pojo.InitializingEntity;
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.dao.core.util.EntityUtils;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-
 /**
+ * 通用的中间表实体
+ *
  * @author tac
  * @since 2.0
  */
-public abstract class GenericMiddleEntity<PK, LPK, RPK> extends MinEntityStructureAware<PK> implements InitializingEntity, RelevanceInfoAware<LPK, RPK> {
-    @Id
-    @Column(name = ID_FIELD_NAME)
-    private PK id;
-
-    @Override
-    public PK getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(PK id) {
-        this.id = id;
-    }
-
+public abstract class GenericMiddleEntity<PK, LPK, RPK> extends GenericMinEntity<PK> implements InitializingEntity, RelevanceInfoAware<LPK, RPK> {
     @Override
     public void init() {
         EntityUtils.init(this);
