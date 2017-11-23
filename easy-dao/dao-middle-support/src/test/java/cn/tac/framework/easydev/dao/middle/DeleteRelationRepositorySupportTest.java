@@ -45,6 +45,7 @@ public class DeleteRelationRepositorySupportTest {
 
     @Test
     public void separate() {
+        assertThat(repository.separate("uid_1")).isEqualTo(0);
         assertThat(repository.separate("uid_1", 1, 2, 4)).isEqualTo(2);
         assertThat(mapper.selectAll().size()).isEqualTo(8);
         assertThat(repository.separate("uid_2", 1, 2, 4)).isEqualTo(1);
@@ -53,6 +54,7 @@ public class DeleteRelationRepositorySupportTest {
 
     @Test
     public void separateInversely() {
+        assertThat(repository.separateInversely(6)).isEqualTo(0);
         assertThat(repository.separateInversely(6, "uid_3", "uid_4", "uid_6")).isEqualTo(2);
         assertThat(mapper.selectAll().size()).isEqualTo(8);
         assertThat(repository.separateInversely(7, "uid_3", "uid_4", "uid_6")).isEqualTo(1);

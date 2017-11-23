@@ -13,6 +13,10 @@ import tk.mybatis.mapper.entity.Example;
 public interface DeleteRelationRepositorySupport<E extends MinEntityStructureAware<PK> & RelevanceInfoAware<LPK, RPK>, PK, LPK, RPK>
         extends EntityClassAware<E>, CrudMapperAware<E> {
     default int separate(LPK sourceId, RPK... targetIds) {
+        if (targetIds.length == 0) {
+            return 0;
+        }
+
         Example example = new Example(getEntityClass());
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("sourceId", sourceId);
@@ -25,7 +29,11 @@ public interface DeleteRelationRepositorySupport<E extends MinEntityStructureAwa
         return getMapper().deleteByExample(example);
     }
 
-    default int separateInversely(RPK targetId, LPK... sourceIds){
+    default int separateInversely(RPK targetId, LPK... sourceIds) {
+        if (sourceIds.length == 0) {
+            return 0;
+        }
+
         Example example = new Example(getEntityClass());
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("targetId", targetId);
@@ -38,13 +46,13 @@ public interface DeleteRelationRepositorySupport<E extends MinEntityStructureAwa
         return getMapper().deleteByExample(example);
     }
 
-    default int separateAll(LPK sourceId){
+    default int separateAll(LPK sourceId) {
         E o = newEntityInstance();
         o.setSourceId(sourceId);
         return getMapper().delete(o);
     }
 
-    default int separateAllInversely(RPK targetId){
+    default int separateAllInversely(RPK targetId) {
         E o = newEntityInstance();
         o.setTargetId(targetId);
         return getMapper().delete(o);
