@@ -28,3 +28,9 @@ spring:
     schema: classpath:hsql/schema/retrieve-relation-repository-support.sql
     data: classpath:hsql/data/retrieve-relation-repository-support.sql
 ---
+spring:
+  profiles: middle-relation-repository-support
+  datasource:
+    schema: classpath:hsql/schema/middle-relation-repository-support.sql
+    data: classpath:hsql/data/middle-relation-repository-support.sql
+---

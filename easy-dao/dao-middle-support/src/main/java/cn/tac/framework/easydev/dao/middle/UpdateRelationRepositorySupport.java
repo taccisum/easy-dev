@@ -1,5 +1,6 @@
 package cn.tac.framework.easydev.dao.middle;
 
+import cn.tac.framework.easydev.dao.core.api.CrudMapperAware;
 import cn.tac.framework.easydev.dao.core.api.EntityClassAware;
 import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.dao.middle.pojo.RelevanceInfoAware;
@@ -9,5 +10,6 @@ import cn.tac.framework.easydev.dao.middle.pojo.RelevanceInfoAware;
  * @since 2.0
  */
 public interface UpdateRelationRepositorySupport<E extends MinEntityStructureAware<PK> & RelevanceInfoAware<LPK, RPK>, PK, LPK, RPK>
-        extends EntityClassAware<E> {
+        extends EntityClassAware<E>, CrudMapperAware<E> {
+    int relink(LPK sourceId, RPK... targetIds);
 }
