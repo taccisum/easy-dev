@@ -5,7 +5,7 @@ import cn.tac.framework.easydev.dao.crud.CreationRepositorySupport;
 
 /**
  * @author tac
- * @since 02/12/2017
+ * @since 2.0
  */
 public interface CreationRepositoryAware<E extends MinEntityStructureAware<PK>, PK> {
     CreationRepositorySupport<E, PK> getCreationRepository();

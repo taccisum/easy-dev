@@ -21,7 +21,6 @@ public abstract class RepositorySkeleton<E extends MinEntityStructureAware<PK>, 
         this.typeReference = typeReference;
     }
 
-
     @Override
     public CrudMapperSupport<E> getMapper() {
         return mapper;
