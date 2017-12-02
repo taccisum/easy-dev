@@ -22,3 +22,9 @@ spring:
     schema: classpath:hsql/schema/delete-relation-repository-support.sql
     data: classpath:hsql/data/delete-relation-repository-support.sql
 ---
+spring:
+  profiles: retrieve-relation-repository-support
+  datasource:
+    schema: classpath:hsql/schema/retrieve-relation-repository-support.sql
+    data: classpath:hsql/data/retrieve-relation-repository-support.sql
+---
