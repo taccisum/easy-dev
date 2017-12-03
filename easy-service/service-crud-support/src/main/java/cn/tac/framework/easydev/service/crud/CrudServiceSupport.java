@@ -30,6 +30,7 @@ public abstract class CrudServiceSupport<E extends MinEntityStructureAware<PK>, 
 
     @Override
     public DeletionRepositorySupport<E, PK> getDeletionRepository() {
+        //直接转换，避免类型检查造成的开销
         return (DeletionRepositorySupport<E, PK>) getRepository();
     }
 }
