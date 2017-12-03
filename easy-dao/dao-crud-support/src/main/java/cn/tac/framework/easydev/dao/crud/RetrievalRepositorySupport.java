@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * 通用查询方法
+ * todo:: select by example
  *
  * @author tac
  * @since 2.0

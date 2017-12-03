@@ -33,3 +33,9 @@ spring:
   datasource:
     schema: classpath:hsql/schema/updating-repository-support.sql
     data: classpath:hsql/data/updating-repository-support.sql
+---
+spring:
+  profiles: retrieval4page-repository-support
+  datasource:
+    schema: classpath:hsql/schema/retrieval4page-repository-support.sql
+    data: classpath:hsql/data/retrieval4page-repository-support.sql
