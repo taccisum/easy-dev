@@ -2,6 +2,7 @@ package cn.tac.framework.easydev.dao.core.util;
 
 import cn.tac.framework.easydev.dao.core.bean.RuntimeData4Dao;
 import cn.tac.framework.easydev.dao.core.pojo.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 public class EntityUtils {
     private static RuntimeData4Dao runtimeData4Dao;
 
+    @Autowired
     public void setRuntimeData4Dao(RuntimeData4Dao runtimeData4Dao) {
         EntityUtils.runtimeData4Dao = runtimeData4Dao;
     }

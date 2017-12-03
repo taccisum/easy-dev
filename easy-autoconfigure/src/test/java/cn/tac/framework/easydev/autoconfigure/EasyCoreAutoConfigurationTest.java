@@ -19,9 +19,13 @@ public class EasyCoreAutoConfigurationTest {
     @Autowired
     private EasyCoreProperties easyCoreProperties;
 
+    @Autowired
+    private SpringUtils springUtils;
+
     @Test
     public void testSimply() {
         Assert.assertNotNull(easyCoreProperties);
+        Assert.assertNotNull(springUtils);
         Assert.assertNotNull(SpringUtils.getBean(EasyCoreProperties.class));
     }
 }

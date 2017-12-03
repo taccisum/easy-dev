@@ -1,3 +1,4 @@
 dependencies {
+    compile project (":easy-autoconfigure")
     compile project (":easy-service")
 }

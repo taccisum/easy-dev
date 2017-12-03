@@ -50,4 +50,5 @@ include 'easy-web:web-controller-support:controller-core'
 findProject(':easy-web:web-controller-support:controller-core')?.name = 'controller-core'
 include 'easy-web:web-controller-support:controller-crud-support'
 findProject(':easy-web:web-controller-support:controller-crud-support')?.name = 'controller-crud-support'
+include 'easy-autoconfigure'
 
