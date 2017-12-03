@@ -1,0 +1,14 @@
+---
+spring:
+  profiles: memdb
+  datasource:
+    username: sa
+    password: sa
+    url: jdbc:hsqldb:mem:hsql_db
+---
+spring:
+  profiles: simple
+  datasource:
+    schema: classpath:hsql/schema/simple-sample.sql
+    data: classpath:hsql/data/simple-sample.sql
+

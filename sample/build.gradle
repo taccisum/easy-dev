@@ -1,3 +1,4 @@
 dependencies {
     compile project (":easy-starter")
+    compile group: 'org.hsqldb', name: 'hsqldb', version: '2.4.0'
 }
