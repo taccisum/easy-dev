@@ -16,11 +16,11 @@ public class SimpleApplication {
         new SpringApplicationBuilder()
                 .profiles("memdb", "simple")
                 .sources(SimpleApplication.class)
-                .listeners(after())
+                .listeners(ready())
                 .run(args);
     }
 
-    private static ApplicationListener<ApplicationReadyEvent> after() {
+    private static ApplicationListener<ApplicationReadyEvent> ready() {
         return readyEvent -> System.out.println(readyEvent.getApplicationContext().getBean(FooService.class).selectAll());
     }
 }
