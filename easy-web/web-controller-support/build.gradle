@@ -5,4 +5,5 @@ subprojects {
 }
 dependencies {
     compile project(":easy-web:web-controller-support:controller-core")
+    compile project(":easy-web:web-controller-support:controller-crud-support")
 }

@@ -1,4 +1,4 @@
-package cn.tac.framework.easydev.web.controller.crud.pojo;
+package pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiParam;

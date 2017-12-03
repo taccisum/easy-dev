@@ -1,4 +1,4 @@
-package cn.tac.framework.easydev.web.controller.crud.pojo;
+package pojo;
 
 import cn.tac.framework.easydev.service.crud.pojo.QueryCriteria;
 

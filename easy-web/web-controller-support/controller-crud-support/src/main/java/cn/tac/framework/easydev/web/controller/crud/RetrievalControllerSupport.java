@@ -3,12 +3,12 @@ package cn.tac.framework.easydev.web.controller.crud;
 import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.service.crud.RetrievalServiceSupport;
 import cn.tac.framework.easydev.web.controller.core.api.ServiceAware;
-import cn.tac.framework.easydev.web.controller.crud.pojo.ListRequest;
 import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import pojo.ListRequest;
 
 /**
  * @author tac
