@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class CrudRepositorySupport<E extends MinEntityStructureAware<PK>, PK> extends RepositorySkeleton<E, PK>
         implements
         CreationRepositorySupport<E, PK>,
-        RetrievalRepositorySupport<E, PK>,
+        Retrieval4PageRepositorySupport<E, PK>,
         UpdatingRepositorySupport<E, PK>,
         DeletionRepositorySupport<E, PK> {
     private DaoCrudSupportProperties daoCrudSupportProperties;

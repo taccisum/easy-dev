@@ -20,6 +20,7 @@ public interface UpdatingRepositorySupport<E extends MinEntityStructureAware<PK>
     }
 
     /**
+     * @deprecated
      * todo:: 暂不支持更新隔离数据
      */
     default int updateByPrimaryKeySelective(E entity, Boolean boundary, Boolean containDeleted) {
