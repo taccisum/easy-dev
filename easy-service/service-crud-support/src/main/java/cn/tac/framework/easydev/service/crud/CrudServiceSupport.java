@@ -23,24 +23,30 @@ public abstract class CrudServiceSupport<E extends MinEntityStructureAware<PK>, 
     @Override
     public CreationRepositorySupport<E, PK> getCreationRepository() {
         //直接转换，避免类型检查造成的开销
-        return (CreationRepositorySupport<E, PK>) getRepository();
+        return getRepository();
     }
 
     @Override
     public DeletionRepositorySupport<E, PK> getDeletionRepository() {
         //直接转换，避免类型检查造成的开销
-        return (DeletionRepositorySupport<E, PK>) getRepository();
+        return getRepository();
     }
 
     @Override
     public RetrievalRepositorySupport<E, PK> getRetrievalRepository() {
         //直接转换，避免类型检查造成的开销
-        return (RetrievalRepositorySupport<E, PK>) getRepository();
+        return getRepository();
     }
 
     @Override
     public UpdatingRepositorySupport<E, PK> getUpdatingRepository() {
         //直接转换，避免类型检查造成的开销
-        return (UpdatingRepositorySupport<E, PK>) getRepository();
+        return getRepository();
+    }
+
+    @Override
+    public CrudRepositorySupport<E, PK> getRepository() {
+        //向下转型为CrudRepository，方便使用
+        return (CrudRepositorySupport<E, PK>) super.getRepository();
     }
 }
