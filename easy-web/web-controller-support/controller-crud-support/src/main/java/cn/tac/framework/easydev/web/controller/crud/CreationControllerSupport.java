@@ -5,6 +5,7 @@ import cn.tac.framework.easydev.service.core.ServiceSkeleton;
 import cn.tac.framework.easydev.service.crud.CreationServiceSupport;
 import cn.tac.framework.easydev.web.controller.core.api.ServiceAware;
 import cn.tac.framework.easydev.web.controller.crud.api.CreationServiceAware;
+import cn.tac.framework.easydev.web.core.builder.SuccessRestfulApiResponseBuilder;
 import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,10 +19,14 @@ import javax.validation.Valid;
  */
 public interface CreationControllerSupport<E extends MinEntityStructureAware<PK>, PK, M>
         extends ServiceAware<E, PK>, CreationServiceAware<E, PK> {
+
     @PostMapping
     @ApiOperation("新增数据")
     default RestfulApiResponse<E> insert(@Valid @RequestBody M model) {
-        return RestfulApiResponse.success("新增数据成功", getCreationService().insert(convertCreationModel2Entity(model)));
+        return new SuccessRestfulApiResponseBuilder<E>()
+                .msg("新增数据成功")
+                .data(getCreationService().insert(convertCreationModel2Entity(model)))
+                .build();
     }
 
     @Override

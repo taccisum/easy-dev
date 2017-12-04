@@ -9,14 +9,16 @@ import io.swagger.annotations.ApiModelProperty;
  * @since 1.0
  */
 public class RestfulApiResponse<T> {
-    public static final String SUCCESS_CODE = "0";
-    public static final int SUCCESS_STATE = 1;      //成功
-    public static final int FAILURE_STATE = 0;      //失败（业务异常）
+    public static final String SUCCESS_CODE = "0";  //表示成功的状态码
+    public static final String ERROR_CODE = "-1";   //表示系统异常的状态码
+    public static final String DEFAULT_FAILURE_CODE = "100";    //表示业务异常的默认状态码
+    public static final int SUCCESS_STATE = 0;      //成功
+    public static final int FAILURE_STATE = 1;      //失败（业务异常）
     public static final int ERROR_STATE = -1;       //错误（系统异常）
 
     @ApiModelProperty(value = "请求执行状态", example = "1", allowableValues = "-1, 0, 1")
     private Integer state;
-    @ApiModelProperty(value = "请求执行结果状态标识码", example = "0", notes = "请求成功[0-100]，业务异常[101-50000]，系统异常[-1]", allowableValues = "range[0, 50000]")
+    @ApiModelProperty(value = "请求执行结果状态标识码", example = "0", notes = "请求成功[0-99]，业务异常[100-50000]，系统异常[-1]", allowableValues = "range[0, 50000]")
     private String code;
     @ApiModelProperty(value = "提示信息")
     private String msg;
@@ -116,6 +118,6 @@ public class RestfulApiResponse<T> {
     }
 
     public static <T> RestfulApiResponse<T> error(String message, String stackTrace) {
-        return new RestfulApiResponse<>(ERROR_STATE, "-1", message, stackTrace);
+        return new RestfulApiResponse<>(ERROR_STATE, ERROR_CODE, message, stackTrace);
     }
 }
