@@ -25,7 +25,7 @@ import static cn.tac.framework.easydev.web.controller.utils.AssertUtils.assertSu
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -34,12 +34,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @since 2.0
  */
 @RunWith(SpringRunner.class)
-@WebMvcTest(CreationControllerSupportTest.FooController4Creation.class)
-public class CreationControllerSupportTest {
+@WebMvcTest(UpdatingControllerSupportTest.FooController4Updating.class)
+public class UpdatingControllerSupportTest {
     @Autowired
     private MockMvc mvc;
     @MockBean
-    private FooService4Creation service;
+    private FooService4Updating service;
 
     private static ObjectMapper objectMapper = new ObjectMapper();
 
@@ -49,51 +49,50 @@ public class CreationControllerSupportTest {
     }
 
     @Test
-    public void insert() throws Exception {
-        FooModel4Creation o = new FooModel4Creation();
+    public void update() throws Exception {
+        FooModel4Updating o = new FooModel4Updating();
         o.setBar1("bar1");
         String content = objectMapper.writeValueAsString(o);
 
-        when(service.insert(any())).then(invocationOnMock -> {
-            FooEntity4Creation entity = invocationOnMock.getArgumentAt(0, FooEntity4Creation.class);
-            entity.init();
-            return entity;
-        });
+        when(service.updateByPrimaryKeySelective(any()))
+                .then(invocationOnMock -> invocationOnMock.getArgumentAt(0, FooEntity4Updating.class));
 
-        String responseStr = mvc.perform(post("/foo")
+        String responseStr = mvc.perform(put("/foo/123")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(content)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andReturn().getResponse().getContentAsString();
-        assertSuccess(objectMapper.readValue(responseStr, RestfulApiResponse.class));
+        RestfulApiResponse response = objectMapper.readValue(responseStr, RestfulApiResponse.class);
+        assertSuccess(response);
     }
 
     @RestController
     @RequestMapping("foo")
-    public static class FooController4Creation extends ControllerSkeleton<FooEntity4Creation, String>
-            implements CreationControllerSupport<FooEntity4Creation, String, FooModel4Creation> {
+    public static class FooController4Updating extends ControllerSkeleton<FooEntity4Updating, String>
+            implements UpdatingControllerSupport<FooEntity4Updating, String, FooModel4Updating> {
         @Autowired
-        public FooController4Creation(FooService4Creation service) {
+        public FooController4Updating(FooService4Updating service) {
             super(service);
         }
 
         @Override
-        public FooEntity4Creation convertCreationModel2Entity(FooModel4Creation model) {
-            FooEntity4Creation o = new FooEntity4Creation();
+        public FooEntity4Updating convertUpdatingModel2Entity(String id, FooModel4Updating model) {
+            FooEntity4Updating o = new FooEntity4Updating();
+            o.setId(id);
             o.setBar1(model.getBar1());
             return o;
         }
     }
 
-    public static class FooService4Creation extends CrudServiceSupport<FooEntity4Creation, String> {
-        public FooService4Creation(CrudRepositorySupport<FooEntity4Creation, String> repository) {
+    public static class FooService4Updating extends CrudServiceSupport<FooEntity4Updating, String> {
+        public FooService4Updating(CrudRepositorySupport<FooEntity4Updating, String> repository) {
             super(repository);
         }
     }
 
-    public static class FooEntity4Creation extends GenericMinEntity<String> implements InitializingEntity {
+    public static class FooEntity4Updating extends GenericMinEntity<String> implements InitializingEntity {
         private String bar1;
 
         public String getBar1() {
@@ -115,7 +114,7 @@ public class CreationControllerSupportTest {
         }
     }
 
-    public static class FooModel4Creation {
+    public static class FooModel4Updating {
         private String bar1;
 
         public String getBar1() {

@@ -5,7 +5,7 @@ import cn.tac.framework.easydev.service.crud.CreationServiceSupport;
 
 /**
  * @author tac
- * @since 03/12/2017
+ * @since 2.0
  */
 public interface CreationServiceAware<E extends MinEntityStructureAware<PK>, PK> {
     CreationServiceSupport<E, PK> getCreationService();
