@@ -6,3 +6,8 @@ subprojects {
         )
     }
 }
+
+dependencies {
+    compile project(":easy-web:web-core")
+    compile project(":easy-web:web-controller-support")
+}

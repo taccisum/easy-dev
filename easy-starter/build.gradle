@@ -1,4 +1,4 @@
 dependencies {
     compile project (":easy-autoconfigure")
-    compile project (":easy-service")
+    compile project (":easy-web")
 }
