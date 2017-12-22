@@ -1,6 +1,5 @@
 subprojects {
     dependencies {
-        compile project(":easy-service")
         compile(
                 ['org.springframework.boot:spring-boot-starter-web'],
         )
@@ -10,4 +9,5 @@ subprojects {
 dependencies {
     compile project(":easy-web:web-core")
     compile project(":easy-web:web-controller-support")
+    compile project(":easy-web:web-swagger-support")
 }

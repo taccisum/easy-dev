@@ -12,3 +12,8 @@ spring:
     schema: classpath:hsql/schema/simple-sample.sql
     data: classpath:hsql/data/simple-sample.sql
 
+easy-dev:
+  swagger:
+    base-package: cn.tac.framework.easydev.sample
+    title: sample project api docs
+    version: 0.0.1

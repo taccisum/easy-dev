@@ -1,2 +1,4 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=cn.tac.framework.easydev.autoconfigure.EasyCoreAutoConfiguration,\
-cn.tac.framework.easydev.autoconfigure.EasyDaoAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.tac.framework.easydev.autoconfigure.EasyCoreAutoConfiguration,\
+cn.tac.framework.easydev.autoconfigure.EasyDaoAutoConfiguration,\
+cn.tac.framework.easydev.autoconfigure.EasyWebAutoConfiguration
