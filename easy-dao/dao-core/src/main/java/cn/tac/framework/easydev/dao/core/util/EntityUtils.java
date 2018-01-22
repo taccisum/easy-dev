@@ -33,10 +33,11 @@ public class EntityUtils {
     }
 
     public static void initUpdatingInfo(MinEntityStructureAware entity) {
-        if (entity instanceof EntityInfoAware) {
-            EntityInfoAware _entity = ((EntityInfoAware) entity);
-            _entity.setUpdatedOn(new Date());
-            _entity.setUpdatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
+        if (entity instanceof UpdatorAware) {
+            ((UpdatorAware) entity).setUpdatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
+        }
+        if (entity instanceof UpdationTimeAware) {
+            ((UpdationTimeAware) entity).setUpdatedOn(new Date());
         }
     }
 
