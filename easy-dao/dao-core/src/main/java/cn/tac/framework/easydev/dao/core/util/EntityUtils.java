@@ -20,9 +20,7 @@ public class EntityUtils {
 
     public static void init(MinEntityStructureAware entity) {
         initPrimaryKey(entity);
-        if (entity instanceof EntityInfoAware) {
-            initEntityInfo((EntityInfoAware) entity);
-        }
+        initEntityInfo(entity);
         if (entity instanceof DeletedFlagAware) {
             initDeletedFlag(((DeletedFlagAware) entity));
         }
@@ -35,7 +33,7 @@ public class EntityUtils {
     }
 
     public static void initUpdatingInfo(MinEntityStructureAware entity) {
-        if(entity instanceof EntityInfoAware){
+        if (entity instanceof EntityInfoAware) {
             EntityInfoAware _entity = ((EntityInfoAware) entity);
             _entity.setUpdatedOn(new Date());
             _entity.setUpdatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
@@ -52,11 +50,19 @@ public class EntityUtils {
         entity.setId(entity.getIDGenerator().generate(null));
     }
 
-    private static void initEntityInfo(EntityInfoAware entity) {
-        entity.setCreatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
-        entity.setCreatedOn(new Date());
-        entity.setUpdatedBy(null);
-        entity.setUpdatedOn(null);
+    private static void initEntityInfo(MinEntityStructureAware entity) {
+        if (entity instanceof CreatorAware) {
+            ((CreatorAware) entity).setCreatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
+        }
+        if (entity instanceof CreationTimeAware) {
+            ((CreationTimeAware) entity).setCreatedOn(new Date());
+        }
+        if (entity instanceof UpdatorAware) {
+            ((UpdatorAware) entity).setUpdatedBy(null);
+        }
+        if (entity instanceof UpdationTimeAware) {
+            ((UpdationTimeAware) entity).setUpdatedOn(null);
+        }
     }
 
     private static void initDeletedFlag(DeletedFlagAware entity) {
