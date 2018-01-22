@@ -1,10 +1,10 @@
-package cn.tac.framework.easydev.core.pojo;
+package cn.tac.framework.easydev.core.domain.converter;
 
 import java.util.List;
 
 /**
  * @author tac
- * @since 22/01/2018
+ * @since 1.0
  */
 public interface Converter<FROM, TO> {
     TO convert(FROM from);

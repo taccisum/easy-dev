@@ -1,7 +1,6 @@
 package cn.tac.framework.easydev.core.domain.converter;
 
 import cn.tac.framework.easydev.core.exception.NoSuchConverterException;
-import cn.tac.framework.easydev.core.pojo.Converter;
 import cn.tac.framework.easydev.core.pojo.KeyValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,12 +10,10 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * todo:: test
- *
  * @author tac
  * @since 1.0
  */
-public class ConverterFactory {
+public abstract class ConverterFactory {
     private static Logger logger = LoggerFactory.getLogger(ConverterFactory.class);
     private static Map<KeyValuePair<Class<?>, Class<?>>, Converter> converters = new HashMap<>();
 

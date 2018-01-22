@@ -1,6 +1,5 @@
 package cn.tac.framework.easydev.core.domain.converter;
 
-import cn.tac.framework.easydev.core.pojo.Converter;
 import org.junit.Before;
 import org.junit.Test;
 
