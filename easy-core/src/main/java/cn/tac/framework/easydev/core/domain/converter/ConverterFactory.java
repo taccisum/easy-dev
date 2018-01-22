@@ -1,4 +1,4 @@
-package cn.tac.framework.easydev.core.support.converter;
+package cn.tac.framework.easydev.core.domain.converter;
 
 import cn.tac.framework.easydev.core.exception.NoSuchConverterException;
 import cn.tac.framework.easydev.core.pojo.Converter;
