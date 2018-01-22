@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author tac
- * @since 22/01/2018
+ * @since 2.0
  */
 public class GenericSingleConverterSupportByGuavaTest {
 
