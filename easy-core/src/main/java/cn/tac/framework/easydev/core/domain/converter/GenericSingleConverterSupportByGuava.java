@@ -5,6 +5,8 @@ import org.apache.commons.collections.IteratorUtils;
 import java.util.List;
 
 /**
+ * 基于Guava Converter的单向Converter support
+ *
  * @author tac
  * @since 2.0
  */
