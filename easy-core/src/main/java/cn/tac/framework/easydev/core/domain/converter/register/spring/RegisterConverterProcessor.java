@@ -1,4 +1,4 @@
-package cn.tac.framework.easydev.autoconfigure.bean.processor;
+package cn.tac.framework.easydev.core.domain.converter.register.spring;
 
 import cn.tac.framework.easydev.core.domain.converter.Converter;
 import cn.tac.framework.easydev.core.domain.converter.ConverterFactory;

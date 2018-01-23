@@ -1,6 +1,6 @@
 package cn.tac.framework.easydev.autoconfigure;
 
-import cn.tac.framework.easydev.autoconfigure.bean.processor.RegisterConverterProcessor;
+import cn.tac.framework.easydev.core.domain.converter.register.spring.RegisterConverterProcessor;
 import cn.tac.framework.easydev.core.config.AutoConfigureConditionalClass;
 import cn.tac.framework.easydev.core.config.EasyCoreProperties;
 import cn.tac.framework.easydev.core.util.SpringUtils;
