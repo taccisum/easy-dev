@@ -12,6 +12,8 @@ public class SwaggerSupportProperties {
     private String basePackage = "cn.tac";
     private String title = "api docs";
     private String version = "SNAPSHOT";
+    private Boolean showEnv = true;
+    private Boolean showUptime = true;
 
     public String getBasePackage() {
         return basePackage;
@@ -35,5 +37,21 @@ public class SwaggerSupportProperties {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public Boolean getShowEnv() {
+        return showEnv;
+    }
+
+    public void setShowEnv(Boolean showEnv) {
+        this.showEnv = showEnv;
+    }
+
+    public Boolean getShowUptime() {
+        return showUptime;
+    }
+
+    public void setShowUptime(Boolean showUptime) {
+        this.showUptime = showUptime;
     }
 }
