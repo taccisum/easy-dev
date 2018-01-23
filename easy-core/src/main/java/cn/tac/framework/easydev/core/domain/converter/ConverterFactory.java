@@ -32,7 +32,7 @@ public abstract class ConverterFactory {
         }
     }
 
-    public static Converter find(Class fromCls, Class toCls) {
+    public static <FROM, TO> Converter<FROM, TO> find(Class<FROM> fromCls, Class<TO> toCls) {
         Objects.requireNonNull(fromCls);
         Objects.requireNonNull(toCls);
         KeyValuePair key = new KeyValuePair<>(fromCls, toCls);
