@@ -12,8 +12,10 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
+ * 注解{@link Register2Factory}使用示例
+ *
  * @author tac
- * @since 23/01/2018
+ * @since 2.0
  */
 public class Register2FactoryTest {
     @After
