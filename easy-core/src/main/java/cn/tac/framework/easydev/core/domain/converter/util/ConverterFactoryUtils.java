@@ -9,7 +9,7 @@ import cn.tac.framework.easydev.core.domain.converter.annotation.Register2Factor
  */
 public abstract class ConverterFactoryUtils {
     public static boolean isConverterCandidate(Object obj) {
-        if (obj instanceof Converter) {
+        if (obj != null && obj instanceof Converter) {
             Register2Factory annotation = getRegisterAnnotation(obj);
             return annotation != null && annotation.register();
         }
