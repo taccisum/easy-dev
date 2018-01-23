@@ -1,13 +1,18 @@
 package cn.tac.framework.easydev.autoconfigure;
 
 import cn.tac.framework.easydev.core.config.EasyCoreProperties;
+import cn.tac.framework.easydev.core.domain.converter.Converter;
+import cn.tac.framework.easydev.core.domain.converter.ConverterFactory;
 import cn.tac.framework.easydev.core.util.SpringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author tac
@@ -27,5 +32,16 @@ public class EasyCoreAutoConfigurationTest {
         Assert.assertNotNull(easyCoreProperties);
         Assert.assertNotNull(springUtils);
         Assert.assertNotNull(SpringUtils.getBean(EasyCoreProperties.class));
+    }
+
+
+    @Value("${converter.string2int.increase}")
+    private Integer increase;
+
+    @Test
+    public void testConverterRegister() {
+        Converter<String, Integer> converter = ConverterFactory.find(String.class, Integer.class);
+        assertThat(converter).isNotNull();
+        assertThat(converter.convert("123")).isEqualTo(123 + increase);
     }
 }

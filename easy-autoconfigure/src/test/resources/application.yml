@@ -1,0 +1,3 @@
+converter:
+  string2int:
+    increase: 2
