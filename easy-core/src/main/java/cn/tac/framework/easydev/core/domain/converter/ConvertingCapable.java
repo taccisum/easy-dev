@@ -34,6 +34,6 @@ public abstract class ConvertingCapable {
     }
 
     protected Converter getConverter(Class fromCls, Class toCls) {
-        return ConverterFactory.get(fromCls, toCls);
+        return ConverterFactory.find(fromCls, toCls);
     }
 }

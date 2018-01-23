@@ -20,7 +20,7 @@ public abstract class ConverterFactory {
     public ConverterFactory() {
     }
 
-    public static void put(Converter converter, Class fromCls, Class toCls) {
+    public static void register(Converter converter, Class fromCls, Class toCls) {
         Objects.requireNonNull(converter);
         Objects.requireNonNull(fromCls);
         Objects.requireNonNull(toCls);
@@ -32,7 +32,7 @@ public abstract class ConverterFactory {
         }
     }
 
-    public static Converter get(Class fromCls, Class toCls) {
+    public static Converter find(Class fromCls, Class toCls) {
         Objects.requireNonNull(fromCls);
         Objects.requireNonNull(toCls);
         KeyValuePair key = new KeyValuePair<>(fromCls, toCls);
@@ -41,5 +41,10 @@ public abstract class ConverterFactory {
         } else {
             return converters.get(key);
         }
+    }
+
+    public static void clean() {
+        converters.clear();
+        logger.warn("all converter has been clean. please confirm you really want to do this, because it's may cause some code not work");
     }
 }
