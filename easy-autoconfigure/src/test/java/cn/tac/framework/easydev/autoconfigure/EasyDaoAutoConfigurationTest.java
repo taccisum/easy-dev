@@ -9,6 +9,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -16,17 +18,15 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author tac
  * @since 2.0
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @RunWith(SpringRunner.class)
+@SpringBootTest(classes = EasyDaoAutoConfigurationTest.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootConfiguration
+@ImportAutoConfiguration(EasyDaoAutoConfiguration.class)
 public class EasyDaoAutoConfigurationTest {
-    @Autowired
-    private DaoCoreProperties daoCoreProperties;
-    @Autowired
-    private DaoCrudSupportProperties daoCrudSupportProperties;
-    @Autowired
-    private RuntimeData4Dao runtimeData4Dao;
-    @Autowired
-    private EntityUtils entityUtils;
+    @Autowired private DaoCoreProperties daoCoreProperties;
+    @Autowired private DaoCrudSupportProperties daoCrudSupportProperties;
+    @Autowired private RuntimeData4Dao runtimeData4Dao;
+    @Autowired private EntityUtils entityUtils;
 
     @Test
     public void testSimply() {

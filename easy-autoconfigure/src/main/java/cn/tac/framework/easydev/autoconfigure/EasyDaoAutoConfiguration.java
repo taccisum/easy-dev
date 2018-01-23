@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @EnableConfigurationProperties({DaoCoreProperties.class, DaoCrudSupportProperties.class})
-@Import(EntityUtils.class)
+@Import(value = {EntityUtils.class, EasyCoreAutoConfiguration.class})
 @ConditionalOnClass(AutoConfigureConditionalClass.class)
 public class EasyDaoAutoConfiguration {
     @SuppressWarnings("SpringJavaAutowiringInspection")

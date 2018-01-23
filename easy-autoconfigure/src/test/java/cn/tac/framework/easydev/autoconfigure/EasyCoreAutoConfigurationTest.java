@@ -11,7 +11,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +23,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author tac
  * @since 2.0
  */
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(classes = EasyCoreAutoConfigurationTest.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootConfiguration
+@ImportAutoConfiguration(EasyCoreAutoConfiguration.class)
+@Import(String2IntegerConverter.class)
 @RunWith(SpringRunner.class)
 public class EasyCoreAutoConfigurationTest {
     @Autowired private EasyCoreProperties easyCoreProperties;

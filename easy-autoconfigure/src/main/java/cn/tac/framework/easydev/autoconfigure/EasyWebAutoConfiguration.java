@@ -19,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableConfigurationProperties({SwaggerSupportProperties.class})
 //todo:: 不是SwaggerSupport的AutoConfigureConditionalClass
 @ConditionalOnClass(AutoConfigureConditionalClass.class)
-//@EnableSwagger2
+@EnableSwagger2
 public class EasyWebAutoConfiguration {
     @Autowired
     private SwaggerSupportProperties swaggerSupportProperties;

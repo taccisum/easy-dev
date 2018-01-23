@@ -10,7 +10,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 /**
  * @author tac
- * @since 22/12/2017
+ * @since 2.0
  */
 public class SwaggerDocketFactoryBean implements FactoryBean<Docket> {
     private ApiInfo apiInfo = new ApiInfoBuilder().build();
