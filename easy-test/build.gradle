@@ -1,0 +1,8 @@
+subprojects {
+    dependencies {
+        compile(
+                ['org.springframework.boot:spring-boot-starter-test'],
+                ['io.codearte.jfairy:jfairy:0.5.9'],
+        )
+    }
+}
