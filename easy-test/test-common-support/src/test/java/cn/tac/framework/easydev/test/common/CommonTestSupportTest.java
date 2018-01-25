@@ -2,9 +2,6 @@ package cn.tac.framework.easydev.test.common;
 
 import org.junit.Test;
 
-import java.util.Random;
-import java.util.regex.Pattern;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -13,52 +10,50 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class CommonTestSupportTest extends CommonTestSupport {
     @Test
-    public void testRange() throws Exception {
-        int sum = 0;
-        for (int i : range(10)) {
-            sum += i;
-        }
-        assertThat(sum).isEqualTo(45);
-        int sum1 = 0;
-        for (int i : range(20, 30)) {
-            sum1 += i;
-        }
-        assertThat(sum1).isEqualTo(245);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testRangeWhenStartGreatThanEnd() {
-        range(2, 1);
-    }
-
-    @Test
-    public void testDivider() throws Exception {
-        divider();
-        assertThat(Pattern.compile("^-{50}\n$").matcher(capture.toString()).matches()).isTrue();
-        capture.reset();
-        divider(100);
-        assertThat(Pattern.compile("^-{100}\n$").matcher(capture.toString()).matches()).isTrue();
-    }
-
-    @Test
-    public void testRepeat() throws Exception {
-        Random r = new Random();
-        repeat(i -> assertThat(r.nextInt(100)).isLessThan(100), 10);
-    }
-
-    @Test
     public void testLogger() {
-        logger.trace("trace log");
-        logger.debug("debug log");
-        logger.info("info log");
-        logger.warn("warn log");
-        logger.error("error log");
+        assertThat(logger).isNotNull();
+        if(logger.isTraceEnabled()){
+            logger.trace("trace log");
+            assertThat(capture.toString()).contains("trace log");
+        }
+        if(logger.isDebugEnabled()){
+            logger.debug("debug log");
+            assertThat(capture.toString()).contains("debug log");
+        }
+        if(logger.isInfoEnabled()){
+            logger.info("info log");
+            assertThat(capture.toString()).contains("info log");
+        }
+        if(logger.isWarnEnabled()){
+            logger.warn("warn log");
+            assertThat(capture.toString()).contains("warn log");
+        }
+        if(logger.isErrorEnabled()){
+            logger.error("error log");
+            assertThat(capture.toString()).contains("error log");
+        }
     }
 
     @Test
     public void testFairy() {
+        assertThat(fairy).isNotNull();
         String fullName = fairy.person().getFullName();
         assertThat(fullName).isNotBlank();
         System.out.println("hello " + fullName);
+    }
+
+    @Test
+    public void testCapture() {
+        assertThat(capture).isNotNull();
+        System.out.println("hello");
+        String s = capture.toString();
+        assertThat(s).contains("hello");
+    }
+
+    @Test
+    public void testThrown() throws Exception {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("test");
+        throw new IllegalArgumentException("test");
     }
 }
