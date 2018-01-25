@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author tac
  * @since 2.0
  */
-public class CommonTestSupportTest extends CommonTestSupport {
+public class TestSkeletonTest extends TestSkeleton {
     @Test
     public void testLogger() {
         assertThat(logger).isNotNull();

@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author tac
  * @since 25/01/2018
  */
-public class CommonTestUtilsTest extends CommonTestSupport {
+public class TestUtilsTest extends TestSkeleton {
     @Test
     public void testRange() throws Exception {
         int sum = 0;

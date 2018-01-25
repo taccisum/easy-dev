@@ -12,7 +12,7 @@ import org.springframework.boot.test.rule.OutputCapture;
  * @author tac
  * @since 2.0
  */
-public abstract class CommonTestSupport {
+public abstract class TestSkeleton {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     @Rule
