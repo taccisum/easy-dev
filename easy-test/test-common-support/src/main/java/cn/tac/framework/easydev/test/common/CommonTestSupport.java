@@ -23,7 +23,7 @@ public abstract class CommonTestSupport {
     protected Fairy fairy = Fairy.create();
 
     @After
-    public void tearDown() throws Exception {
+    public void __tearDown__() throws Exception {
         capture.reset();
     }
 }
