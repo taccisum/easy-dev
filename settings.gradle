@@ -51,4 +51,6 @@ findProject(':easy-web:web-controller-support:controller-core')?.name = 'control
 include 'easy-web:web-controller-support:controller-crud-support'
 findProject(':easy-web:web-controller-support:controller-crud-support')?.name = 'controller-crud-support'
 include 'easy-autoconfigure'
+include 'easy-test:test-core'
+findProject(':easy-test:test-core')?.name = 'test-core'
 
