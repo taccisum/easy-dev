@@ -5,6 +5,7 @@ import cn.tac.framework.easydev.core.util.IDUtils;
 import cn.tac.framework.easydev.dao.core.bean.RuntimeData4Dao;
 import cn.tac.framework.easydev.dao.core.config.AutoConfigureConditionalClass;
 import cn.tac.framework.easydev.dao.core.config.DaoCoreProperties;
+import cn.tac.framework.easydev.dao.core.strategy.id.SnowFlakeIDGenerator;
 import cn.tac.framework.easydev.dao.core.util.EntityUtils;
 import cn.tac.framework.easydev.dao.crud.config.DaoCrudSupportProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -38,5 +39,11 @@ public class EasyDaoAutoConfiguration {
                 return IDUtils.emptyUUID(easyCoreProperties.isCompactUUID());
             }
         };
+    }
+
+    @Bean
+    public SnowFlakeIDGenerator snowFlakeIDGenerator(DaoCoreProperties properties){
+        SnowFlakeIDGenerator.setProperties(properties);
+        return (SnowFlakeIDGenerator) SnowFlakeIDGenerator.instance();
     }
 }

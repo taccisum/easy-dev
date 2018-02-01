@@ -1,3 +1,9 @@
 converter:
   string2int:
     increase: 2
+easy-dev:
+  dao:
+    id-generator:
+      snow-flake:
+        data-center-id: 1
+        worker-id: 1

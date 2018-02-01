@@ -2,6 +2,7 @@ package cn.tac.framework.easydev.autoconfigure;
 
 import cn.tac.framework.easydev.dao.core.bean.RuntimeData4Dao;
 import cn.tac.framework.easydev.dao.core.config.DaoCoreProperties;
+import cn.tac.framework.easydev.dao.core.strategy.id.SnowFlakeIDGenerator;
 import cn.tac.framework.easydev.dao.core.util.EntityUtils;
 import cn.tac.framework.easydev.dao.crud.config.DaoCrudSupportProperties;
 import org.apache.commons.lang3.StringUtils;
@@ -34,11 +35,11 @@ public class EasyDaoAutoConfigurationTest {
         Assert.assertNotNull(daoCrudSupportProperties);
         Assert.assertNotNull(runtimeData4Dao);
         Assert.assertNotNull(entityUtils);
+        Assert.assertNotNull(SnowFlakeIDGenerator.instance());
     }
 
     @Test
     public void testDefaultRuntimeData4Dao() {
         Assert.assertTrue(StringUtils.isNoneBlank(runtimeData4Dao.userId()));
     }
-
 }
