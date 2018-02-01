@@ -4,6 +4,7 @@ import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.service.core.ServiceSkeleton;
 import cn.tac.framework.easydev.service.crud.CreationServiceSupport;
 import cn.tac.framework.easydev.web.controller.core.api.ServiceAware;
+import cn.tac.framework.easydev.web.controller.crud.api.CreationController;
 import cn.tac.framework.easydev.web.controller.crud.api.CreationServiceAware;
 import cn.tac.framework.easydev.web.core.builder.SuccessRestfulApiResponseBuilder;
 import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
@@ -18,9 +19,9 @@ import javax.validation.Valid;
  * @since 2.0
  */
 public interface CreationControllerSupport<E extends MinEntityStructureAware<PK>, PK, M>
-        extends ServiceAware<E, PK>, CreationServiceAware<E, PK> {
+        extends CreationController<E, PK, M>, ServiceAware<E, PK>, CreationServiceAware<E, PK> {
 
-    @PostMapping
+    @Override
     @ApiOperation("新增数据")
     default RestfulApiResponse<E> insert(@Valid @RequestBody M model) {
         return new SuccessRestfulApiResponseBuilder<E>()

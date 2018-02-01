@@ -4,6 +4,7 @@ import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.service.core.ServiceSkeleton;
 import cn.tac.framework.easydev.service.crud.UpdatingServiceSupport;
 import cn.tac.framework.easydev.web.controller.core.api.ServiceAware;
+import cn.tac.framework.easydev.web.controller.crud.api.UpdatingController;
 import cn.tac.framework.easydev.web.controller.crud.api.UpdatingServiceAware;
 import cn.tac.framework.easydev.web.core.builder.SuccessRestfulApiResponseBuilder;
 import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
@@ -17,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @since 2.0
  */
 public interface UpdatingControllerSupport<E extends MinEntityStructureAware<PK>, PK, M>
-        extends ServiceAware<E, PK>, UpdatingServiceAware<E, PK> {
+        extends UpdatingController<E, PK, M>, ServiceAware<E, PK>, UpdatingServiceAware<E, PK> {
 
+    @Override
     @PutMapping("{id}")
     @ApiOperation("根据id修改数据")
     default RestfulApiResponse<E> update(@PathVariable("id") PK id, @RequestBody M model) {

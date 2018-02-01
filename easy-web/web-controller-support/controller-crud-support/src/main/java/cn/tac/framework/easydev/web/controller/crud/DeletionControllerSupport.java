@@ -4,11 +4,11 @@ import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.service.core.ServiceSkeleton;
 import cn.tac.framework.easydev.service.crud.DeletionServiceSupport;
 import cn.tac.framework.easydev.web.controller.core.api.ServiceAware;
+import cn.tac.framework.easydev.web.controller.crud.api.DeletionController;
 import cn.tac.framework.easydev.web.controller.crud.api.DeletionServiceAware;
 import cn.tac.framework.easydev.web.core.builder.SuccessRestfulApiResponseBuilder;
 import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @since 2.0
  */
 public interface DeletionControllerSupport<E extends MinEntityStructureAware<PK>, PK>
-        extends ServiceAware<E, PK>, DeletionServiceAware<E, PK> {
-    @DeleteMapping("{id}")
+        extends DeletionController<E, PK>, ServiceAware<E, PK>, DeletionServiceAware<E, PK> {
+    @Override
     @ApiOperation("删除数据")
     default RestfulApiResponse<Integer> delete(@PathVariable("id") PK id) {
         return new SuccessRestfulApiResponseBuilder<Integer>()
