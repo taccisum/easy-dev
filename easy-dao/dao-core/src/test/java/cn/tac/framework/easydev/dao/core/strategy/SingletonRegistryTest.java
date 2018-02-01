@@ -30,7 +30,9 @@ public class SingletonRegistryTest {
         registry.register(new Strategy1());
         registry.register(new Strategy2());
         assertThat(registry.get(Strategy1.class)).isNotNull();
+        assertThat(registry.get(Strategy1.class) == registry.get(Strategy1.class)).isTrue();
         assertThat(registry.get(Strategy2.class)).isNotNull();
+        assertThat(registry.get(Strategy2.class) == registry.get(Strategy2.class)).isTrue();
     }
 
     @Test(expected = NoSuchInstanceException.class)
