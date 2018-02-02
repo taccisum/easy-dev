@@ -31,11 +31,11 @@ public interface RetrievalControllerSupport<E extends MinEntityStructureAware<PK
     }
 
 //    @Override
-    @ApiOperation(value = "根据查询参数获取数据列表", hidden = true)
-    default RestfulApiResponse<E> get(@ModelAttribute ListRequest request) {
-        //todo::
-        throw new NotImplementedException();
-    }
+//    @ApiOperation(value = "根据查询参数获取数据列表", hidden = true)
+//    default RestfulApiResponse<E> get(@ModelAttribute ListRequest request) {
+//        //todo::
+//        throw new NotImplementedException();
+//    }
 
     @Override
     default RetrievalServiceSupport<E, PK> getRetrievalService() {

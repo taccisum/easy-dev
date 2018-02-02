@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * @author tac
- * @since 01/02/2018
+ * @since 2.0
  */
 public interface RetrievalController<E extends MinEntityStructureAware<PK>, PK> {
     @GetMapping("{id}")
