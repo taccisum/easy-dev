@@ -7,5 +7,5 @@ import cn.tac.framework.easydev.core.constant.GlobalConstant;
  * @since 2.0
  */
 public interface WebCoreConstant {
-    String CONFIG_PROP_PREFIX = GlobalConstant.CONFIG_PROP_PREFIX + "web.core";
+    String CONFIG_PROP_PREFIX = GlobalConstant.CONFIG_PROP_PREFIX + ".web";
 }
