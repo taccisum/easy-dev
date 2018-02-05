@@ -9,6 +9,7 @@ import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
 public interface RestfulApiResponseBuilder<T> {
     String DEFAULT_SUCCESS_MSG = "操作成功";
     String DEFAULT_FAILURE_MSG = "未知业务异常";
+    String DEFAULT_FAILURE_FRIENDLY_MSG = "无法执行此操作哦";
     String DEFAULT_ERROR_MSG = "系统异常";
 
     static SuccessRestfulApiResponseBuilder success() {

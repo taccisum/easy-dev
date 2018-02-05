@@ -19,6 +19,7 @@ public class ErrorRestfulApiResponseBuilder<T> extends RestfulApiResponseBuilder
     public ErrorRestfulApiResponseBuilder() {
         super(ERROR_STATE, AppCode.SYSTEM_EXCEPTION_CODE);
         msg(DEFAULT_ERROR_MSG);
+        friendlyMsg(DEFAULT_ERROR_MSG);
     }
 
     public ErrorRestfulApiResponseBuilder<T> stackTrack(String stackTrack) {

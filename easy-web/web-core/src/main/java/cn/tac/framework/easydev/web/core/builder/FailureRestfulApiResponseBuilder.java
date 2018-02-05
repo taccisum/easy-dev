@@ -13,6 +13,7 @@ public class FailureRestfulApiResponseBuilder<T> extends RestfulApiResponseBuild
     public FailureRestfulApiResponseBuilder() {
         super(FAILURE_STATE, AppCode.DEFAULT_FAILURE_CODE);
         msg(DEFAULT_FAILURE_MSG);
+        friendlyMsg(DEFAULT_FAILURE_FRIENDLY_MSG);
     }
 
     public FailureRestfulApiResponseBuilder<T> code(String code) {

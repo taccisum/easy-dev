@@ -23,6 +23,7 @@ public class SuccessRestfulApiResponseBuilder<T> extends RestfulApiResponseBuild
     public SuccessRestfulApiResponseBuilder() {
         super(SUCCESS_STATE, AppCode.SUCCESS_CODE);
         msg(DEFAULT_SUCCESS_MSG);
+        friendlyMsg(DEFAULT_SUCCESS_MSG);
         setData(null);
     }
 
