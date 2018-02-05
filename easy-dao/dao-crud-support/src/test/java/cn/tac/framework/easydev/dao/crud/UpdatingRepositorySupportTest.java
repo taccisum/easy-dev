@@ -128,7 +128,7 @@ public class UpdatingRepositorySupportTest {
     }
 
     @Table(name = "foo")
-    public static class FooEntity4Updating extends GenericMinEntity<String> implements EntityInfoAware<String>, DeletedFlagAware<Integer> {
+    public static class FooEntity4Updating extends GenericMinEntity<String> implements EntityInfoAware, DeletedFlagAware<Integer> {
         private String bar1;
         private String bar2;
 
