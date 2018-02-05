@@ -6,5 +6,5 @@ package cn.tac.framework.easydev.dao.core.pojo;
  * @author tac
  * @since 2.0
  */
-public interface EntityInfoAware extends CreatorAware, CreationTimeAware, UpdatorAware, UpdationTimeAware {
+public interface EntityInfoAware<UPK> extends CreatorAware<UPK>, CreationTimeAware, UpdatorAware<UPK>, UpdationTimeAware {
 }
