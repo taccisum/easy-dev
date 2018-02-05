@@ -95,7 +95,7 @@ public class EntityUtilsTest {
         }
 
         @Override
-        public IDGenerator<String> getIDGenerator() {
+        public IDGenerator<String> idGenerator() {
             return UUIDGenerator.instance();
         }
     }

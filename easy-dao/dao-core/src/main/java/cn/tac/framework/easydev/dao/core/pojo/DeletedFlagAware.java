@@ -12,5 +12,5 @@ public interface DeletedFlagAware<T> {
     T getDeletedFlag();
     void setDeletedFlag(T flag);
 
-    DeletedFlagMapping<T> getDeletedFlagMapping();
+    DeletedFlagMapping<T> deletedFlagMapping();
 }

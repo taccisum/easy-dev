@@ -81,7 +81,7 @@ public class CreationServiceSupportTest {
 
     public static class FooEntity4Creation extends GenericMinEntity<String> {
         @Override
-        public IDGenerator<String> getIDGenerator() {
+        public IDGenerator<String> idGenerator() {
             return UUIDGenerator.instance();
         }
     }

@@ -105,7 +105,7 @@ public class CreationControllerSupportTest {
         }
 
         @Override
-        public IDGenerator<String> getIDGenerator() {
+        public IDGenerator<String> idGenerator() {
             return UUIDGenerator.instance();
         }
 

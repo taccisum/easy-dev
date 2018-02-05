@@ -5,7 +5,6 @@ import cn.tac.framework.easydev.dao.core.RepositorySkeleton;
 import cn.tac.framework.easydev.dao.core.pojo.DeletedFlagAware;
 import cn.tac.framework.easydev.dao.core.pojo.GenericEntity;
 import cn.tac.framework.easydev.dao.core.pojo.GenericMinEntity;
-import cn.tac.framework.easydev.dao.core.pojo.MinEntityStructureAware;
 import cn.tac.framework.easydev.dao.core.strategy.deletedflag.DeletedFlagMapping;
 import cn.tac.framework.easydev.dao.core.strategy.deletedflag.IntegerDeletedFlagMapping;
 import cn.tac.framework.easydev.dao.core.strategy.id.IDGenerator;
@@ -53,7 +52,7 @@ public class DeletionRepositorySupportTest {
         assertThat(repository.deleteByPrimaryKey("1")).isEqualTo(1);
         FooEntity4Deletion o = mapper.selectByPrimaryKey("1");
         assertThat(o).isNotNull();
-        assertThat(o.getDeletedFlag()).isEqualTo(o.getDeletedFlagMapping().getDisableFlag());
+        assertThat(o.getDeletedFlag()).isEqualTo(o.deletedFlagMapping().getDisableFlag());
 
         repository.setDaoCrudSupportProperties(false, true);
         assertThat(repository.deleteByPrimaryKey("2")).isEqualTo(1);
@@ -112,12 +111,12 @@ public class DeletionRepositorySupportTest {
         }
 
         @Override
-        public IDGenerator<String> getIDGenerator() {
+        public IDGenerator<String> idGenerator() {
             return UUIDGenerator.instance();
         }
 
         @Override
-        public DeletedFlagMapping<Integer> getDeletedFlagMapping() {
+        public DeletedFlagMapping<Integer> deletedFlagMapping() {
             return IntegerDeletedFlagMapping.instance();
         }
     }

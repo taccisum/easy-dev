@@ -71,7 +71,7 @@ public class UpdatingServiceSupportTest {
 
     public static class FooEntity4Updating extends GenericMinEntity<String> {
         @Override
-        public IDGenerator<String> getIDGenerator() {
+        public IDGenerator<String> idGenerator() {
             return UUIDGenerator.instance();
         }
     }

@@ -48,7 +48,7 @@ public class EntityUtils {
     }
 
     private static void initPrimaryKey(MinEntityStructureAware entity) {
-        entity.setId(entity.getIDGenerator().generate(null));
+        entity.setId(entity.idGenerator().generate(null));
     }
 
     private static void initEntityInfo(MinEntityStructureAware entity) {
@@ -67,7 +67,7 @@ public class EntityUtils {
     }
 
     private static void initDeletedFlag(DeletedFlagAware entity) {
-        entity.setDeletedFlag(entity.getDeletedFlagMapping().getEnableFlag());
+        entity.setDeletedFlag(entity.deletedFlagMapping().getEnableFlag());
     }
 
     private static void initDefaultValue(DefaultValue4ParticularFieldsAware entity) {

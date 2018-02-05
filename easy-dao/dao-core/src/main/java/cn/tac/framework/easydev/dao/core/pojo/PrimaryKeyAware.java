@@ -14,5 +14,5 @@ public interface PrimaryKeyAware<PK> {
     void setId(PK id);
 
     @JsonIgnore
-    IDGenerator<PK> getIDGenerator();
+    IDGenerator<PK> idGenerator();
 }

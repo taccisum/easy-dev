@@ -214,12 +214,12 @@ public class UpdatingRepositorySupportTest {
         }
 
         @Override
-        public IDGenerator<String> getIDGenerator() {
+        public IDGenerator<String> idGenerator() {
             return UUIDGenerator.instance();
         }
 
         @Override
-        public DeletedFlagMapping<Integer> getDeletedFlagMapping() {
+        public DeletedFlagMapping<Integer> deletedFlagMapping() {
             return IntegerDeletedFlagMapping.instance();
         }
 

@@ -25,7 +25,7 @@ public interface DeletionRepositorySupport<E extends MinEntityStructureAware<PK>
             if (o instanceof DeletedFlagAware) {
                 o.setId(id);
                 ((DeletedFlagAware) o).setDeletedFlag(
-                        ((DeletedFlagAware) o).getDeletedFlagMapping().getDisableFlag()
+                        ((DeletedFlagAware) o).deletedFlagMapping().getDisableFlag()
                 );
                 return getMapper().updateByPrimaryKeySelective(o);
             } else {

@@ -65,7 +65,7 @@ public interface RetrievalRepositorySupport<E extends MinEntityStructureAware<PK
     static void filterDeleted(MinEntityStructureAware entity) {
         if (entity instanceof DeletedFlagAware) {
             DeletedFlagAware _entity = (DeletedFlagAware) entity;
-            _entity.setDeletedFlag(_entity.getDeletedFlagMapping().getEnableFlag());
+            _entity.setDeletedFlag(_entity.deletedFlagMapping().getEnableFlag());
         }
     }
 }

@@ -83,7 +83,7 @@ public class RetrievalRepositorySupportTest {
         FooEntity4Retrieval o3 = repository.selectByPrimaryKey("3");
         assertThat(o3).isNotNull();
         assertThat(o3.getBar1()).isEqualTo("bar1_3");
-        assertThat(o3.getDeletedFlag()).isEqualTo(o3.getDeletedFlagMapping().getDisableFlag());
+        assertThat(o3.getDeletedFlag()).isEqualTo(o3.deletedFlagMapping().getDisableFlag());
 
         repository.setDaoCrudSupportProperties(false, false);
         FooEntity4Retrieval o4 = repository.selectByPrimaryKey("4");
@@ -194,12 +194,12 @@ public class RetrievalRepositorySupportTest {
         }
 
         @Override
-        public IDGenerator<String> getIDGenerator() {
+        public IDGenerator<String> idGenerator() {
             return UUIDGenerator.instance();
         }
 
         @Override
-        public DeletedFlagMapping<Integer> getDeletedFlagMapping() {
+        public DeletedFlagMapping<Integer> deletedFlagMapping() {
             return IntegerDeletedFlagMapping.instance();
         }
 

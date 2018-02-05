@@ -127,7 +127,8 @@ public abstract class GenericEntity<PK> extends GenericMinEntity<PK> implements
     }
 
     @Override
-    public DeletedFlagMapping<Integer> getDeletedFlagMapping() {
+    @JsonIgnore
+    public DeletedFlagMapping<Integer> deletedFlagMapping() {
         return IntegerDeletedFlagMapping.instance();
     }
 }
