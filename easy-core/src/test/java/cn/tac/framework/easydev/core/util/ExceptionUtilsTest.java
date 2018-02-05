@@ -35,6 +35,16 @@ public class ExceptionUtilsTest {
     }
 
     @Test
+    public void extractErrorMessageFromSystemException() throws Exception {
+        ErrorMessage message = ExceptionUtils.extractErrorMessage(new IllegalArgumentException("test system exception"));
+        assertThat(message.getCode()).isEqualTo(ErrorCode.SYSTEM_EXCEPTION_CODE);
+        assertThat(message.getMessage()).isEqualTo("test system exception");
+        assertThat(message.getDisplayMessage()).isEqualTo("test system exception");
+        System.err.println(message.getStackTrace());
+        assertThat(capture.toString()).contains("IllegalArgumentException", "test system exception");
+    }
+
+    @Test
     public void extractErrorMessageFromParamerterizedBizException() throws Exception {
         ErrorMessage message = ExceptionUtils.extractErrorMessage(new ParameterizedFooException("error reason"));
         assertThat(message.getCode()).isEqualTo("234");

@@ -2,6 +2,7 @@ package cn.tac.framework.easydev.core.util;
 
 import cn.tac.framework.easydev.core.exception.BusinessException;
 import cn.tac.framework.easydev.core.exception.ParameterizedBusinessException;
+import cn.tac.framework.easydev.core.pojo.ErrorCode;
 import cn.tac.framework.easydev.core.pojo.ErrorMessage;
 
 import java.io.IOException;
@@ -13,22 +14,29 @@ import java.io.StringWriter;
  * @since 2.0
  */
 public abstract class ExceptionUtils {
-    public static ErrorMessage extractErrorMessage(BusinessException exception) {
+    public static ErrorMessage extractErrorMessage(Exception e) {
         ErrorMessage message = new ErrorMessage();
-        message.setCode(exception.getErrorCode().getCode());
-        if (exception instanceof ParameterizedBusinessException) {
-            ParameterizedBusinessException pe = (ParameterizedBusinessException) exception;
-            message.setMessage(pe.getErrorCode().getMessage(pe.getArgs()));
+        if (e instanceof BusinessException) {
+            BusinessException be = (BusinessException) e;
+            message.setCode(be.getErrorCode().getCode());
+            if (be instanceof ParameterizedBusinessException) {
+                ParameterizedBusinessException pe = (ParameterizedBusinessException) be;
+                message.setMessage(pe.getErrorCode().getMessage(pe.getArgs()));
+            } else {
+                message.setMessage(be.getErrorCode().getMessage());
+            }
+            message.setDisplayMessage(be.getDisplayMessage());
         } else {
-            message.setMessage(exception.getErrorCode().getMessage());
+            message.setCode(ErrorCode.SYSTEM_EXCEPTION_CODE);
+            message.setMessage(e.getMessage());
+            message.setDisplayMessage(e.getMessage());
         }
-        message.setDisplayMessage(exception.getDisplayMessage());
-        message.setStackTrace(extractStackTrace(exception));
+        message.setStackTrace(extractStackTrace(e));
 
         return message;
     }
 
-    public static String extractStackTrace(Throwable e){
+    public static String extractStackTrace(Throwable e) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw, true);
         e.printStackTrace(pw);
