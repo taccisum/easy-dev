@@ -1,8 +1,8 @@
 package cn.tac.framework.easydev.web.core.builder;
 
+import cn.tac.framework.easydev.core.pojo.AppCode;
 import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
 
-import static cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse.DEFAULT_FAILURE_CODE;
 import static cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse.FAILURE_STATE;
 
 /**
@@ -21,7 +21,7 @@ public class FailureRestfulApiResponseBuilder<T> extends RestfulApiResponseBuild
     }
 
     public FailureRestfulApiResponseBuilder() {
-        super(FAILURE_STATE, DEFAULT_FAILURE_CODE, "未知业务异常");
+        super(FAILURE_STATE, AppCode.DEFAULT_FAILURE_CODE, "未知业务异常");
     }
 
     public FailureRestfulApiResponseBuilder<T> msg(String msg) {

@@ -9,9 +9,6 @@ import io.swagger.annotations.ApiModelProperty;
  * @since 1.0
  */
 public class RestfulApiResponse<T> {
-    public static final String SUCCESS_CODE = "0";  //表示成功的状态码
-    public static final String ERROR_CODE = "-1";   //表示系统异常的状态码
-    public static final String DEFAULT_FAILURE_CODE = "100";    //表示业务异常的默认状态码
     public static final int SUCCESS_STATE = 0;      //成功
     public static final int FAILURE_STATE = 1;      //失败（业务异常）
     public static final int ERROR_STATE = -1;       //错误（系统异常）
@@ -22,6 +19,8 @@ public class RestfulApiResponse<T> {
     private String code;
     @ApiModelProperty(value = "提示信息")
     private String msg;
+    @ApiModelProperty(value = "友好的提示信息")
+    private String friendlyMsg;
     @ApiModelProperty(value = "返回数据", example = "{}")
     private T data;
     /**
@@ -29,29 +28,6 @@ public class RestfulApiResponse<T> {
      */
     @ApiModelProperty(value = "堆栈追踪信息")
     private String stackTrace;
-
-    public RestfulApiResponse() {
-    }
-
-    public RestfulApiResponse(Integer state, String code, String msg) {
-        this.state = state;
-        this.code = code;
-        this.msg = msg;
-    }
-
-    public RestfulApiResponse(Integer state, String code, String msg, T data) {
-        this.state = state;
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
-    }
-
-    public RestfulApiResponse(Integer state, String code, String msg, String stackTrace) {
-        this.state = state;
-        this.code = code;
-        this.msg = msg;
-        this.stackTrace = stackTrace;
-    }
 
     public Integer getState() {
         return state;
@@ -77,6 +53,14 @@ public class RestfulApiResponse<T> {
         this.msg = msg;
     }
 
+    public String getFriendlyMsg() {
+        return friendlyMsg;
+    }
+
+    public void setFriendlyMsg(String friendlyMsg) {
+        this.friendlyMsg = friendlyMsg;
+    }
+
     public T getData() {
         return data;
     }
@@ -91,33 +75,5 @@ public class RestfulApiResponse<T> {
 
     public void setStackTrace(String stackTrace) {
         this.stackTrace = stackTrace;
-    }
-
-    public static <T> RestfulApiResponse<T> success(String message, T data) {
-        return new RestfulApiResponse<>(SUCCESS_STATE, SUCCESS_CODE, message, data);
-    }
-
-    public static <T> RestfulApiResponse<T> success(T data) {
-        return new RestfulApiResponse<>(SUCCESS_STATE, SUCCESS_CODE, "操作成功", data);
-    }
-
-    public static <T> RestfulApiResponse<T> success(String message) {
-        return new RestfulApiResponse<>(SUCCESS_STATE, SUCCESS_CODE, message);
-    }
-
-    public static <T> RestfulApiResponse<T> success() {
-        return new RestfulApiResponse<>(SUCCESS_STATE, SUCCESS_CODE, "操作成功");
-    }
-
-    public static <T> RestfulApiResponse<T> failure(String code, String message) {
-        return new RestfulApiResponse<>(FAILURE_STATE, code, message, "");
-    }
-
-    public static <T> RestfulApiResponse<T> failure(String code, String message, String stackTrace) {
-        return new RestfulApiResponse<>(FAILURE_STATE, code, message, stackTrace);
-    }
-
-    public static <T> RestfulApiResponse<T> error(String message, String stackTrace) {
-        return new RestfulApiResponse<>(ERROR_STATE, ERROR_CODE, message, stackTrace);
     }
 }

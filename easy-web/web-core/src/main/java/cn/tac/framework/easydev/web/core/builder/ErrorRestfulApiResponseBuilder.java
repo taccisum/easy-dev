@@ -1,8 +1,8 @@
 package cn.tac.framework.easydev.web.core.builder;
 
+import cn.tac.framework.easydev.core.pojo.AppCode;
 import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
 
-import static cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse.ERROR_CODE;
 import static cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse.ERROR_STATE;
 
 /**
@@ -21,7 +21,7 @@ public class ErrorRestfulApiResponseBuilder<T> extends RestfulApiResponseBuilder
     }
 
     public ErrorRestfulApiResponseBuilder() {
-        super(ERROR_STATE, ERROR_CODE, "系统异常");
+        super(ERROR_STATE, AppCode.SYSTEM_EXCEPTION_CODE, "系统异常");
     }
 
 

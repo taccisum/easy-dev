@@ -4,7 +4,7 @@ import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
 
 /**
  * @author tac
- * @since 04/12/2017
+ * @since 2.0
  */
 public interface RestfulApiResponseBuilder<T> {
     static SuccessRestfulApiResponseBuilder success() {
@@ -25,6 +25,22 @@ public interface RestfulApiResponseBuilder<T> {
 
     static ErrorRestfulApiResponseBuilder error() {
         return new ErrorRestfulApiResponseBuilder();
+    }
+
+    static GenericRestfulApiResponseBuilder generic(int state, String code, String msg) {
+        return new GenericRestfulApiResponseBuilder<>(state, code, msg);
+    }
+
+    static GenericRestfulApiResponseBuilder generic(int state, String code, String msg, String friendlyMsg) {
+        return new GenericRestfulApiResponseBuilder<>(state, code, msg, friendlyMsg);
+    }
+
+    static <T> GenericRestfulApiResponseBuilder<T> generic(Class<T> clazz, int state, String code, String msg) {
+        return new GenericRestfulApiResponseBuilder<>(state, code, msg);
+    }
+
+    static <T> GenericRestfulApiResponseBuilder<T> generic(Class<T> clazz, int state, String code, String msg, String friendlyMsg) {
+        return new GenericRestfulApiResponseBuilder<>(state, code, msg, friendlyMsg);
     }
 
     RestfulApiResponse<T> build();

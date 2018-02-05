@@ -1,0 +1,55 @@
+package cn.tac.framework.easydev.web.exception.handler;
+
+import cn.tac.framework.easydev.core.exception.BusinessException;
+import cn.tac.framework.easydev.core.pojo.ErrorMessage;
+import cn.tac.framework.easydev.core.util.ExceptionUtils;
+import cn.tac.framework.easydev.web.core.builder.RestfulApiResponseBuilder;
+import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
+import cn.tac.framework.easydev.web.core.utils.WebUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/**
+ * @author tac
+ * @since 2.0
+ */
+public class DefaultGlobalExceptionHandler {
+    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    public ModelAndView process(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
+        if (!canProcess(e)) {
+            throw new UnsupportedOperationException("process exception " + e.getClass());
+        }
+
+        RestfulApiResponse result;
+        result = doProcess(request, response, handler, e);
+
+        try {
+            WebUtils.writeJson(response, result);
+        } catch (IOException ioe) {
+            logger.error("http响应流写入异常", ioe);
+        }
+
+        return new ModelAndView();      //这里要返回一个空的model and view
+    }
+
+    protected RestfulApiResponse doProcess(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
+        ErrorMessage message = ExceptionUtils.extractErrorMessage(e);
+        RestfulApiResponse resp = RestfulApiResponseBuilder.generic(
+                Object.class, e instanceof BusinessException ? RestfulApiResponse.FAILURE_STATE : RestfulApiResponse.ERROR_STATE,
+                message.getCode(), message.getMessage())
+                .data(null)
+                .stackTrack(message.getStackTrace())
+                .build();
+        return resp;
+    }
+
+    protected boolean canProcess(Exception ex) {
+        return true;
+    }
+}

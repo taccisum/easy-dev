@@ -1,13 +1,13 @@
 package cn.tac.framework.easydev.web.core.builder;
 
+import cn.tac.framework.easydev.core.pojo.AppCode;
 import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
 
-import static cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse.SUCCESS_CODE;
 import static cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse.SUCCESS_STATE;
 
 /**
  * @author tac
- * @since 04/12/2017
+ * @since 2.0
  */
 public class SuccessRestfulApiResponseBuilder<T> extends RestfulApiResponseBuilderSkeleton<T> {
     private T data;
@@ -21,7 +21,7 @@ public class SuccessRestfulApiResponseBuilder<T> extends RestfulApiResponseBuild
     }
 
     public SuccessRestfulApiResponseBuilder() {
-        super(SUCCESS_STATE, SUCCESS_CODE, "操作成功");
+        super(SUCCESS_STATE, AppCode.SUCCESS_CODE, "操作成功");
         setData(null);
     }
 
