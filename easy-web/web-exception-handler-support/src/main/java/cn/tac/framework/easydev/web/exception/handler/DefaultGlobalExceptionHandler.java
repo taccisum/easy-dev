@@ -40,12 +40,18 @@ public class DefaultGlobalExceptionHandler {
 
     protected RestfulApiResponse doProcess(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
         ErrorMessage message = ExceptionUtils.extractErrorMessage(e);
-        RestfulApiResponse resp = RestfulApiResponseBuilder.generic(
-                Object.class, e instanceof BusinessException ? RestfulApiResponse.FAILURE_STATE : RestfulApiResponse.ERROR_STATE,
-                message.getCode(), message.getMessage())
-                .data(null)
-                .stackTrack(message.getStackTrace())
-                .build();
+        RestfulApiResponse resp;
+        if (e instanceof BusinessException) {
+            resp = RestfulApiResponseBuilder.failure()
+                    .code(message.getCode())
+                    .msg(message.getMessage())
+                    .msg(message.getDisplayMessage())
+                    .build();
+        } else {
+            resp = RestfulApiResponseBuilder.error()
+                    .stackTrack(message.getStackTrace())
+                    .build();
+        }
         return resp;
     }
 
