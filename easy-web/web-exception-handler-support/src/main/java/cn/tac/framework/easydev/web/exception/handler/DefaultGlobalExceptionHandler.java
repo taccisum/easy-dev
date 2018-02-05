@@ -29,20 +29,24 @@ public class DefaultGlobalExceptionHandler implements ExceptionHandler {
 
     @Override
     public ModelAndView process(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
-        if (!canProcess(e)) {
-            throw new UnsupportedOperationException("process exception " + e.getClass());
+        if (WebUtils.isAjax(request)) {
+            if (!canProcess(e)) {
+                throw new UnsupportedOperationException("process exception " + e.getClass());
+            }
+
+            RestfulApiResponse result;
+            result = doProcess(request, response, handler, e);
+
+            try {
+                WebUtils.writeJson(response, result);
+            } catch (IOException ioe) {
+                logger.error("http响应流写入异常", ioe);
+            }
+
+            return new ModelAndView();      //这里要返回一个空的model and view
+        } else {
+            return new ModelAndView(properties.getDefaultView());
         }
-
-        RestfulApiResponse result;
-        result = doProcess(request, response, handler, e);
-
-        try {
-            WebUtils.writeJson(response, result);
-        } catch (IOException ioe) {
-            logger.error("http响应流写入异常", ioe);
-        }
-
-        return new ModelAndView();      //这里要返回一个空的model and view
     }
 
     protected RestfulApiResponse doProcess(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
