@@ -9,7 +9,7 @@ import static cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse.SUCCESS_
  * @author tac
  * @since 2.0
  */
-public class SuccessRestfulApiResponseBuilder<T> extends RestfulApiResponseBuilderSkeleton<T> {
+public class SuccessRestfulApiResponseBuilder<T> extends RestfulApiResponseBuilderSkeleton<T, SuccessRestfulApiResponseBuilder<T>> {
     private T data;
 
     T getData() {
@@ -21,13 +21,9 @@ public class SuccessRestfulApiResponseBuilder<T> extends RestfulApiResponseBuild
     }
 
     public SuccessRestfulApiResponseBuilder() {
-        super(SUCCESS_STATE, AppCode.SUCCESS_CODE, "操作成功");
+        super(SUCCESS_STATE, AppCode.SUCCESS_CODE);
+        msg(DEFAULT_SUCCESS_MSG);
         setData(null);
-    }
-
-    public SuccessRestfulApiResponseBuilder<T> msg(String msg) {
-        setMsg(msg);
-        return this;
     }
 
     public SuccessRestfulApiResponseBuilder<T> data(T data) {

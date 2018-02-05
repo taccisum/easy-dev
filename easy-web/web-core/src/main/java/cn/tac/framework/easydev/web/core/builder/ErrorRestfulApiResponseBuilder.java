@@ -9,25 +9,16 @@ import static cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse.ERROR_ST
  * @author tac
  * @since 2.0
  */
-public class ErrorRestfulApiResponseBuilder<T> extends RestfulApiResponseBuilderSkeleton<T> {
+public class ErrorRestfulApiResponseBuilder<T> extends RestfulApiResponseBuilderSkeleton<T, ErrorRestfulApiResponseBuilder<T>> {
     private String stackTrack;
-
-    String getStackTrack() {
-        return stackTrack;
-    }
 
     void setStackTrack(String stackTrack) {
         this.stackTrack = stackTrack;
     }
 
     public ErrorRestfulApiResponseBuilder() {
-        super(ERROR_STATE, AppCode.SYSTEM_EXCEPTION_CODE, "系统异常");
-    }
-
-
-    public ErrorRestfulApiResponseBuilder<T> msg(String msg) {
-        setMsg(msg);
-        return this;
+        super(ERROR_STATE, AppCode.SYSTEM_EXCEPTION_CODE);
+        msg(DEFAULT_ERROR_MSG);
     }
 
     public ErrorRestfulApiResponseBuilder<T> stackTrack(String stackTrack) {

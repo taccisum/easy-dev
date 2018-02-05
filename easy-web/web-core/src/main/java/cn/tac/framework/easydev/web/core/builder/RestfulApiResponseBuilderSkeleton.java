@@ -6,21 +6,26 @@ import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
  * @author tac
  * @since 2.0
  */
-public abstract class RestfulApiResponseBuilderSkeleton<T> implements RestfulApiResponseBuilder<T> {
+public abstract class RestfulApiResponseBuilderSkeleton<T, BUILDER extends RestfulApiResponseBuilderSkeleton<T, BUILDER>>
+        implements RestfulApiResponseBuilder<T> {
     private Integer state;
     private String code;
     private String msg;
     private String friendlyMsg;
 
-    public RestfulApiResponseBuilderSkeleton(int state, String code, String msg) {
-        this(state, code, msg, null);
-    }
-
-    public RestfulApiResponseBuilderSkeleton(int state, String code, String msg, String friendlyMsg) {
+    public RestfulApiResponseBuilderSkeleton(int state, String code) {
         this.state = state;
         this.code = code;
-        this.msg = msg;
-        this.friendlyMsg = friendlyMsg;
+    }
+
+    public BUILDER msg(String msg) {
+        setMsg(msg);
+        return (BUILDER) this;
+    }
+
+    public BUILDER friendlyMsg(String friendlyMsg) {
+        setFriendlyMsg(friendlyMsg);
+        return (BUILDER) this;
     }
 
     Integer getState() {

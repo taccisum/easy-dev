@@ -6,7 +6,7 @@ import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
  * @author tac
  * @since 2.0
  */
-public class GenericRestfulApiResponseBuilder<T> extends RestfulApiResponseBuilderSkeleton<T> {
+public class GenericRestfulApiResponseBuilder<T> extends RestfulApiResponseBuilderSkeleton<T, GenericRestfulApiResponseBuilder<T>> {
     private T data;
     private String stackTrace;
 
@@ -18,17 +18,8 @@ public class GenericRestfulApiResponseBuilder<T> extends RestfulApiResponseBuild
         this.stackTrace = stackTrace;
     }
 
-    public GenericRestfulApiResponseBuilder(int state, String code, String msg) {
-        super(state, code, msg);
-    }
-
-    public GenericRestfulApiResponseBuilder(int state, String code, String msg, String friendlyMsg) {
-        super(state, code, msg, friendlyMsg);
-    }
-
-    public GenericRestfulApiResponseBuilder<T> msg(String msg) {
-        setMsg(msg);
-        return this;
+    public GenericRestfulApiResponseBuilder(int state, String code) {
+        super(state, code);
     }
 
     public GenericRestfulApiResponseBuilder<T> data(T data) {

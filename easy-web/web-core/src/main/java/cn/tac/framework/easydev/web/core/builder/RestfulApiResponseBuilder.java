@@ -7,6 +7,10 @@ import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
  * @since 2.0
  */
 public interface RestfulApiResponseBuilder<T> {
+    String DEFAULT_SUCCESS_MSG = "操作成功";
+    String DEFAULT_FAILURE_MSG = "未知业务异常";
+    String DEFAULT_ERROR_MSG = "系统异常";
+
     static SuccessRestfulApiResponseBuilder success() {
         return new SuccessRestfulApiResponseBuilder();
     }
@@ -15,32 +19,24 @@ public interface RestfulApiResponseBuilder<T> {
         return new SuccessRestfulApiResponseBuilder<>();
     }
 
-    static FailureRestfulApiResponseBuilder failure() {
-        return new FailureRestfulApiResponseBuilder();
+    static FailureRestfulApiResponseBuilder<Object> failure() {
+        return new FailureRestfulApiResponseBuilder<>();
     }
 
     static <T> FailureRestfulApiResponseBuilder<T> failure(Class<T> clazz) {
         return new FailureRestfulApiResponseBuilder<>();
     }
 
-    static ErrorRestfulApiResponseBuilder error() {
-        return new ErrorRestfulApiResponseBuilder();
+    static ErrorRestfulApiResponseBuilder<Object> error() {
+        return new ErrorRestfulApiResponseBuilder<>();
     }
 
-    static GenericRestfulApiResponseBuilder generic(int state, String code, String msg) {
-        return new GenericRestfulApiResponseBuilder<>(state, code, msg);
+    static GenericRestfulApiResponseBuilder<Object> generic(int state, String code) {
+        return new GenericRestfulApiResponseBuilder<>(state, code);
     }
 
-    static GenericRestfulApiResponseBuilder generic(int state, String code, String msg, String friendlyMsg) {
-        return new GenericRestfulApiResponseBuilder<>(state, code, msg, friendlyMsg);
-    }
-
-    static <T> GenericRestfulApiResponseBuilder<T> generic(Class<T> clazz, int state, String code, String msg) {
-        return new GenericRestfulApiResponseBuilder<>(state, code, msg);
-    }
-
-    static <T> GenericRestfulApiResponseBuilder<T> generic(Class<T> clazz, int state, String code, String msg, String friendlyMsg) {
-        return new GenericRestfulApiResponseBuilder<>(state, code, msg, friendlyMsg);
+    static <T> GenericRestfulApiResponseBuilder<T> generic(Class<T> clazz, int state, String code) {
+        return new GenericRestfulApiResponseBuilder<>(state, code);
     }
 
     RestfulApiResponse<T> build();
