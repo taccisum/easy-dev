@@ -32,7 +32,7 @@ import java.util.Date;
  */
 @Entity
 public abstract class GenericEntity<PK> extends GenericMinEntity<PK> implements
-        EntityInfoAware<Long>,
+        EntityInfoAware,
         DeletedFlagAware<Integer>,
         InitializingEntity,
         DefaultValue4ParticularFieldsAware {
@@ -44,7 +44,7 @@ public abstract class GenericEntity<PK> extends GenericMinEntity<PK> implements
 
     @Column(name = CREATED_BY_FIELD_NAME)
     @JsonIgnore
-    private Long createdBy;
+    private String createdBy;
 
     @OrderBy("desc")
     @Column(name = CREATED_ON_FIELD_NAME)
@@ -53,7 +53,7 @@ public abstract class GenericEntity<PK> extends GenericMinEntity<PK> implements
 
     @Column(name = UPDATED_BY_FIELD_NAME)
     @JsonIgnore
-    private Long updatedBy;
+    private String updatedBy;
 
     @Column(name = UPDATED_ON_FIELD_NAME)
     @JsonIgnore
@@ -64,12 +64,12 @@ public abstract class GenericEntity<PK> extends GenericMinEntity<PK> implements
     private Integer deletedFlag;
 
     @Override
-    public Long getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
     @Override
-    public void setCreatedBy(Long createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -84,12 +84,12 @@ public abstract class GenericEntity<PK> extends GenericMinEntity<PK> implements
     }
 
     @Override
-    public Long getUpdatedBy() {
+    public String getUpdatedBy() {
         return updatedBy;
     }
 
     @Override
-    public void setUpdatedBy(Long updatedBy) {
+    public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
 
