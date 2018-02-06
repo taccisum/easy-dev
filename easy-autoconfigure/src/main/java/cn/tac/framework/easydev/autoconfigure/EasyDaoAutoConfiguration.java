@@ -1,9 +1,9 @@
 package cn.tac.framework.easydev.autoconfigure;
 
+import cn.tac.framework.easydev.autoconfigure.dao.DaoCrudSupportAutoConfiguration;
 import cn.tac.framework.easydev.core.config.EasyCoreProperties;
 import cn.tac.framework.easydev.core.util.IDUtils;
 import cn.tac.framework.easydev.dao.core.bean.RuntimeData4Dao;
-import cn.tac.framework.easydev.dao.core.config.AutoConfigureConditionalClass;
 import cn.tac.framework.easydev.dao.core.config.DaoCoreProperties;
 import cn.tac.framework.easydev.dao.core.strategy.id.SnowFlakeIDGenerator;
 import cn.tac.framework.easydev.dao.core.util.EntityUtils;
@@ -22,9 +22,9 @@ import org.springframework.context.annotation.Import;
  * @since 2.0
  */
 @Configuration
-@EnableConfigurationProperties({DaoCoreProperties.class, DaoCrudSupportProperties.class})
-@Import(value = {EntityUtils.class, EasyCoreAutoConfiguration.class})
-@ConditionalOnClass(AutoConfigureConditionalClass.class)
+@EnableConfigurationProperties({DaoCoreProperties.class})
+@Import(value = {EntityUtils.class, EasyCoreAutoConfiguration.class, DaoCrudSupportAutoConfiguration.class})
+@ConditionalOnClass(DaoCoreProperties.class)
 public class EasyDaoAutoConfiguration {
     private Logger logger = LoggerFactory.getLogger(EasyDaoAutoConfiguration.class);
     @SuppressWarnings("SpringJavaAutowiringInspection")

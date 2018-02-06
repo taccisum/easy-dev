@@ -1,17 +1,19 @@
 package cn.tac.framework.easydev.autoconfigure;
 
+import cn.tac.framework.easydev.autoconfigure.web.ExceptionHandlerAutoConfiguration;
+import cn.tac.framework.easydev.autoconfigure.web.SwaggerAutoConfiguration;
+import cn.tac.framework.easydev.autoconfigure.web.WebMvcConfiguration;
 import cn.tac.framework.easydev.core.config.EasyCoreProperties;
+import cn.tac.framework.easydev.web.core.config.WebCoreProperties;
 import cn.tac.framework.easydev.web.swagger.SwaggerDocketFactoryBean;
-import cn.tac.framework.easydev.web.swagger.config.AutoConfigureConditionalClass;
 import cn.tac.framework.easydev.web.swagger.config.SwaggerSupportProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -19,13 +21,11 @@ import java.util.Date;
 
 /**
  * @author tac
- * @since 22/12/2017
+ * @since 2.0
  */
+@ConditionalOnClass(WebCoreProperties.class)
 @Configuration
-@EnableConfigurationProperties({SwaggerSupportProperties.class})
-//todo:: 不是SwaggerSupport的AutoConfigureConditionalClass
-@ConditionalOnClass(AutoConfigureConditionalClass.class)
-@EnableSwagger2
+@Import({EasyDaoAutoConfiguration.class, ExceptionHandlerAutoConfiguration.class, SwaggerAutoConfiguration.class, WebMvcConfiguration.class})
 public class EasyWebAutoConfiguration {
     @Autowired
     private SwaggerSupportProperties swaggerSupportProperties;

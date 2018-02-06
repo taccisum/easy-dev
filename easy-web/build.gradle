@@ -10,4 +10,5 @@ dependencies {
     compile project(":easy-web:web-core")
     compile project(":easy-web:web-controller-support")
     compile project(":easy-web:web-swagger-support")
+    compile project(":easy-web:web-exception-handler-support")
 }
