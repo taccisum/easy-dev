@@ -1,7 +1,6 @@
 package cn.tac.framework.easydev.autoconfigure;
 
 import cn.tac.framework.easydev.autoconfigure.web.WebMvcConfiguration;
-import cn.tac.framework.easydev.web.exception.handler.DefaultGlobalExceptionHandler;
 import cn.tac.framework.easydev.web.swagger.SwaggerDocketFactoryBean;
 import cn.tac.framework.easydev.web.swagger.config.SwaggerSupportProperties;
 import org.junit.Test;
@@ -36,7 +35,6 @@ public class EasyWebAutoConfigurationTest {
         assertThat(swaggerSupportProperties).isNotNull();
         assertThat(swaggerDocketFactoryBean).isNotNull();
         assertThat(handlerExceptionResolver).isNotNull();
-        assertThat(handlerExceptionResolver).isInstanceOf(DefaultGlobalExceptionHandler.class);
         assertThat(webMvcConfiguration).isNotNull();
     }
 }
