@@ -13,10 +13,10 @@ spring:
     data: classpath:hsql/data/simple-sample.sql
 
 easy-dev:
-  swagger:
-    base-package: cn.tac.framework.easydev.sample
-    title: sample project api docs
-    version: 0.0.1
   web:
     exception-handler:
       output-stack-trace: true
+    swagger:
+      base-package: cn.tac.framework.easydev.sample
+      title: sample project api docs
+      version: 0.0.1
