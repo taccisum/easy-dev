@@ -68,6 +68,7 @@ public class DefaultGlobalExceptionHandler implements ExceptionHandler {
     }
 
     protected boolean isAjax(HttpServletRequest request) {
+        //todo::
         return true;
 //        return WebUtils.isAjax(request);
     }
