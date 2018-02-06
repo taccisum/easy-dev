@@ -1,0 +1,5 @@
+dependencies {
+    compile project(":easy-caching:caching-core")
+    compile project(":easy-caching:caching-ehcache-support")
+    compile project(":easy-caching:caching-redis-support")
+}

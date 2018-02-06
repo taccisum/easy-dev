@@ -1,0 +1,5 @@
+dependencies {
+    compile project(":easy-caching:caching-core")
+    compile ("org.springframework.boot:spring-boot-starter-data-redis")
+    compile ("com.fasterxml.jackson.core:jackson-databind")
+}

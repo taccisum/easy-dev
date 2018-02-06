@@ -53,4 +53,6 @@ findProject(':easy-web:web-controller-support:controller-crud-support')?.name = 
 include 'easy-autoconfigure'
 include 'easy-test:test-core'
 findProject(':easy-test:test-core')?.name = 'test-core'
+include 'easy-caching:caching-core'
+findProject(':easy-caching:caching-core')?.name = 'caching-core'
 
