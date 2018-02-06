@@ -1,3 +1,9 @@
+subprojects {
+    dependencies {
+        compile project(":easy-core")
+    }
+}
+
 dependencies {
     compile project(":easy-caching:caching-core")
     compile project(":easy-caching:caching-ehcache-support")
