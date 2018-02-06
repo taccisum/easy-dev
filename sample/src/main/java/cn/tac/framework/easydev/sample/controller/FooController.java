@@ -1,10 +1,13 @@
 package cn.tac.framework.easydev.sample.controller;
 
+import cn.tac.framework.easydev.sample.exception.FooException;
 import cn.tac.framework.easydev.sample.pojo.FooEntity;
 import cn.tac.framework.easydev.sample.pojo.dto.FooModel;
 import cn.tac.framework.easydev.sample.service.FooService;
 import cn.tac.framework.easydev.web.controller.crud.CrudControllerSupport;
+import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +21,11 @@ public class FooController extends CrudControllerSupport<FooEntity, String, FooM
     @Autowired
     public FooController(FooService service) {
         super(service);
+    }
+
+    @GetMapping("failure")
+    public RestfulApiResponse failure(){
+        throw new FooException("出错啦");
     }
 
     @Override

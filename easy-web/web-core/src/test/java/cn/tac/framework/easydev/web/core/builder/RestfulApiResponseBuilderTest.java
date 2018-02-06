@@ -45,7 +45,7 @@ public class RestfulApiResponseBuilderTest {
         RestfulApiResponse r = RestfulApiResponseBuilder.error()
                 .msg("error")
                 .friendlyMsg("an system error happened")
-                .stackTrack("null point exception")
+                .stackTrace("null point exception")
                 .build();
         assertThat(r.getMsg()).isEqualTo("error");
         assertThat(r.getFriendlyMsg()).isEqualTo("an system error happened");

@@ -22,7 +22,7 @@ public class ErrorRestfulApiResponseBuilder<T> extends RestfulApiResponseBuilder
         friendlyMsg(DEFAULT_ERROR_MSG);
     }
 
-    public ErrorRestfulApiResponseBuilder<T> stackTrack(String stackTrack) {
+    public ErrorRestfulApiResponseBuilder<T> stackTrace(String stackTrack) {
         setStackTrack(stackTrack);
         return this;
     }

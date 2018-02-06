@@ -29,7 +29,7 @@ public class DefaultGlobalExceptionHandler implements ExceptionHandler {
 
     @Override
     public ModelAndView process(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
-        if (WebUtils.isAjax(request)) {
+        if (isAjax(request)) {
             if (!canProcess(e)) {
                 throw new UnsupportedOperationException("process exception " + e.getClass());
             }
@@ -57,13 +57,19 @@ public class DefaultGlobalExceptionHandler implements ExceptionHandler {
                     .code(message.getCode())
                     .msg(message.getMessage())
                     .friendlyMsg(message.getDisplayMessage())
+                    .stackTrace(getStackTrace(message))
                     .build();
         } else {
             resp = RestfulApiResponseBuilder.error()
-                    .stackTrack(getStackTrace(message))
+                    .stackTrace(getStackTrace(message))
                     .build();
         }
         return resp;
+    }
+
+    protected boolean isAjax(HttpServletRequest request) {
+        return true;
+//        return WebUtils.isAjax(request);
     }
 
     protected boolean canProcess(Exception ex) {

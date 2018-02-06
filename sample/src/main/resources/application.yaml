@@ -17,3 +17,6 @@ easy-dev:
     base-package: cn.tac.framework.easydev.sample
     title: sample project api docs
     version: 0.0.1
+  web:
+    exception-handler:
+      output-stack-trace: true
