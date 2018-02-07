@@ -9,6 +9,7 @@ import cn.tac.framework.easydev.web.core.utils.WebUtils;
 import cn.tac.framework.easydev.web.exception.handler.config.WebExceptionHandlerProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,7 @@ import java.io.IOException;
  * @author tac
  * @since 2.0
  */
-public class DefaultGlobalExceptionHandler implements ExceptionHandler {
+public class DefaultGlobalExceptionHandler implements HandlerExceptionResolver {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     private WebExceptionHandlerProperties properties;
 
@@ -28,7 +29,7 @@ public class DefaultGlobalExceptionHandler implements ExceptionHandler {
     }
 
     @Override
-    public ModelAndView process(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
+    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
         if (isAjax(request)) {
             if (!canProcess(e)) {
                 throw new UnsupportedOperationException("process exception " + e.getClass());

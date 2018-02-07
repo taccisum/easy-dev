@@ -41,5 +41,6 @@ public class EasyWebAutoConfigurationTest {
         assertThat(handlerExceptionResolver).isNotNull();
         assertThat(messageConverterProperties).isNotNull();
         assertThat(webMvcConfigurers).isNotEmpty();
+        assertThat(webMvcConfigurers.size()).isEqualTo(3);
     }
 }

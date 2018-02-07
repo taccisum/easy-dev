@@ -16,7 +16,7 @@ public class MessageConverterConfigurator {
         this.objectMapperBuilder = objectMapperBuilder;
     }
 
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(0, new MappingJackson2HttpMessageConverter(objectMapperBuilder.build()));
     }
 }

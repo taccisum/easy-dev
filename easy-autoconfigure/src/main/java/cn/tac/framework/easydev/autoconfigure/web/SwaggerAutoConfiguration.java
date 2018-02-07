@@ -3,6 +3,8 @@ package cn.tac.framework.easydev.autoconfigure.web;
 import cn.tac.framework.easydev.core.config.EasyCoreProperties;
 import cn.tac.framework.easydev.web.swagger.SwaggerDocketFactoryBean;
 import cn.tac.framework.easydev.web.swagger.config.SwaggerSupportProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -27,6 +29,7 @@ import java.util.Date;
 @EnableSwagger2
 @EnableConfigurationProperties({SwaggerSupportProperties.class})
 public class SwaggerAutoConfiguration extends WebMvcConfigurerAdapter {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private SwaggerSupportProperties swaggerSupportProperties;
     @Autowired
@@ -38,6 +41,9 @@ public class SwaggerAutoConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     @ConditionalOnMissingBean
     public SwaggerDocketFactoryBean swaggerDocketFactoryBean() {
+        if (logger.isInfoEnabled()) {
+            logger.info("配置swagger docket factory bean，使用框架提供的默认配置");
+        }
         SwaggerDocketFactoryBean bean = new SwaggerDocketFactoryBean();
         StringBuilder descBuilder = new StringBuilder();
         descBuilder.append("<span style='font-weight:bold'>current version: </span>");

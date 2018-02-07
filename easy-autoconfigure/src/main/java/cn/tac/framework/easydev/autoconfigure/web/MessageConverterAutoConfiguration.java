@@ -5,6 +5,8 @@ import cn.tac.framework.easydev.web.messageconverter.GenericObjectMapperBuilder;
 import cn.tac.framework.easydev.web.messageconverter.MessageConverterConfigurator;
 import cn.tac.framework.easydev.web.messageconverter.config.MessageConverterProperties;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -24,9 +26,13 @@ import java.util.List;
 @ConditionalOnClass(MessageConverterProperties.class)
 @EnableConfigurationProperties(MessageConverterProperties.class)
 public class MessageConverterAutoConfiguration extends WebMvcConfigurerAdapter {
-    @Autowired private EasyCoreProperties easyCoreProperties;
-    @Autowired private MessageConverterProperties messageConverterProperties;
-    @Autowired private MessageConverterConfigurator messageConverterConfigurator;
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    private EasyCoreProperties easyCoreProperties;
+    @Autowired
+    private MessageConverterProperties messageConverterProperties;
+    @Autowired
+    private MessageConverterConfigurator messageConverterConfigurator;
 
     @Bean
     @ConditionalOnMissingBean
@@ -43,8 +49,11 @@ public class MessageConverterAutoConfiguration extends WebMvcConfigurerAdapter {
     }
 
     @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        super.configureMessageConverters(converters);
-        messageConverterConfigurator.configureMessageConverters(converters);
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        if (logger.isInfoEnabled()) {
+            logger.info("扩展mvc的http消息转换器");
+        }
+        super.extendMessageConverters(converters);
+        messageConverterConfigurator.extendMessageConverters(converters);
     }
 }

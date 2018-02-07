@@ -41,7 +41,7 @@ public class MessageConverterConfiguratorTest {
             logger.debug("extend message converter");
             MessageConverterConfigurator configurator = new MessageConverterConfigurator();
             configurator.setObjectMapperBuilder(new GenericObjectMapperBuilder().dateFormatPattern("yyyy-MM-dd HH:mm:ss").long2String(true));
-            configurator.configureMessageConverters(converters);
+            configurator.extendMessageConverters(converters);
         }
     }
 
