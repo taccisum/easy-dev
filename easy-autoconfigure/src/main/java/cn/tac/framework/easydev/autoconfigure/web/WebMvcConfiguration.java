@@ -2,7 +2,6 @@ package cn.tac.framework.easydev.autoconfigure.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -11,6 +10,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -38,14 +38,17 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter implements Appl
     }
 
     @Override
-    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        super.extendMessageConverters(converters);
-        ObjectMapper objectMapper;
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        super.configureMessageConverters(converters);
+
         try {
-            objectMapper = applicationContext.getBean(ObjectMapper.class);
-        } catch (NoSuchBeanDefinitionException e) {
-            objectMapper = new ObjectMapper();
+            Object messageConverterConfigurator;
+            Class clazz = Class.forName("cn.tac.framework.easydev.web.messageconverter.MessageConverterConfigurator");
+            messageConverterConfigurator = applicationContext.getBean(clazz);
+            Method method = messageConverterConfigurator.getClass().getMethod("configureMessageConverters", List.class);
+            method.invoke(messageConverterConfigurator, converters);
+        } catch (Exception e) {
+            converters.add(new MappingJackson2HttpMessageConverter(new ObjectMapper()));
         }
-        converters.add(new MappingJackson2HttpMessageConverter(objectMapper));
     }
 }

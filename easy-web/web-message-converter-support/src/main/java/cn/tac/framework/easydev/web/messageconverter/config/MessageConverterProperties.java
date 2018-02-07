@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(MessageConverterConstant.CONFIG_PROP_PREFIX)
 public class MessageConverterProperties {
     private String dateFormatPattern;
-    private Boolean longToString = false;
+    private Boolean longToString = true;
 
     public String getDateFormatPattern() {
         return dateFormatPattern;

@@ -37,6 +37,7 @@ public class GenericSingleConverterSupportByGuavaTest {
 
     @Test(expected = UnsupportedOperationException.class)
     public void reverse() {
+        //noinspection deprecation
         new Foo2BarConverter().reverse();
     }
 

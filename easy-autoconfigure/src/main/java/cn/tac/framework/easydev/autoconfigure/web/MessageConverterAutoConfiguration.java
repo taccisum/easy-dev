@@ -1,7 +1,8 @@
 package cn.tac.framework.easydev.autoconfigure.web;
 
 import cn.tac.framework.easydev.core.config.EasyCoreProperties;
-import cn.tac.framework.easydev.web.messageconverter.ObjectMapperFactoryBean;
+import cn.tac.framework.easydev.web.messageconverter.GenericObjectMapperBuilder;
+import cn.tac.framework.easydev.web.messageconverter.MessageConverterConfigurator;
 import cn.tac.framework.easydev.web.messageconverter.config.MessageConverterProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,15 @@ public class MessageConverterAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public ObjectMapperFactoryBean objectMapperFactoryBean() {
-        ObjectMapperFactoryBean bean = new ObjectMapperFactoryBean();
+    public MessageConverterConfigurator messageConverterConfigurator() {
+        MessageConverterConfigurator bean = new MessageConverterConfigurator();
         String dateFormatPattern = StringUtils.isNotBlank(messageConverterProperties.getDateFormatPattern()) ?
                 messageConverterProperties.getDateFormatPattern() :
                 easyCoreProperties.getFormatPattern().getDatetime();
-        bean.setDateFormatPattern(dateFormatPattern);
-        bean.setLong2String(messageConverterProperties.getLongToString());
+        GenericObjectMapperBuilder objectMapperBuilder = new GenericObjectMapperBuilder();
+        objectMapperBuilder.dateFormatPattern(dateFormatPattern);
+        objectMapperBuilder.long2String(messageConverterProperties.getLongToString());
+        bean.setObjectMapperBuilder(objectMapperBuilder);
         return bean;
     }
 }

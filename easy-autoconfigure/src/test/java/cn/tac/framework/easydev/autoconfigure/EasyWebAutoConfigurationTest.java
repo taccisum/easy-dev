@@ -32,7 +32,6 @@ public class EasyWebAutoConfigurationTest {
     @Autowired private HandlerExceptionResolver handlerExceptionResolver;
     @Autowired private WebMvcConfiguration webMvcConfiguration;
     @Autowired private MessageConverterProperties messageConverterProperties;
-    @Autowired private ObjectMapper objectMapper;
 
     @Test
     public void testSimply() {
@@ -41,6 +40,5 @@ public class EasyWebAutoConfigurationTest {
         assertThat(handlerExceptionResolver).isNotNull();
         assertThat(webMvcConfiguration).isNotNull();
         assertThat(messageConverterProperties).isNotNull();
-        assertThat(objectMapper).isNotNull();
     }
 }

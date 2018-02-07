@@ -13,27 +13,29 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author tac
  * @since 2.0
  */
-public class ObjectMapperFactoryBeanTest {
+public class GenericObjectMapperBuilderTest {
     private ObjectMapper objectMapper;
 
     @Before
     public void setUp() throws Exception {
-        ObjectMapperFactoryBean factoryBean = new ObjectMapperFactoryBean();
-        factoryBean.setDateFormatPattern("yyyy-MM-dd HH:mm:ss");
-        factoryBean.setLong2String(true);
-        objectMapper = factoryBean.getObject();
+        GenericObjectMapperBuilder builder = new GenericObjectMapperBuilder();
+        builder.dateFormatPattern("yyyy-MM-dd HH:mm:ss");
+        builder.long2String(true);
+        objectMapper = builder.build();
     }
 
     @Test
     public void serializer() throws JsonProcessingException {
         Foo foo = new Foo();
         foo.setField1(157928765366870016L);
+        //noinspection deprecation
         foo.setField2(new Date(117, 0, 1, 12, 34, 56));
         String json = objectMapper.writeValueAsString(foo);
         System.out.println(json);
         assertThat(json).contains("\"157928765366870016\"", "2017-01-01 12:34:56");     //如果配置了long2string，这里的值应该在json中是转换成了字符串而非number
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     public void deserialize() throws Exception {
         Foo foo = objectMapper.readValue("{\"field1\": 157928765366870016, \"field2\": \"2017-01-01 12:34:56\"}", Foo.class);
