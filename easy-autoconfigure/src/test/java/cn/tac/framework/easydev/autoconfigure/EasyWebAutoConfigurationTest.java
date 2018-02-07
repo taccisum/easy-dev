@@ -1,8 +1,10 @@
 package cn.tac.framework.easydev.autoconfigure;
 
 import cn.tac.framework.easydev.autoconfigure.web.WebMvcConfiguration;
+import cn.tac.framework.easydev.web.messageconverter.config.MessageConverterProperties;
 import cn.tac.framework.easydev.web.swagger.SwaggerDocketFactoryBean;
 import cn.tac.framework.easydev.web.swagger.config.SwaggerSupportProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ public class EasyWebAutoConfigurationTest {
     @Autowired private SwaggerDocketFactoryBean swaggerDocketFactoryBean;
     @Autowired private HandlerExceptionResolver handlerExceptionResolver;
     @Autowired private WebMvcConfiguration webMvcConfiguration;
+    @Autowired private MessageConverterProperties messageConverterProperties;
+    @Autowired private ObjectMapper objectMapper;
 
     @Test
     public void testSimply() {
@@ -36,5 +40,7 @@ public class EasyWebAutoConfigurationTest {
         assertThat(swaggerDocketFactoryBean).isNotNull();
         assertThat(handlerExceptionResolver).isNotNull();
         assertThat(webMvcConfiguration).isNotNull();
+        assertThat(messageConverterProperties).isNotNull();
+        assertThat(objectMapper).isNotNull();
     }
 }

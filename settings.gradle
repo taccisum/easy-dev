@@ -55,4 +55,6 @@ include 'easy-test:test-core'
 findProject(':easy-test:test-core')?.name = 'test-core'
 include 'easy-caching:caching-core'
 findProject(':easy-caching:caching-core')?.name = 'caching-core'
+include 'easy-web:web-message-converter-support'
+findProject(':easy-web:web-message-converter-support')?.name = 'web-message-converter-support'
 

@@ -1,6 +1,7 @@
 package cn.tac.framework.easydev.autoconfigure;
 
 import cn.tac.framework.easydev.autoconfigure.web.ExceptionHandlerAutoConfiguration;
+import cn.tac.framework.easydev.autoconfigure.web.MessageConverterAutoConfiguration;
 import cn.tac.framework.easydev.autoconfigure.web.SwaggerAutoConfiguration;
 import cn.tac.framework.easydev.autoconfigure.web.WebMvcConfiguration;
 import cn.tac.framework.easydev.core.config.EasyCoreProperties;
@@ -25,7 +26,7 @@ import java.util.Date;
  */
 @ConditionalOnClass(WebCoreProperties.class)
 @Configuration
-@Import({EasyDaoAutoConfiguration.class, ExceptionHandlerAutoConfiguration.class, SwaggerAutoConfiguration.class, WebMvcConfiguration.class})
+@Import({EasyDaoAutoConfiguration.class, ExceptionHandlerAutoConfiguration.class, SwaggerAutoConfiguration.class, MessageConverterAutoConfiguration.class})
 public class EasyWebAutoConfiguration {
     @Autowired
     private SwaggerSupportProperties swaggerSupportProperties;
@@ -59,5 +60,10 @@ public class EasyWebAutoConfiguration {
                 .build());
         bean.baskPackage(swaggerSupportProperties.getBasePackage());
         return bean;
+    }
+
+    @Bean
+    public WebMvcConfiguration webMvcConfiguration() {
+        return new WebMvcConfiguration();
     }
 }
