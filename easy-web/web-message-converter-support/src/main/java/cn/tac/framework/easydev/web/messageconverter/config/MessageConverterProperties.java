@@ -9,4 +9,22 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(MessageConverterConstant.CONFIG_PROP_PREFIX)
 public class MessageConverterProperties {
+    private String dateFormatPattern;
+    private Boolean longToString = false;
+
+    public String getDateFormatPattern() {
+        return dateFormatPattern;
+    }
+
+    public void setDateFormatPattern(String dateFormatPattern) {
+        this.dateFormatPattern = dateFormatPattern;
+    }
+
+    public Boolean getLongToString() {
+        return longToString;
+    }
+
+    public void setLongToString(Boolean longToString) {
+        this.longToString = longToString;
+    }
 }

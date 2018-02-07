@@ -20,6 +20,7 @@ public class ObjectMapperFactoryBeanTest {
     public void setUp() throws Exception {
         ObjectMapperFactoryBean factoryBean = new ObjectMapperFactoryBean();
         factoryBean.setDateFormatPattern("yyyy-MM-dd HH:mm:ss");
+        factoryBean.setLong2String(true);
         objectMapper = factoryBean.getObject();
     }
 
@@ -28,12 +29,14 @@ public class ObjectMapperFactoryBeanTest {
         Foo foo = new Foo();
         foo.setField1(157928765366870016L);
         foo.setField2(new Date(117, 0, 1, 12, 34, 56));
-        assertThat(objectMapper.writeValueAsString(foo)).contains("157928765366870016", "2017-01-01 12:34:56");
+        String json = objectMapper.writeValueAsString(foo);
+        System.out.println(json);
+        assertThat(json).contains("\"157928765366870016\"", "2017-01-01 12:34:56");     //如果配置了long2string，这里的值应该在json中是转换成了字符串而非number
     }
 
     @Test
     public void deserialize() throws Exception {
-        Foo foo = objectMapper.readValue("{\"field1\": \"157928765366870016\", \"field2\": \"2017-01-01 12:34:56\"}", Foo.class);
+        Foo foo = objectMapper.readValue("{\"field1\": 157928765366870016, \"field2\": \"2017-01-01 12:34:56\"}", Foo.class);
         assertThat(foo).isNotNull();
         assertThat(foo.getField1()).isEqualTo(157928765366870016L);
         assertThat(foo.getField2().getYear() + 1900).isEqualTo(2017);
