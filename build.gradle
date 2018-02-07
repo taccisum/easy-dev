@@ -67,7 +67,8 @@ subprojects {
         }
 
         repositories {
-            def NEXUS_URL = "http://172.10.10.66:8081/nexus/content/repositories"
+//            def NEXUS_URL = "http://172.10.10.66:8081/nexus/content/repositories"
+            def NEXUS_URL = "http://ikentop.xicp.net:6681/nexus/content/repositories"
             if (project.version.endsWith("SNAPSHOT")) {
                 NEXUS_URL = "$NEXUS_URL/snapshots/"
             } else {

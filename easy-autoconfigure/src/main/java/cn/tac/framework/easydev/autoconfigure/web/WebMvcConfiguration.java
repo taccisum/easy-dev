@@ -5,6 +5,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -17,6 +18,7 @@ import java.util.List;
  * @author tac
  * @since 2.0
  */
+@Configuration
 public class WebMvcConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
     private HandlerExceptionResolver handlerExceptionResolver;
     private ApplicationContext applicationContext;

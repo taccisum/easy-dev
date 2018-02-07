@@ -9,10 +9,11 @@ import cn.tac.framework.easydev.web.core.config.WebCoreProperties;
 import cn.tac.framework.easydev.web.swagger.SwaggerDocketFactoryBean;
 import cn.tac.framework.easydev.web.swagger.config.SwaggerSupportProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 import springfox.documentation.builders.ApiInfoBuilder;
 
@@ -25,8 +26,14 @@ import java.util.Date;
  * @since 2.0
  */
 @ConditionalOnClass(WebCoreProperties.class)
+@ConditionalOnWebApplication
 @Configuration
-@Import({EasyDaoAutoConfiguration.class, ExceptionHandlerAutoConfiguration.class, SwaggerAutoConfiguration.class, MessageConverterAutoConfiguration.class})
+@ImportAutoConfiguration({
+        EasyDaoAutoConfiguration.class,
+        ExceptionHandlerAutoConfiguration.class,
+        SwaggerAutoConfiguration.class,
+        MessageConverterAutoConfiguration.class,
+        WebMvcConfiguration.class})
 public class EasyWebAutoConfiguration {
     @Autowired
     private SwaggerSupportProperties swaggerSupportProperties;
@@ -60,10 +67,5 @@ public class EasyWebAutoConfiguration {
                 .build());
         bean.baskPackage(swaggerSupportProperties.getBasePackage());
         return bean;
-    }
-
-    @Bean
-    public WebMvcConfiguration webMvcConfiguration() {
-        return new WebMvcConfiguration();
     }
 }
