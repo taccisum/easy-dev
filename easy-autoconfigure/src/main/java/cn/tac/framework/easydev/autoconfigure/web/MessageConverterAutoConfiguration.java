@@ -10,18 +10,23 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.util.List;
 
 /**
  * @author tac
  * @since 2.0
  */
+@Configuration
 @ConditionalOnClass(MessageConverterProperties.class)
 @EnableConfigurationProperties(MessageConverterProperties.class)
-public class MessageConverterAutoConfiguration {
-    @Autowired
-    private EasyCoreProperties easyCoreProperties;
-    @Autowired
-    private MessageConverterProperties messageConverterProperties;
+public class MessageConverterAutoConfiguration extends WebMvcConfigurerAdapter {
+    @Autowired private EasyCoreProperties easyCoreProperties;
+    @Autowired private MessageConverterProperties messageConverterProperties;
+    @Autowired private MessageConverterConfigurator messageConverterConfigurator;
 
     @Bean
     @ConditionalOnMissingBean
@@ -35,5 +40,11 @@ public class MessageConverterAutoConfiguration {
         objectMapperBuilder.long2String(messageConverterProperties.getLongToString());
         bean.setObjectMapperBuilder(objectMapperBuilder);
         return bean;
+    }
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        super.configureMessageConverters(converters);
+        messageConverterConfigurator.configureMessageConverters(converters);
     }
 }
