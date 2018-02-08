@@ -52,6 +52,7 @@ public class DefaultGlobalExceptionHandler implements HandlerExceptionResolver {
 
     protected RestfulApiResponse doProcess(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
         ErrorMessage message = ExceptionUtils.extractErrorMessage(e);
+        System.err.println(message.getStackTrace());
         RestfulApiResponse resp;
         if (e instanceof BusinessException) {
             resp = RestfulApiResponseBuilder.failure()
