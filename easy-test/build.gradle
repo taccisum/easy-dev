@@ -6,3 +6,9 @@ subprojects {
         )
     }
 }
+
+dependencies {
+    compile project(":easy-test:test-core")
+    compile project(":easy-test:test-common-support")
+    compile project(":easy-test:test-web-support")
+}
