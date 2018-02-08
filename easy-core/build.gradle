@@ -4,5 +4,6 @@ dependencies {
             [group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'],
             [group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'],
             [group: 'com.google.guava', name: 'guava', version: '23.4-jre'],
+            [group: 'joda-time', name: 'joda-time', version: '2.9.9'],
     )
 }
