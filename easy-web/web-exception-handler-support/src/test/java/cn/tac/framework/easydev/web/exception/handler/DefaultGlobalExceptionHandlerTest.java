@@ -39,8 +39,8 @@ public class DefaultGlobalExceptionHandlerTest {
         @Override
         public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
             super.extendHandlerExceptionResolvers(exceptionResolvers);
-            ExceptionHandler handler = new DefaultGlobalExceptionHandler(new WebExceptionHandlerProperties());
-            exceptionResolvers.add(handler::process);
+            HandlerExceptionResolver handler = new DefaultGlobalExceptionHandler(new WebExceptionHandlerProperties());
+            exceptionResolvers.add(handler);
         }
     }
 
