@@ -45,9 +45,18 @@ public class TestSkeletonTest extends TestSkeleton {
     @Test
     public void testCapture() {
         assertThat(capture).isNotNull();
-        System.out.println("hello");
+        System.out.print("hello");
         String s = capture.toString();
-        assertThat(s).contains("hello");
+        assertThat(s).isEqualTo("hello");
+
+        System.out.print("hello");
+        String s1 = capture.toString();
+        assertThat(s1).isEqualTo("hellohello");
+
+        capture.reset();
+        System.out.print("hello");
+        String s2 = capture.toString();
+        assertThat(s2).isEqualTo("hello");
     }
 
     @Test

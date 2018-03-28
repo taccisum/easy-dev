@@ -54,7 +54,7 @@ public class RedisCacheManagerFactoryBeanTest {
         assertThat(foo.get("1")).isEqualTo(0);
         assertThat(foo.get("1")).isEqualTo(0);
         assertThat(foo.get("1")).isEqualTo(0);
-        assertThat(foo.get("2")).isNotEqualTo(0);
+        assertThat(foo.get("2")).isEqualTo(1);
     }
 
     @Component
