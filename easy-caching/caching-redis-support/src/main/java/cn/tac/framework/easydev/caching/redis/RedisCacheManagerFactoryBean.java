@@ -17,32 +17,28 @@ import java.util.Objects;
  * @since 2.0
  */
 public class RedisCacheManagerFactoryBean extends CacheManagerFactoryBean<RedisCacheManager> {
-    private StringRedisTemplate redisTemplate;
+    private RedisTemplate redisTemplate;
 
-    public void setRedisTemplate(StringRedisTemplate redisTemplate) {
+    public void setRedisTemplate(RedisTemplate redisTemplate) {
+        Objects.requireNonNull(redisTemplate, "redisTemplate");
         this.redisTemplate = redisTemplate;
     }
 
     @Override
     protected RedisCacheManager getCacheManager() {
-        check();
         RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
         cacheManager.setDefaultExpiration(60);
-        setSerializer(redisTemplate);
+//        setSerializer(redisTemplate);
         return cacheManager;
     }
 
-    private void check() {
-        Objects.requireNonNull(redisTemplate, "redisTemplate");
-    }
-
-    private void setSerializer(RedisTemplate<String, String> template) {
-        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-        ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(om);
-        template.setKeySerializer(new StringRedisSerializer());
-        template.setValueSerializer(jackson2JsonRedisSerializer);
-    }
+//    private void setSerializer(RedisTemplate<String, String> template) {
+//        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+//        ObjectMapper om = new ObjectMapper();
+//        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+//        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+//        jackson2JsonRedisSerializer.setObjectMapper(om);
+//        template.setKeySerializer(new StringRedisSerializer());
+//        template.setValueSerializer(jackson2JsonRedisSerializer);
+//    }
 }
