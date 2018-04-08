@@ -9,11 +9,20 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(SwaggerConstant.CONFIG_PROP_PREFIX)
 public class SwaggerSupportProperties {
+    private Boolean enable = true;
     private String basePackage = "cn.tac";
     private String title = "api docs";
     private String version = "SNAPSHOT";
     private Boolean showEnv = true;
     private Boolean showUptime = true;
+
+    public Boolean getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
+    }
 
     public String getBasePackage() {
         return basePackage;

@@ -3,11 +3,13 @@ package cn.tac.framework.easydev.autoconfigure.web;
 import cn.tac.framework.easydev.core.config.EasyCoreProperties;
 import cn.tac.framework.easydev.web.swagger.SwaggerDocketFactoryBean;
 import cn.tac.framework.easydev.web.swagger.config.SwaggerSupportProperties;
+import cn.tac.framework.easydev.web.swagger.constant.SwaggerConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +28,7 @@ import java.util.Date;
  */
 @Configuration
 @ConditionalOnClass(SwaggerSupportProperties.class)
+@ConditionalOnProperty(name = SwaggerConstant.CONFIG_PROP_PREFIX + ".enable", havingValue = "true")
 @EnableSwagger2
 @EnableConfigurationProperties({SwaggerSupportProperties.class})
 public class SwaggerAutoConfiguration extends WebMvcConfigurerAdapter {
