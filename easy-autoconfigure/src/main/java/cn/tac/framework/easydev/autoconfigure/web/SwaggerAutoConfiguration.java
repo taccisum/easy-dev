@@ -28,7 +28,7 @@ import java.util.Date;
  */
 @Configuration
 @ConditionalOnClass(SwaggerSupportProperties.class)
-@ConditionalOnProperty(name = SwaggerConstant.CONFIG_PROP_PREFIX + ".enable", havingValue = "true")
+@ConditionalOnProperty(name = SwaggerConstant.CONFIG_PROP_PREFIX + ".enable", havingValue = "true", matchIfMissing = true)
 @EnableSwagger2
 @EnableConfigurationProperties({SwaggerSupportProperties.class})
 public class SwaggerAutoConfiguration extends WebMvcConfigurerAdapter {
