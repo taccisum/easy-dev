@@ -22,7 +22,9 @@ public class EntityUtils {
         initPrimaryKey(entity);
         initEntityInfo(entity);
         if (entity instanceof DeletedFlagAware) {
-            initDeletedFlag(((DeletedFlagAware) entity));
+            if (((DeletedFlagAware) entity).getDeletedFlag() == null) {
+                initDeletedFlag(((DeletedFlagAware) entity));
+            }
         }
         if (entity instanceof DefaultValue4ParticularFieldsAware) {
             initDefaultValue((DefaultValue4ParticularFieldsAware) entity);
@@ -34,35 +36,51 @@ public class EntityUtils {
 
     public static void initUpdatingInfo(MinEntityStructureAware entity) {
         if (entity instanceof UpdatorAware) {
-            ((UpdatorAware) entity).setUpdatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
+            if (((UpdatorAware) entity).getUpdatedBy() == null) {
+                ((UpdatorAware) entity).setUpdatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
+            }
         }
         if (entity instanceof UpdationTimeAware) {
-            ((UpdationTimeAware) entity).setUpdatedOn(new Date());
+            if (((UpdationTimeAware) entity).getUpdatedOn() == null) {
+                ((UpdationTimeAware) entity).setUpdatedOn(new Date());
+            }
         }
     }
 
     public static void setBoundary4Query(MinEntityStructureAware entity) {
         if (entity instanceof BusinessInfoAware) {
-            setBusinessBoundary4Query((BusinessInfoAware) entity);
+            if (((BusinessInfoAware) entity).getOrganizationId() == null) {
+                setBusinessBoundary4Query((BusinessInfoAware) entity);
+            }
         }
     }
 
     private static void initPrimaryKey(MinEntityStructureAware entity) {
-        entity.setId(entity.idGenerator().generate(null));
+        if (entity.getId() == null) {
+            entity.setId(entity.idGenerator().generate(null));
+        }
     }
 
     private static void initEntityInfo(MinEntityStructureAware entity) {
         if (entity instanceof CreatorAware) {
-            ((CreatorAware) entity).setCreatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
+            if (((CreatorAware) entity).getCreatedBy() == null) {
+                ((CreatorAware) entity).setCreatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
+            }
         }
         if (entity instanceof CreationTimeAware) {
-            ((CreationTimeAware) entity).setCreatedOn(new Date());
+            if (((CreationTimeAware) entity).getCreatedOn() == null) {
+                ((CreationTimeAware) entity).setCreatedOn(new Date());
+            }
         }
         if (entity instanceof UpdatorAware) {
-            ((UpdatorAware) entity).setUpdatedBy(null);
+            if (((UpdatorAware) entity).getUpdatedBy() == null) {
+                ((UpdatorAware) entity).setUpdatedBy(null);
+            }
         }
         if (entity instanceof UpdationTimeAware) {
-            ((UpdationTimeAware) entity).setUpdatedOn(null);
+            if (((UpdationTimeAware) entity).getUpdatedOn() == null) {
+                ((UpdationTimeAware) entity).setUpdatedOn(null);
+            }
         }
     }
 
@@ -75,7 +93,9 @@ public class EntityUtils {
     }
 
     private static void initBusinessInfo(BusinessInfoAware entity) {
-        entity.setOrganizationId(runtimeData4Dao == null ? null : runtimeData4Dao.organizationId());
+        if (entity.getOrganizationId() == null) {
+            entity.setOrganizationId(runtimeData4Dao == null ? null : runtimeData4Dao.organizationId());
+        }
     }
 
     private static void setBusinessBoundary4Query(BusinessInfoAware entity) {

@@ -9,6 +9,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -49,6 +51,31 @@ public class EntityUtilsTest {
     }
 
     @Test
+    public void initWhenFieldExistValue() throws Exception {
+        FooEntity entity = new FooEntity();
+        entity.setId("123");
+        entity.setCreatedBy("tacc");
+        Date now = new Date();
+        entity.setCreatedOn(now);
+        entity.setUpdatedBy("anit");
+        Date now1 = new Date();
+        entity.setUpdatedOn(now1);
+        entity.setDeletedFlag(IntegerDeletedFlagMapping.instance().getDisableFlag());
+        entity.setOrganizationId("org");
+        entity.setBar1("bar111");
+
+        EntityUtils.init(entity);
+        assertThat(entity.getId()).isEqualTo("123");
+        assertThat(entity.getCreatedBy()).isEqualTo("tacc");
+        assertThat(entity.getCreatedOn()).isEqualTo(now);
+        assertThat(entity.getUpdatedBy()).isEqualTo("anit");
+        assertThat(entity.getUpdatedOn()).isEqualTo(now1);
+        assertThat(entity.getDeletedFlag()).isEqualTo(IntegerDeletedFlagMapping.instance().getDisableFlag());
+        assertThat(entity.getOrganizationId()).isEqualTo("org");
+        assertThat(entity.getBar1()).isEqualTo(FooEntity.BAR1_DEFAULT);
+    }
+
+    @Test
     public void initUpdatingInfo() throws Exception {
         FooEntity entity = new FooEntity();
         EntityUtils.initUpdatingInfo(entity);
@@ -57,10 +84,29 @@ public class EntityUtilsTest {
     }
 
     @Test
+    public void initUpdatingInfoWhenFieldExistValue() throws Exception {
+        FooEntity entity = new FooEntity();
+        entity.setUpdatedBy("tacc");
+        Date now = new Date();
+        entity.setUpdatedOn(now);
+        EntityUtils.initUpdatingInfo(entity);
+        assertThat(entity.getUpdatedBy()).isEqualTo("tacc");
+        assertThat(entity.getUpdatedOn()).isEqualTo(now);
+    }
+
+    @Test
     public void setBoundary4Query() throws Exception {
         FooEntity entity = new FooEntity();
         EntityUtils.setBoundary4Query(entity);
         assertThat(entity.getOrganizationId()).isEqualTo(ORG_ID);
+    }
+
+    @Test
+    public void setBoundary4QueryWhenFieldExistValue() throws Exception {
+        FooEntity entity = new FooEntity();
+        entity.setOrganizationId("hello");
+        EntityUtils.setBoundary4Query(entity);
+        assertThat(entity.getOrganizationId()).isEqualTo("hello");
     }
 
     static class FooEntity extends GenericBusinessEntity<String> {
