@@ -20,6 +20,6 @@ public class AutoIncrementPrimaryKeyGenerator implements IDGenerator<Integer> {
     public Integer generate(Object args) {
         //mysql数据库中，主键传入0会默认生成自增主键
         //todo:: 其它数据库可能要做适当修改
-        return 0;
+        return null;
     }
 }

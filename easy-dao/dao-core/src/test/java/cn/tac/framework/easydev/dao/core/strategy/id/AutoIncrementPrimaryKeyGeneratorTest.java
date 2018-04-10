@@ -13,6 +13,10 @@ public class AutoIncrementPrimaryKeyGeneratorTest {
     public void generate() throws Exception {
         IDGenerator<Integer> instance = AutoIncrementPrimaryKeyGenerator.instance();
         assertThat(instance).isNotNull();
-        assertThat(instance.generate()).isNotNull();
+        assertThat(instance.generate()).isNull();
+
+        IDGenerator<Long> instance1 = AutoIncrementPrimaryKeyGenerator4Long.instance();
+        assertThat(instance1).isNotNull();
+        assertThat(instance1.generate()).isNull();
     }
 }
