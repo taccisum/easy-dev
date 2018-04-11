@@ -28,17 +28,6 @@ public class RedisCacheManagerFactoryBean extends CacheManagerFactoryBean<RedisC
     protected RedisCacheManager getCacheManager() {
         RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
         cacheManager.setDefaultExpiration(60);
-//        setSerializer(redisTemplate);
         return cacheManager;
     }
-
-//    private void setSerializer(RedisTemplate<String, String> template) {
-//        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-//        ObjectMapper om = new ObjectMapper();
-//        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-//        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-//        jackson2JsonRedisSerializer.setObjectMapper(om);
-//        template.setKeySerializer(new StringRedisSerializer());
-//        template.setValueSerializer(jackson2JsonRedisSerializer);
-//    }
 }

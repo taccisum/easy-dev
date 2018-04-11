@@ -7,6 +7,3 @@ easy-dev:
       snow-flake:
         data-center-id: 1
         worker-id: 1
-  web:
-    swagger:
-      enable: true
