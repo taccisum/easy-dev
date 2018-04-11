@@ -1,5 +1,7 @@
 package cn.tac.framework.easydev.web.response.wrapper.annotation;
 
+import org.springframework.core.annotation.AliasFor;
+
 import java.lang.annotation.*;
 
 /**
@@ -10,7 +12,11 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface GenericResponse {
-    String msg();
+    @AliasFor("msg")
+    String value() default "";
 
-    String type();
+    @AliasFor("value")
+    String msg() default "";
+
+    String type() default "";
 }
