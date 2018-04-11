@@ -1,6 +1,7 @@
 package cn.tac.framework.easydev.autoconfigure;
 
 import cn.tac.framework.easydev.web.messageconverter.config.MessageConverterProperties;
+import cn.tac.framework.easydev.web.response.wrapper.config.ResponseWrapperProperties;
 import cn.tac.framework.easydev.web.swagger.SwaggerDocketFactoryBean;
 import cn.tac.framework.easydev.web.swagger.config.SwaggerSupportProperties;
 import org.junit.Test;
@@ -32,6 +33,7 @@ public class EasyWebAutoConfigurationTest {
     @Autowired private SwaggerDocketFactoryBean swaggerDocketFactoryBean;
     @Autowired private HandlerExceptionResolver handlerExceptionResolver;
     @Autowired private MessageConverterProperties messageConverterProperties;
+    @Autowired private ResponseWrapperProperties responseWrapperProperties;
     @Autowired private List<WebMvcConfigurer> webMvcConfigurers;
 
     @Test
@@ -40,6 +42,7 @@ public class EasyWebAutoConfigurationTest {
         assertThat(swaggerDocketFactoryBean).isNotNull();
         assertThat(handlerExceptionResolver).isNotNull();
         assertThat(messageConverterProperties).isNotNull();
+        assertThat(responseWrapperProperties).isNotNull();
         assertThat(webMvcConfigurers).isNotEmpty();
         assertThat(webMvcConfigurers.size()).isEqualTo(3);
     }

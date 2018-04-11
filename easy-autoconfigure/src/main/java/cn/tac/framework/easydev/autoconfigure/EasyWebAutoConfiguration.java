@@ -2,6 +2,7 @@ package cn.tac.framework.easydev.autoconfigure;
 
 import cn.tac.framework.easydev.autoconfigure.web.ExceptionHandlerAutoConfiguration;
 import cn.tac.framework.easydev.autoconfigure.web.MessageConverterAutoConfiguration;
+import cn.tac.framework.easydev.autoconfigure.web.ResponseWrapperAutoConfiguration;
 import cn.tac.framework.easydev.autoconfigure.web.SwaggerAutoConfiguration;
 import cn.tac.framework.easydev.web.core.config.WebCoreProperties;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
@@ -20,7 +21,8 @@ import org.springframework.context.annotation.Configuration;
         EasyDaoAutoConfiguration.class,
         ExceptionHandlerAutoConfiguration.class,
         SwaggerAutoConfiguration.class,
-        MessageConverterAutoConfiguration.class
+        MessageConverterAutoConfiguration.class,
+        ResponseWrapperAutoConfiguration.class
 })
 public class EasyWebAutoConfiguration {
 }

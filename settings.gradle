@@ -57,4 +57,6 @@ include 'easy-caching:caching-core'
 findProject(':easy-caching:caching-core')?.name = 'caching-core'
 include 'easy-web:web-message-converter-support'
 findProject(':easy-web:web-message-converter-support')?.name = 'web-message-converter-support'
+include 'easy-web:web-response-wrapper-support'
+findProject(':easy-web:web-response-wrapper-support')?.name = 'web-response-wrapper-support'
 

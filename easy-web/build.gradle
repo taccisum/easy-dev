@@ -12,4 +12,5 @@ dependencies {
     compile project(":easy-web:web-swagger-support")
     compile project(":easy-web:web-exception-handler-support")
     compile project(":easy-web:web-message-converter-support")
+    compile project(":easy-web:web-response-wrapper-support")
 }
