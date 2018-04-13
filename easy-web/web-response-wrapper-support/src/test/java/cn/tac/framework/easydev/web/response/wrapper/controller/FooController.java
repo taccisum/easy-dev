@@ -23,16 +23,21 @@ public class FooController {
     @GenericResponse("获取成功")
     @GetMapping("test_wrapper_when_response_rar")
     public RestfulApiResponse test1() {
-        return RestfulApiResponseBuilder.success().build();
+        return RestfulApiResponseBuilder.success().friendlyMsg("12345").build();
     }
 
     @GetMapping("test_normal_when_response_rar")
     public RestfulApiResponse test2() {
-        return RestfulApiResponseBuilder.success().build();
+        return RestfulApiResponseBuilder.success().friendlyMsg("12345").build();
     }
 
     @GetMapping("test_normal")
     public String test3() {
         return "bar1";
+    }
+
+    @GetMapping("test_void")
+    @GenericResponse("执行成功")
+    public void test4() {
     }
 }

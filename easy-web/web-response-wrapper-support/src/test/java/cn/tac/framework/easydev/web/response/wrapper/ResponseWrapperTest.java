@@ -1,5 +1,6 @@
 package cn.tac.framework.easydev.web.response.wrapper;
 
+import cn.tac.framework.easydev.web.core.builder.RestfulApiResponseBuilder;
 import cn.tac.framework.easydev.web.response.wrapper.controller.FooController;
 import cn.tac.framework.easydev.web.response.wrapper.util.ResponseWrapperConfigurator;
 import org.junit.Test;
@@ -14,9 +15,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * @author tac
@@ -48,7 +50,12 @@ public class ResponseWrapperTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"state\":0,\"code\":\"0\",\"msg\":\"操作成功\",\"friendlyMsg\":\"获取成功\",\"data\":\"bar\",\"stackTrace\":null}"));
+                .andExpect(jsonPath("$.state", is(0)))
+                .andExpect(jsonPath("$.code", is("0")))
+                .andExpect(jsonPath("$.msg", is(RestfulApiResponseBuilder.DEFAULT_SUCCESS_MSG)))
+                .andExpect(jsonPath("$.friendlyMsg", is("获取成功")))
+                .andExpect(jsonPath("$.data", is("bar")))
+                .andExpect(jsonPath("$.stackTrace", is(nullValue())));
     }
 
     @Test
@@ -57,7 +64,12 @@ public class ResponseWrapperTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"state\":0,\"code\":\"0\",\"msg\":\"操作成功\",\"friendlyMsg\":\"操作成功\",\"data\":null,\"stackTrace\":null}"));
+                .andExpect(jsonPath("$.state", is(0)))
+                .andExpect(jsonPath("$.code", is("0")))
+                .andExpect(jsonPath("$.msg", is(RestfulApiResponseBuilder.DEFAULT_SUCCESS_MSG)))
+                .andExpect(jsonPath("$.friendlyMsg", is("12345")))
+                .andExpect(jsonPath("$.data", is(nullValue())))
+                .andExpect(jsonPath("$.stackTrace", is(nullValue())));
     }
 
     @Test
@@ -73,6 +85,24 @@ public class ResponseWrapperTest {
         mvc.perform(get("/foo/test_normal_when_response_rar")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"state\":0,\"code\":\"0\",\"msg\":\"操作成功\",\"friendlyMsg\":\"操作成功\",\"data\":null,\"stackTrace\":null}"));
+                .andExpect(jsonPath("$.state", is(0)))
+                .andExpect(jsonPath("$.code", is("0")))
+                .andExpect(jsonPath("$.msg", is(RestfulApiResponseBuilder.DEFAULT_SUCCESS_MSG)))
+                .andExpect(jsonPath("$.friendlyMsg", is("12345")))
+                .andExpect(jsonPath("$.data", is(nullValue())))
+                .andExpect(jsonPath("$.stackTrace", is(nullValue())));
+    }
+
+    @Test
+    public void testVoid() throws Exception {
+        mvc.perform(get("/foo/test_void")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.state", is(0)))
+                .andExpect(jsonPath("$.code", is("0")))
+                .andExpect(jsonPath("$.msg", is(RestfulApiResponseBuilder.DEFAULT_SUCCESS_MSG)))
+                .andExpect(jsonPath("$.friendlyMsg", is("执行成功")))
+                .andExpect(jsonPath("$.data", is(nullValue())))
+                .andExpect(jsonPath("$.stackTrace", is(nullValue())));
     }
 }
