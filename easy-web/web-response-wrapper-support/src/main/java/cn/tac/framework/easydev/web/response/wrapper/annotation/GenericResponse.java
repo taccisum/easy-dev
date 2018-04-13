@@ -8,7 +8,7 @@ import java.lang.annotation.*;
  * @author tac
  * @since 2.2
  */
-@Target({ElementType.TYPE, ElementType.METHOD})
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface GenericResponse {
@@ -18,5 +18,6 @@ public @interface GenericResponse {
     @AliasFor("value")
     String msg() default "";
 
+    @Deprecated
     String type() default "";
 }

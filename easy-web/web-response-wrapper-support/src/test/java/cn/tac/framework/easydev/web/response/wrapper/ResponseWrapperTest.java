@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -43,13 +43,36 @@ public class ResponseWrapperTest {
     private MockMvc mvc;
 
     @Test
-    public void testString() throws Exception {
-        String responseStr = mvc.perform(get("/foo/bar")
+    public void testWrapper() throws Exception {
+        mvc.perform(get("/foo/test_wrapeer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(print())
-                .andReturn().getResponse().getContentAsString();
-        System.out.println(responseStr);
+                .andExpect(content().string("{\"state\":0,\"code\":\"0\",\"msg\":\"操作成功\",\"friendlyMsg\":\"获取成功\",\"data\":\"bar\",\"stackTrace\":null}"));
+    }
+
+    @Test
+    public void testWrapperWhenResponseRAR() throws Exception {
+        mvc.perform(get("/foo/test_wrapper_when_response_rar")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("{\"state\":0,\"code\":\"0\",\"msg\":\"操作成功\",\"friendlyMsg\":\"操作成功\",\"data\":null,\"stackTrace\":null}"));
+    }
+
+    @Test
+    public void testNormal() throws Exception {
+        mvc.perform(get("/foo/test_normal")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("bar1"));
+    }
+
+    @Test
+    public void testNormalWhenResponseRAR() throws Exception {
+        mvc.perform(get("/foo/test_normal_when_response_rar")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("{\"state\":0,\"code\":\"0\",\"msg\":\"操作成功\",\"friendlyMsg\":\"操作成功\",\"data\":null,\"stackTrace\":null}"));
     }
 }
