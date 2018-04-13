@@ -11,6 +11,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -31,7 +32,7 @@ public class RedisCacheManagerFactoryBeanTest {
     @TestConfiguration
     public static class Configuration {
         @Autowired
-        private StringRedisTemplate redisTemplate;
+        private RedisTemplate redisTemplate;
 
         @Bean
         public CacheManagerFactoryBean cacheManagerFactoryBean() {
@@ -61,7 +62,7 @@ public class RedisCacheManagerFactoryBeanTest {
     public static class Foo {
         private static int count = 0;
 
-        @Cacheable(value = "get")
+        @Cacheable("foo")
         public int get(String id) {
             return count++;
         }
