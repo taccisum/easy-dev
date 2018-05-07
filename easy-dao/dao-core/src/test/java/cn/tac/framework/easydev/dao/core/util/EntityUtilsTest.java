@@ -87,11 +87,11 @@ public class EntityUtilsTest {
     public void initUpdatingInfoWhenFieldExistValue() throws Exception {
         FooEntity entity = new FooEntity();
         entity.setUpdatedBy("tacc");
-        Date now = new Date();
-        entity.setUpdatedOn(now);
+        Date date = new Date(1, 1, 1);
+        entity.setUpdatedOn(date);
         EntityUtils.initUpdatingInfo(entity);
-        assertThat(entity.getUpdatedBy()).isEqualTo("tacc");
-        assertThat(entity.getUpdatedOn()).isEqualTo(now);
+        assertThat(entity.getUpdatedBy()).isEqualTo(USER_ID);
+        assertThat(entity.getUpdatedOn()).isNotEqualTo(date);
     }
 
     @Test
