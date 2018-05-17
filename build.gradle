@@ -65,10 +65,10 @@ subprojects {
                 }
             }
         }
-    }
 
-    repositories {
-        //todo::
+        repositories {
+            //todo::
+        }
     }
 
     task sourceJar(type: Jar) {
