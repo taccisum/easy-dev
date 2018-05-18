@@ -18,8 +18,7 @@ public class AutoIncrementPrimaryKeyGenerator4Long implements IDGenerator<Long> 
 
     @Override
     public Long generate(Object args) {
-        //mysql数据库中，主键传入0会默认生成自增主键
-        //todo:: 其它数据库可能要做适当修改
+        //传入null以让数据库自动生成主键
         return null;
     }
 }
