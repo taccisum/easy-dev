@@ -10,8 +10,12 @@ public class GenericIntegerSelectedCapableNode<PK, E extends ParentInfoAware<PK>
     private Integer isSelected;
 
     public GenericIntegerSelectedCapableNode(E data, Node<PK, E> parent, long level) {
+        this(data, parent, level, IntegerSelectedFlagMapping.instance().unselectedState());        //默认不选中
+    }
+
+    public GenericIntegerSelectedCapableNode(E data, Node<PK, E> parent, long level, int isSelected) {
         super(data, parent, level);
-        this.isSelected = IntegerSelectedFlagMapping.instance().unselectedState();        //默认不选中
+        this.isSelected = isSelected;
     }
 
     @Override

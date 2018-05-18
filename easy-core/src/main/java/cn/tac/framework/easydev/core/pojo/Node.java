@@ -1,5 +1,9 @@
 package cn.tac.framework.easydev.core.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -8,14 +12,18 @@ import java.util.Collection;
  * @author tac
  * @since 2.3
  */
-public interface Node<PK, E extends ParentInfoAware<PK>> {
+@JsonPropertyOrder(value = {"id", "parentId", "level", "data", "selected", "children"})
+public interface Node<PK, E extends ParentInfoAware<PK>> extends Serializable {
     PK getId();
 
     PK getParentId();
 
     E getData();
 
+    @JsonIgnore
     Node<PK, E> getParent();
+
+    Long getLevel();
 
     Collection<Node<PK, E>> getChildren();
 

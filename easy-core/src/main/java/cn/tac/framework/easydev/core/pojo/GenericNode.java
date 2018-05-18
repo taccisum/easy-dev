@@ -44,6 +44,7 @@ public class GenericNode<PK, E extends ParentInfoAware<PK>> implements Node<PK, 
         return parent;
     }
 
+    @Override
     public Long getLevel() {
         return level;
     }
