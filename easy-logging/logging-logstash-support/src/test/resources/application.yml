@@ -1,0 +1,15 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  profiles:
+    active: ut
+
+logging:
+  redis:
+    host: localhost
+    port: 6379
+    key: amdms
+    source: amdms
+    type: amdms
+    password: 123456

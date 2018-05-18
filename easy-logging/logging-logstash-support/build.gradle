@@ -1,0 +1,3 @@
+dependencies {
+    compile 'com.cwbase:logback-redis-appender:1.1.5'
+}

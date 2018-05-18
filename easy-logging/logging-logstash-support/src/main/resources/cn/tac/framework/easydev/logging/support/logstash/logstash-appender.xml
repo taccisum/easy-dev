@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Default logback configuration provided for import, equivalent to the programmatic
+initialization performed by Boot
+-->
+
+<included>
+    <springProperty scope="context" name="SOURCE" source="logging.redis.source" defaultValue="ww-elk"/>
+    <springProperty scope="context" name="TYPE" source="logging.redis.type" defaultValue="test"/>
+    <springProperty scope="context" name="HOST" source="logging.redis.host" defaultValue="localhost"/>
+    <springProperty scope="context" name="PORT" source="logging.redis.port" defaultValue="9500"/>
+    <springProperty scope="context" name="KEY" source="logging.redis.key" defaultValue="ww-elk"/>
+    <springProperty scope="context" name="PASSWORD" source="logging.redis.password" defaultValue=""/>
+
+    <appender name="REDIS" class="com.cwbase.logback.RedisAppender">
+        <source>${SOURCE}</source>
+        <type>${TYPE}</type>
+        <host>${HOST}</host>
+        <port>${PORT}</port>
+        <key>${KEY}</key>
+        <!--<password>${PASSWORD}</password>-->
+    </appender>
+    <appender name="REDIS-ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="REDIS" />
+    </appender>
+</included>
