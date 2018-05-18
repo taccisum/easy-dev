@@ -106,7 +106,7 @@ public class GenericNode<PK, E extends NodeMinStructureAware<PK>> implements Nod
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("data", data)
-                .add("parent", parent)
+                .add("parentId", getParentId())
                 .add("level", level)
                 .add("children", children)
                 .toString();
