@@ -19,7 +19,7 @@ initialization performed by Boot
         <host>${HOST}</host>
         <port>${PORT}</port>
         <key>${KEY}</key>
-        <!--<password>${PASSWORD}</password>-->
+        <password>${PASSWORD}</password>
     </appender>
     <appender name="REDIS-ASYNC" class="ch.qos.logback.classic.AsyncAppender">
         <appender-ref ref="REDIS" />
