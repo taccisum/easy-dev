@@ -4,7 +4,7 @@ import cn.tac.framework.easydev.core.exception.MoreThanOneRootException;
 import cn.tac.framework.easydev.core.exception.RootNodeNotFoundException;
 import cn.tac.framework.easydev.core.pojo.node.GenericIntegerSelectedCapableNode;
 import cn.tac.framework.easydev.core.pojo.node.Node;
-import cn.tac.framework.easydev.core.pojo.node.ParentInfoAware;
+import cn.tac.framework.easydev.core.pojo.node.NodeMinStructureAware;
 import cn.tac.framework.easydev.core.pojo.node.SelectedCapableNode;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Sets;
@@ -254,7 +254,7 @@ public class TreeHelperTest {
         });
     }
 
-    private static class Foo implements ParentInfoAware<Long> {
+    private static class Foo implements NodeMinStructureAware<Long> {
         private Long id;
         private Long parentId;
         private Boolean isSelected;

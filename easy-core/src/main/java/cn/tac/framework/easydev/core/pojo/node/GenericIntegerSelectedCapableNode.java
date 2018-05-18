@@ -6,7 +6,7 @@ import com.google.common.base.MoreObjects;
  * @author tac
  * @since 2.3
  */
-public class GenericIntegerSelectedCapableNode<PK, E extends ParentInfoAware<PK>> extends GenericNode<PK, E> implements SelectedCapableNode<PK, E, Integer> {
+public class GenericIntegerSelectedCapableNode<PK, E extends NodeMinStructureAware<PK>> extends GenericNode<PK, E> implements SelectedCapableNode<PK, E, Integer> {
     private Integer isSelected;
 
     public GenericIntegerSelectedCapableNode(E data, Node<PK, E> parent, long level) {

@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author tac
  * @since 2.3
  */
-public interface SelectedCapableNode<PK, E extends ParentInfoAware<PK>, S> extends Node<PK, E> {
+public interface SelectedCapableNode<PK, E extends NodeMinStructureAware<PK>, S> extends Node<PK, E> {
     S getSelected();
 
     void setSelected(S selected);
@@ -21,7 +21,7 @@ public interface SelectedCapableNode<PK, E extends ParentInfoAware<PK>, S> exten
         selectChildren(this, mapping);
     }
 
-    static <PK, E extends ParentInfoAware<PK>, S, N extends SelectedCapableNode<PK, E, S>> void selectParent(N node, SelectedFlagMapping<S> mapping, boolean isSelf) {
+    static <PK, E extends NodeMinStructureAware<PK>, S, N extends SelectedCapableNode<PK, E, S>> void selectParent(N node, SelectedFlagMapping<S> mapping, boolean isSelf) {
         S state = mapping.selectedState();
         if (!isSelf) {
             for (Node<PK, E> child : node.getChildren()) {
@@ -40,7 +40,7 @@ public interface SelectedCapableNode<PK, E extends ParentInfoAware<PK>, S> exten
         }
     }
 
-    static <PK, E extends ParentInfoAware<PK>, S, N extends SelectedCapableNode<PK, E, S>> void selectChildren(N node, SelectedFlagMapping<S> mapping) {
+    static <PK, E extends NodeMinStructureAware<PK>, S, N extends SelectedCapableNode<PK, E, S>> void selectChildren(N node, SelectedFlagMapping<S> mapping) {
         if (node.hasChild()) {
             for (Node<PK, E> child : node.getChildren()) {
                 //noinspection unchecked

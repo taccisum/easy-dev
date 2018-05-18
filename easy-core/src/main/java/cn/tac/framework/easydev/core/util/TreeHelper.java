@@ -19,15 +19,15 @@ import java.util.Objects;
 public abstract class TreeHelper {
     private static Logger logger = LoggerFactory.getLogger(TreeHelper.class);
 
-    public static <PK, E extends ParentInfoAware<PK>> GenericNode<PK, E> build(Collection<E> collection, PK rootId) throws RootNodeNotFoundException, MoreThanOneRootException {
+    public static <PK, E extends NodeMinStructureAware<PK>> GenericNode<PK, E> build(Collection<E> collection, PK rootId) throws RootNodeNotFoundException, MoreThanOneRootException {
         return build(collection, rootId, 0);
     }
 
-    public static <PK, E extends ParentInfoAware<PK>> GenericNode<PK, E> build(Collection<E> collection, PK rootId, int rootLevel) throws RootNodeNotFoundException, MoreThanOneRootException {
+    public static <PK, E extends NodeMinStructureAware<PK>> GenericNode<PK, E> build(Collection<E> collection, PK rootId, int rootLevel) throws RootNodeNotFoundException, MoreThanOneRootException {
         return build(collection, rootId, rootLevel, GenericNode::new);
     }
 
-    public static <PK, E extends ParentInfoAware<PK>, N extends Node<PK, E>> N build(Collection<E> collection, PK rootId, NodeInstanceProvider<PK, E, N> provider) throws RootNodeNotFoundException, MoreThanOneRootException {
+    public static <PK, E extends NodeMinStructureAware<PK>, N extends Node<PK, E>> N build(Collection<E> collection, PK rootId, NodeInstanceProvider<PK, E, N> provider) throws RootNodeNotFoundException, MoreThanOneRootException {
         return build(collection, rootId, 0, provider, new BuildTreeStatInfo());
     }
 
@@ -39,11 +39,11 @@ public abstract class TreeHelper {
      * @throws RootNodeNotFoundException 找不到根节点
      * @throws MoreThanOneRootException  超过一个根节点
      */
-    public static <PK, E extends ParentInfoAware<PK>, N extends Node<PK, E>> N build(Collection<E> collection, PK rootId, int rootLevel, NodeInstanceProvider<PK, E, N> provider) throws RootNodeNotFoundException, MoreThanOneRootException {
+    public static <PK, E extends NodeMinStructureAware<PK>, N extends Node<PK, E>> N build(Collection<E> collection, PK rootId, int rootLevel, NodeInstanceProvider<PK, E, N> provider) throws RootNodeNotFoundException, MoreThanOneRootException {
         return build(collection, rootId, rootLevel, provider, new BuildTreeStatInfo());
     }
 
-    private static <PK, E extends ParentInfoAware<PK>, N extends Node<PK, E>> N build(Collection<E> collection, PK rootId, int rootLevel, NodeInstanceProvider<PK, E, N> provider, BuildTreeStatInfo stat) throws RootNodeNotFoundException, MoreThanOneRootException {
+    private static <PK, E extends NodeMinStructureAware<PK>, N extends Node<PK, E>> N build(Collection<E> collection, PK rootId, int rootLevel, NodeInstanceProvider<PK, E, N> provider, BuildTreeStatInfo stat) throws RootNodeNotFoundException, MoreThanOneRootException {
         logger.debug("build tree frome collection, size: {}, root id: {}, root level: {}", collection.size(), rootId, rootLevel);
         List<E> rootDataList = findById(collection, rootId, stat);
         logger.debug("find root data from collection");
@@ -62,7 +62,7 @@ public abstract class TreeHelper {
         return tree;
     }
 
-    private static <PK, E extends ParentInfoAware<PK>, N extends Node<PK, E>> N buildChildren(N parent, int parentLevel, Collection<E> collection, NodeInstanceProvider<PK, E, N> provider, BuildTreeStatInfo stat) {
+    private static <PK, E extends NodeMinStructureAware<PK>, N extends Node<PK, E>> N buildChildren(N parent, int parentLevel, Collection<E> collection, NodeInstanceProvider<PK, E, N> provider, BuildTreeStatInfo stat) {
         stat.incrementRecursionTimes();
         for (E item : collection) {
             stat.incrementTraverseTimes();
@@ -75,7 +75,7 @@ public abstract class TreeHelper {
         return parent;
     }
 
-    private static <PK, E extends ParentInfoAware<PK>> List<E> findById(Collection<E> collection, PK parentId, BuildTreeStatInfo stat) {
+    private static <PK, E extends NodeMinStructureAware<PK>> List<E> findById(Collection<E> collection, PK parentId, BuildTreeStatInfo stat) {
         List<E> result = new ArrayList<>();
         for (E item : collection) {
             stat.incrementTraverseTimes();
@@ -121,7 +121,7 @@ public abstract class TreeHelper {
      * @param ids     要选中的结点id
      * @param mapping 状态值映射器
      */
-    public static <PK, E extends ParentInfoAware<PK>, S, T extends SelectedCapableNode<PK, E, S>> void selectNodes(T tree, Collection<PK> ids, SelectedCapableNode.SelectedFlagMapping<S> mapping) {
+    public static <PK, E extends NodeMinStructureAware<PK>, S, T extends SelectedCapableNode<PK, E, S>> void selectNodes(T tree, Collection<PK> ids, SelectedCapableNode.SelectedFlagMapping<S> mapping) {
         tree.eachPreOrder((node, args) -> {
             if (ids.contains(node.getId())) {
                 //noinspection unchecked
@@ -130,15 +130,15 @@ public abstract class TreeHelper {
         });
     }
 
-    interface NodeInstanceProvider<PK, E extends ParentInfoAware<PK>, N extends Node<PK, E>> {
+    interface NodeInstanceProvider<PK, E extends NodeMinStructureAware<PK>, N extends Node<PK, E>> {
         N provide(E data, N parent, int rootLevel);
     }
 
-//    public static <PK, E extends ParentInfoAware<PK>, T extends SelectedCapableNode<PK, E, Boolean>> void selectNodes(T tree, Collection<PK> ids) {
+//    public static <PK, E extends NodeMinStructureAware<PK>, T extends SelectedCapableNode<PK, E, Boolean>> void selectNodes(T tree, Collection<PK> ids) {
 //        selectNodes(tree, ids, new SelectedCapableNode.BooleanSelectedFlagMapping());
 //    }
 //
-//    public static <PK, E extends ParentInfoAware<PK>, T extends SelectedCapableNode<PK, E, Integer>> void selectNodes(T tree, Collection<PK> ids) {
+//    public static <PK, E extends NodeMinStructureAware<PK>, T extends SelectedCapableNode<PK, E, Integer>> void selectNodes(T tree, Collection<PK> ids) {
 //        selectNodes(tree, ids, new SelectedCapableNode.IntegerSelectedFlagMapping());
 //    }
 }

@@ -6,7 +6,7 @@ import com.google.common.base.MoreObjects;
  * @author tac
  * @since 2.3
  */
-public class GenericBooleanSelectedCapableNode<PK, E extends ParentInfoAware<PK>> extends GenericNode<PK, E> implements SelectedCapableNode<PK, E, Boolean> {
+public class GenericBooleanSelectedCapableNode<PK, E extends NodeMinStructureAware<PK>> extends GenericNode<PK, E> implements SelectedCapableNode<PK, E, Boolean> {
     private Boolean isSelected;
 
     public GenericBooleanSelectedCapableNode(E data, Node<PK, E> parent, long level) {

@@ -12,7 +12,7 @@ import java.util.Collection;
  * @author tac
  * @since 2.3
  */
-public class GenericNode<PK, E extends ParentInfoAware<PK>> implements Node<PK, E> {
+public class GenericNode<PK, E extends NodeMinStructureAware<PK>> implements Node<PK, E> {
     private E data;
     private Node<PK, E> parent;
     private Long level;

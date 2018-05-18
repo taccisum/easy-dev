@@ -1,7 +1,7 @@
 package cn.tac.framework.easydev.core.pojo;
 
 import cn.tac.framework.easydev.core.pojo.node.GenericIntegerSelectedCapableNode;
-import cn.tac.framework.easydev.core.pojo.node.ParentInfoAware;
+import cn.tac.framework.easydev.core.pojo.node.NodeMinStructureAware;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
@@ -34,7 +34,7 @@ public class GenericNodeTest {
         assertThat(objectMapper.writeValueAsString(root)).isEqualTo(expectJson);
     }
 
-    private static class Foo implements ParentInfoAware<Integer> {
+    private static class Foo implements NodeMinStructureAware<Integer> {
         private Integer id;
         private Integer parentId;
         private String filed1;

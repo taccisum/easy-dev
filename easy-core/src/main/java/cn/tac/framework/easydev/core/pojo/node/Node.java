@@ -13,7 +13,7 @@ import java.util.Collection;
  * @since 2.3
  */
 @JsonPropertyOrder(value = {"id", "parentId", "level", "data", "selected", "children"})
-public interface Node<PK, E extends ParentInfoAware<PK>> extends Serializable {
+public interface Node<PK, E extends NodeMinStructureAware<PK>> extends Serializable {
     PK getId();
 
     PK getParentId();
@@ -46,7 +46,7 @@ public interface Node<PK, E extends ParentInfoAware<PK>> extends Serializable {
     boolean hasParent();
 
     @FunctionalInterface
-    interface Visitor<PK, E extends ParentInfoAware<PK>> {
+    interface Visitor<PK, E extends NodeMinStructureAware<PK>> {
         void visit(Node<PK, E> node, Object args);
     }
 }

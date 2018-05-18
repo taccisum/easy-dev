@@ -1,6 +1,6 @@
 package cn.tac.framework.easydev.core.util;
 
-import cn.tac.framework.easydev.core.pojo.node.ParentInfoAware;
+import cn.tac.framework.easydev.core.pojo.node.NodeMinStructureAware;
 import com.google.common.base.MoreObjects;
 import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Ignore;
@@ -74,7 +74,7 @@ public class TreeHelperPerformanceTest {
         System.out.println(String.format("总用时：%dms，平均用时：%dms", sw.getTime(), sw.getTime() / times));
     }
 
-    private static class Foo implements ParentInfoAware<Long> {
+    private static class Foo implements NodeMinStructureAware<Long> {
         private Long id;
         private Long parentId;
 
