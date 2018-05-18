@@ -3,6 +3,7 @@ package cn.tac.framework.easydev.core.util;
 import cn.tac.framework.easydev.core.pojo.node.ParentInfoAware;
 import com.google.common.base.MoreObjects;
 import org.apache.commons.lang3.time.StopWatch;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
  * @author tac
  * @since 2.3
  */
+@Ignore
 public class TreeHelperPerformanceTest {
     @Test
     public void buildPerformanceTestWhenTreeALinkedList() throws Exception {
