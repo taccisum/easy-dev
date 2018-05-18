@@ -1,5 +1,6 @@
 package cn.tac.framework.easydev.core.pojo;
 
+import com.google.common.base.MoreObjects;
 import org.apache.commons.collections.CollectionUtils;
 
 import java.util.ArrayList;
@@ -77,6 +78,11 @@ public class GenericNode<PK, E extends ParentInfoAware<PK>> implements Node<PK, 
         return CollectionUtils.isNotEmpty(getChildren());
     }
 
+    @Override
+    public boolean hasParent() {
+        return parent != null;
+    }
+
     protected void eachChildren(Visitor<PK, E> visitor, Object args, boolean pre) {
         if (hasChild()) {
             if (pre) {
@@ -93,5 +99,15 @@ public class GenericNode<PK, E extends ParentInfoAware<PK>> implements Node<PK, 
 
     protected Collection<Node<PK, E>> initChildren() {
         return new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("data", data)
+                .add("parent", parent)
+                .add("level", level)
+                .add("children", children)
+                .toString();
     }
 }

@@ -3,7 +3,7 @@ package cn.tac.framework.easydev.core.pojo;
 import java.util.Collection;
 
 /**
- * 树型数据结构结点
+ * 树型数据结构node
  *
  * @author tac
  * @since 2.3
@@ -34,6 +34,8 @@ public interface Node<PK, E extends ParentInfoAware<PK>> {
     }
 
     boolean hasChild();
+
+    boolean hasParent();
 
     @FunctionalInterface
     interface Visitor<PK, E extends ParentInfoAware<PK>> {
