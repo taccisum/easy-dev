@@ -1,4 +1,4 @@
-package cn.tac.framework.easydev.core.pojo;
+package cn.tac.framework.easydev.core.pojo.node;
 
 import java.util.Objects;
 

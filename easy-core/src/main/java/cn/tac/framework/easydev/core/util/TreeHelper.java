@@ -2,7 +2,7 @@ package cn.tac.framework.easydev.core.util;
 
 import cn.tac.framework.easydev.core.exception.MoreThanOneRootException;
 import cn.tac.framework.easydev.core.exception.RootNodeNotFoundException;
-import cn.tac.framework.easydev.core.pojo.*;
+import cn.tac.framework.easydev.core.pojo.node.*;
 import com.google.common.base.MoreObjects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

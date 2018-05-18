@@ -2,7 +2,10 @@ package cn.tac.framework.easydev.core.util;
 
 import cn.tac.framework.easydev.core.exception.MoreThanOneRootException;
 import cn.tac.framework.easydev.core.exception.RootNodeNotFoundException;
-import cn.tac.framework.easydev.core.pojo.*;
+import cn.tac.framework.easydev.core.pojo.node.GenericIntegerSelectedCapableNode;
+import cn.tac.framework.easydev.core.pojo.node.Node;
+import cn.tac.framework.easydev.core.pojo.node.ParentInfoAware;
+import cn.tac.framework.easydev.core.pojo.node.SelectedCapableNode;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Sets;
 import org.junit.Rule;

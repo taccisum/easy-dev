@@ -1,4 +1,4 @@
-package cn.tac.framework.easydev.core.pojo;
+package cn.tac.framework.easydev.core.pojo.node;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

@@ -1,4 +1,4 @@
-package cn.tac.framework.easydev.core.pojo;
+package cn.tac.framework.easydev.core.pojo.node;
 
 import com.google.common.base.MoreObjects;
 import org.apache.commons.collections.CollectionUtils;

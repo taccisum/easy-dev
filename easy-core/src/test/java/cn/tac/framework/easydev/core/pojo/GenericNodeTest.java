@@ -1,5 +1,7 @@
 package cn.tac.framework.easydev.core.pojo;
 
+import cn.tac.framework.easydev.core.pojo.node.GenericIntegerSelectedCapableNode;
+import cn.tac.framework.easydev.core.pojo.node.ParentInfoAware;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
