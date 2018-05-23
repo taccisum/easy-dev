@@ -4,6 +4,7 @@ import org.apache.commons.collections.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author tac
@@ -15,6 +16,7 @@ public abstract class ConverterUtils {
     }
 
     public static <FROM, TO> TO convert(FROM from, Class<TO> toClazz) {
+        Objects.requireNonNull(from, "object from can not be null");
         return convert(from, from.getClass(), toClazz);
     }
 
