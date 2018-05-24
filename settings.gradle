@@ -59,4 +59,6 @@ include 'easy-web:web-message-converter-support'
 findProject(':easy-web:web-message-converter-support')?.name = 'web-message-converter-support'
 include 'easy-web:web-response-wrapper-support'
 findProject(':easy-web:web-response-wrapper-support')?.name = 'web-response-wrapper-support'
+include 'easy-web:web-arguments-validation-support'
+findProject(':easy-web:web-arguments-validation-support')?.name = 'web-arguments-validation-support'
 
