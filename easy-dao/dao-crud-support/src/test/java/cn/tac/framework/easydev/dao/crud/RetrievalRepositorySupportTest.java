@@ -156,7 +156,7 @@ public class RetrievalRepositorySupportTest {
     }
 
     @Table(name = "foo")
-    public static class FooEntity4Retrieval extends GenericMinEntity<String> implements DeletedFlagAware<Integer>, BusinessInfoAware {
+    public static class FooEntity4Retrieval extends GenericMinEntity<String> implements DeletedFlagAware<Integer>, BusinessInfoAware<String> {
         private String bar1;
 
         @Column(name = GenericEntity.DELETED_FLAG_FIELD_NAME)

@@ -10,10 +10,10 @@ public interface RuntimeData4Dao {
     /**
      * 获取当前用户id
      */
-    String userId();
+    Object userId();
 
     /**
      * 获取当前组织（当前用户所属组织）id
      */
-    String organizationId();
+    Object organizationId();
 }

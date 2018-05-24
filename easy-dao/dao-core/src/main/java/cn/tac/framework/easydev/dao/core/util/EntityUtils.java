@@ -35,8 +35,8 @@ public class EntityUtils {
     }
 
     public static void initUpdatingInfo(MinEntityStructureAware entity) {
-        if (entity instanceof UpdatorAware) {
-            ((UpdatorAware) entity).setUpdatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
+        if (entity instanceof UpdatorAwareNew) {
+            ((UpdatorAwareNew) entity).setUpdatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
         }
         if (entity instanceof UpdationTimeAware) {
             ((UpdationTimeAware) entity).setUpdatedOn(new Date());
@@ -58,9 +58,9 @@ public class EntityUtils {
     }
 
     private static void initEntityInfo(MinEntityStructureAware entity) {
-        if (entity instanceof CreatorAware) {
-            if (((CreatorAware) entity).getCreatedBy() == null) {
-                ((CreatorAware) entity).setCreatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
+        if (entity instanceof CreatorAwareNew) {
+            if (((CreatorAwareNew) entity).getCreatedBy() == null) {
+                ((CreatorAwareNew) entity).setCreatedBy(runtimeData4Dao == null ? null : runtimeData4Dao.userId());
             }
         }
         if (entity instanceof CreationTimeAware) {
