@@ -17,9 +17,9 @@ public class RestfulApiResponse<T> {
     private Integer state;
     @ApiModelProperty(value = "请求执行结果状态标识码", example = "0", notes = "请求成功[0-99]，业务异常[100-50000]，系统异常[-1]", allowableValues = "range[0, 50000]")
     private String code;
-    @ApiModelProperty(value = "提示信息")
+    @ApiModelProperty(value = "提示信息，仅供开发人员参考，请勿直接使用")
     private String msg;
-    @ApiModelProperty(value = "友好的提示信息")
+    @ApiModelProperty(value = "友好的提示信息，仅供开发人员参考，请勿直接使用")
     private String friendlyMsg;
     @ApiModelProperty(value = "返回数据", example = "{}")
     private T data;
