@@ -31,7 +31,7 @@ import java.util.Date;
  * @since 2.0
  */
 @Entity
-public abstract class GenericEntity<PK> extends GenericMinEntity<PK> implements
+public abstract class GenericEntity<PK> extends GenericInitializingEntity<PK> implements
         EntityInfoAware,
         DeletedFlagAware<Integer>,
         InitializingEntity,
@@ -114,7 +114,7 @@ public abstract class GenericEntity<PK> extends GenericMinEntity<PK> implements
     }
 
     @Override
-    public void init(){
+    public void init() {
         EntityUtils.init(this);
     }
 
@@ -127,7 +127,6 @@ public abstract class GenericEntity<PK> extends GenericMinEntity<PK> implements
     }
 
     @Override
-    @JsonIgnore
     public DeletedFlagMapping<Integer> deletedFlagMapping() {
         return IntegerDeletedFlagMapping.instance();
     }
