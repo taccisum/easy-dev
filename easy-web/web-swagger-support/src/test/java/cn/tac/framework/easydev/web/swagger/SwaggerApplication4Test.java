@@ -9,11 +9,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.builders.ParameterBuilder;
+import springfox.documentation.schema.ModelRef;
+import springfox.documentation.service.Parameter;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author tac
- * @since 22/12/2017
+ * @since 2.0
  */
 @SpringBootApplication
 @RestController
@@ -26,7 +32,9 @@ public class SwaggerApplication4Test {
 
     @Bean
     public SwaggerDocketFactoryBean swaggerDocketFactoryBean(){
-        return new SwaggerDocketFactoryBean().baskPackage("cn.tac.framework.easydev.web.swagger");
+        List<Parameter> parameters = new ArrayList<>();
+        parameters.add(new ParameterBuilder().name("Authorization").modelRef(new ModelRef("string")).defaultValue("Bearer {token}").parameterType("header").build());
+        return new SwaggerDocketFactoryBean().baskPackage("cn.tac.framework.easydev.web.swagger").globalOperationParameters(parameters);
     }
 
     @GetMapping("greeting")

@@ -16,11 +16,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.ParameterBuilder;
+import springfox.documentation.schema.ModelRef;
+import springfox.documentation.service.Parameter;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.*;
 
 /**
  * @author tac
@@ -68,6 +70,25 @@ public class SwaggerAutoConfiguration extends WebMvcConfigurerAdapter {
                 .version(swaggerSupportProperties.getVersion())
                 .build());
         bean.baskPackage(swaggerSupportProperties.getBasePackage());
+        Map<String, SwaggerSupportProperties.ParameterProperties> globalOperationParameters = swaggerSupportProperties.getGlobalOperationParameters();
+        if (globalOperationParameters != null && globalOperationParameters.size() > 0) {
+            List<Parameter> parameters = new ArrayList<>();
+            for (String name : globalOperationParameters.keySet()) {
+                SwaggerSupportProperties.ParameterProperties parameterProperties = globalOperationParameters.get("name");
+                Parameter parameter = new ParameterBuilder()
+                        .name(name)
+                        .modelRef(new ModelRef(parameterProperties.getModelRef()))
+                        .parameterType(parameterProperties.getParameterType())
+                        .required(parameterProperties.getRequired())
+                        .defaultValue(parameterProperties.getDefaultValue())
+                        .description(parameterProperties.getDescription())
+                        .hidden(parameterProperties.getHidden())
+                        .build();
+                parameters.add(parameter);
+            }
+
+            bean.globalOperationParameters(parameters);
+        }
         return bean;
     }
 }
