@@ -13,4 +13,5 @@ dependencies {
     compile project(":easy-web:web-exception-handler-support")
     compile project(":easy-web:web-message-converter-support")
     compile project(":easy-web:web-response-wrapper-support")
+    compile project(":easy-web:web-arguments-validation-support")
 }

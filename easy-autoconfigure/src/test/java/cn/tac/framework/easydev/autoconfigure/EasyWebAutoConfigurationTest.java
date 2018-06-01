@@ -1,5 +1,7 @@
 package cn.tac.framework.easydev.autoconfigure;
 
+import cn.tac.framework.easydev.web.argsvalid.ErrorsHandler;
+import cn.tac.framework.easydev.web.argsvalid.handler.MultiErrorsHandler;
 import cn.tac.framework.easydev.web.messageconverter.config.MessageConverterProperties;
 import cn.tac.framework.easydev.web.response.wrapper.config.ResponseWrapperProperties;
 import cn.tac.framework.easydev.web.swagger.SwaggerDocketFactoryBean;
@@ -35,6 +37,7 @@ public class EasyWebAutoConfigurationTest {
     @Autowired private MessageConverterProperties messageConverterProperties;
     @Autowired private ResponseWrapperProperties responseWrapperProperties;
     @Autowired private List<WebMvcConfigurer> webMvcConfigurers;
+    @Autowired private ErrorsHandler errorsHandler;
 
     @Test
     public void testSimply() {
@@ -45,5 +48,7 @@ public class EasyWebAutoConfigurationTest {
         assertThat(responseWrapperProperties).isNotNull();
         assertThat(webMvcConfigurers).isNotEmpty();
         assertThat(webMvcConfigurers.size()).isEqualTo(3);
+        assertThat(errorsHandler).isNotNull();
+        assertThat(errorsHandler).isInstanceOf(MultiErrorsHandler.class);
     }
 }
