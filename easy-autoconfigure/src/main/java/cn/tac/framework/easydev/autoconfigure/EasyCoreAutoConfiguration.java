@@ -2,8 +2,10 @@ package cn.tac.framework.easydev.autoconfigure;
 
 import cn.tac.framework.easydev.core.domain.converter.register.spring.RegisterConverterProcessor;
 import cn.tac.framework.easydev.core.config.EasyCoreProperties;
+import cn.tac.framework.easydev.core.domain.strategy.register.spring.RegisterStrategyProcessor;
 import cn.tac.framework.easydev.core.util.SpringUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +22,15 @@ import org.springframework.context.annotation.Import;
 public class EasyCoreAutoConfiguration {
 
     @Bean
+    @ConditionalOnMissingBean
     public RegisterConverterProcessor registerConverterProcessor() {
         return new RegisterConverterProcessor();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public RegisterStrategyProcessor registerStrategyProcessor(){
+        return new RegisterStrategyProcessor();
     }
 
 }
