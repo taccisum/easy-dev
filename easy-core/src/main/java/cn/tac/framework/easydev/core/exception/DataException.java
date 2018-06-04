@@ -2,7 +2,7 @@ package cn.tac.framework.easydev.core.exception;
 
 /**
  * @author tac
- * @since 2.0
+ * @since 2.3
  */
 public class DataException extends RuntimeException {
     public DataException(String reason) {
