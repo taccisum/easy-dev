@@ -2,9 +2,9 @@ package cn.tac.framework.easydev.dao.core.pojo;
 
 /**
  * @author tac
- * @since 22/01/2018
+ * @since 2.0
+ * @deprecated 推荐使用UpdatorAwareNew
+ * @see UpdatorAwareNew
  */
-public interface UpdatorAware {
-    String getUpdatedBy();
-    void setUpdatedBy(String updatedBy);
+public interface UpdatorAware extends UpdatorAwareNew<String> {
 }

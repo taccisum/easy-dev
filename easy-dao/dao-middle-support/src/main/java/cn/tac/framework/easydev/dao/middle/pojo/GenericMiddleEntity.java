@@ -1,7 +1,6 @@
 package cn.tac.framework.easydev.dao.middle.pojo;
 
-import cn.tac.framework.easydev.dao.core.pojo.GenericMinEntity;
-import cn.tac.framework.easydev.dao.core.pojo.InitializingEntity;
+import cn.tac.framework.easydev.dao.core.pojo.GenericInitializingEntity;
 import cn.tac.framework.easydev.dao.core.util.EntityUtils;
 
 /**
@@ -10,7 +9,7 @@ import cn.tac.framework.easydev.dao.core.util.EntityUtils;
  * @author tac
  * @since 2.0
  */
-public abstract class GenericMiddleEntity<PK, LPK, RPK> extends GenericMinEntity<PK> implements InitializingEntity, RelevanceInfoAware<LPK, RPK> {
+public abstract class GenericMiddleEntity<PK, LPK, RPK> extends GenericInitializingEntity<PK> implements RelevanceInfoAware<LPK, RPK> {
     @Override
     public void init() {
         EntityUtils.init(this);

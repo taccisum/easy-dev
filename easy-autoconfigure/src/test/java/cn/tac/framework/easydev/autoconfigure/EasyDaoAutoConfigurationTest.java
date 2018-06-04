@@ -40,6 +40,6 @@ public class EasyDaoAutoConfigurationTest {
 
     @Test
     public void testDefaultRuntimeData4Dao() {
-        Assert.assertTrue(StringUtils.isNoneBlank(runtimeData4Dao.userId()));
+        Assert.assertTrue(StringUtils.isNoneBlank((String) runtimeData4Dao.userId()));
     }
 }

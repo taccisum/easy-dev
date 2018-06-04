@@ -2,9 +2,9 @@ package cn.tac.framework.easydev.dao.core.pojo;
 
 /**
  * @author tac
- * @since 22/01/2018
+ * @since 2.0
+ * @deprecated 推荐使用CreatorAwareNew
+ * @see CreatorAwareNew
  */
-public interface CreatorAware {
-    String getCreatedBy();
-    void setCreatedBy(String createdBy);
+public interface CreatorAware extends CreatorAwareNew<String> {
 }

@@ -8,7 +8,8 @@ import javax.persistence.Column;
  * @author tac
  * @since 2.0
  */
-public abstract class GenericBusinessEntity<PK> extends GenericEntity<PK> implements BusinessInfoAware {
+@Deprecated
+public abstract class GenericBusinessEntity<PK> extends GenericEntity<PK> implements BusinessInfoAware<String> {
     public static final String ORGANIZATION_ID_FIELD_NAME = "organization_id";
 
     @Column(name = ORGANIZATION_ID_FIELD_NAME)
