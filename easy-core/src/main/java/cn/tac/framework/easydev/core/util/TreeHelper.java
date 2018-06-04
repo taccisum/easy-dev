@@ -133,7 +133,7 @@ public abstract class TreeHelper {
         });
     }
 
-    interface NodeInstanceProvider<PK, E extends NodeMinStructureAware<PK>, N extends Node<PK, E>> {
+    public interface NodeInstanceProvider<PK, E extends NodeMinStructureAware<PK>, N extends Node<PK, E>> {
         N provide(E data, N parent, int rootLevel);
     }
 }
