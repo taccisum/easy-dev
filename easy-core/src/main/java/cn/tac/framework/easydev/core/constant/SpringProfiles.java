@@ -9,4 +9,8 @@ public interface SpringProfiles {
     String TEST = "test";
     String PROD = "prod";
     String DEFAULT = "default";
+    /**
+     * @since 2.3
+     */
+    String LOCAL = "local";
 }
