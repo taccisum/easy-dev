@@ -7,10 +7,7 @@ import com.google.common.base.MoreObjects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author tac
@@ -33,9 +30,8 @@ public abstract class TreeHelper {
 
     /**
      * @param collection 要转换为树的集合
-     * @param rootId 根节点id
-     * @param provider 结点实例提供者
-     *
+     * @param rootId     根节点id
+     * @param provider   结点实例提供者
      * @throws RootNodeNotFoundException 找不到根节点
      * @throws MoreThanOneRootException  超过一个根节点
      */
@@ -122,8 +118,15 @@ public abstract class TreeHelper {
      * @param mapping 状态值映射器
      */
     public static <PK, E extends NodeMinStructureAware<PK>, S, T extends SelectedCapableNode<PK, E, S>> void selectNodes(T tree, Collection<PK> ids, SelectedCapableNode.SelectedFlagMapping<S> mapping) {
+        //转换为set，提高查询效率
+        Set<PK> idSet;
+        if (ids instanceof Set) {
+            idSet = (Set<PK>) ids;
+        } else {
+            idSet = new HashSet<>(ids);
+        }
         tree.eachPreOrder((node, args) -> {
-            if (ids.contains(node.getId())) {
+            if (idSet.contains(node.getId())) {
                 //noinspection unchecked
                 ((SelectedCapableNode) node).select(mapping);
             }
@@ -133,12 +136,4 @@ public abstract class TreeHelper {
     interface NodeInstanceProvider<PK, E extends NodeMinStructureAware<PK>, N extends Node<PK, E>> {
         N provide(E data, N parent, int rootLevel);
     }
-
-//    public static <PK, E extends NodeMinStructureAware<PK>, T extends SelectedCapableNode<PK, E, Boolean>> void selectNodes(T tree, Collection<PK> ids) {
-//        selectNodes(tree, ids, new SelectedCapableNode.BooleanSelectedFlagMapping());
-//    }
-//
-//    public static <PK, E extends NodeMinStructureAware<PK>, T extends SelectedCapableNode<PK, E, Integer>> void selectNodes(T tree, Collection<PK> ids) {
-//        selectNodes(tree, ids, new SelectedCapableNode.IntegerSelectedFlagMapping());
-//    }
 }
