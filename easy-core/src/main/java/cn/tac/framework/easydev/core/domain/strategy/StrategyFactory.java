@@ -1,6 +1,7 @@
 package cn.tac.framework.easydev.core.domain.strategy;
 
 import cn.tac.framework.easydev.core.domain.strategy.exception.ExistsStrategyException;
+import cn.tac.framework.easydev.core.domain.strategy.pojo.KeyCarrier;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,12 +16,23 @@ public abstract class StrategyFactory {
      */
     static Map<Class<? extends Strategy>, Map<String, Strategy>> registry = new HashMap<>();
 
+    public static <T extends Strategy> T get(Class<T> type, KeyCarrier keyCarrier) {
+        return get(type, keyCarrier.key());
+    }
+
     public static <T extends Strategy> T get(Class<T> type, String key) {
         Map<String, Strategy> map = registry.get(type);
         if (map == null) {
             return null;
         }
         return (T) map.get(key);
+    }
+
+    /**
+     * @throws ExistsStrategyException 已存在的策略key
+     */
+    public static <T extends Strategy> void register(Class<? extends T> type, KeyCarrier keyCarrier, T strategy) throws ExistsStrategyException {
+        register(type, keyCarrier.key(), strategy);
     }
 
     /**
