@@ -74,7 +74,7 @@ public class SwaggerAutoConfiguration extends WebMvcConfigurerAdapter {
         if (globalOperationParameters != null && globalOperationParameters.size() > 0) {
             List<Parameter> parameters = new ArrayList<>();
             for (String name : globalOperationParameters.keySet()) {
-                SwaggerSupportProperties.ParameterProperties parameterProperties = globalOperationParameters.get("name");
+                SwaggerSupportProperties.ParameterProperties parameterProperties = globalOperationParameters.get(name);
                 Parameter parameter = new ParameterBuilder()
                         .name(name)
                         .modelRef(new ModelRef(parameterProperties.getModelRef()))
