@@ -116,7 +116,7 @@ public class UpdatingRepositorySupportTest {
                 }
 
                 @Override
-                public String organizationId() {
+                public String tenantId() {
                     return "tac's org";
                 }
             };

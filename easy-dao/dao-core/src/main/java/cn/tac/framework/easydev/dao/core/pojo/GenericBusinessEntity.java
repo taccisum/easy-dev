@@ -9,19 +9,19 @@ import javax.persistence.Column;
  * @since 2.0
  */
 @Deprecated
-public abstract class GenericBusinessEntity<PK> extends GenericEntity<PK> implements BusinessInfoAware<String> {
-    public static final String ORGANIZATION_ID_FIELD_NAME = "organization_id";
+public abstract class GenericBusinessEntity<PK> extends GenericEntity<PK> implements TenantAware<String> {
+    public static final String TENANT_ID_FIELD_NAME = "tenant_id";
 
-    @Column(name = ORGANIZATION_ID_FIELD_NAME)
-    private String organizationId;
+    @Column(name = TENANT_ID_FIELD_NAME)
+    private String tenantId;
 
     @Override
-    public String getOrganizationId() {
-        return organizationId;
+    public String getTenantId() {
+        return tenantId;
     }
 
     @Override
-    public void setOrganizationId(String organizationId) {
-        this.organizationId = organizationId;
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
     }
 }

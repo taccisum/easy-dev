@@ -30,7 +30,7 @@ public class EntityUtilsTest {
             }
 
             @Override
-            public String organizationId() {
+            public String tenantId() {
                 return ORG_ID;
             }
         });
@@ -46,7 +46,7 @@ public class EntityUtilsTest {
         assertThat(entity.getUpdatedBy()).isNull();
         assertThat(entity.getUpdatedOn()).isNull();
         assertThat(entity.getDeletedFlag()).isEqualTo(IntegerDeletedFlagMapping.instance().getEnableFlag());
-        assertThat(entity.getOrganizationId()).isEqualTo(ORG_ID);
+        assertThat(entity.getTenantId()).isEqualTo(ORG_ID);
         assertThat(entity.getBar1()).isEqualTo(FooEntity.BAR1_DEFAULT);
     }
 
@@ -61,7 +61,7 @@ public class EntityUtilsTest {
         Date now1 = new Date();
         entity.setUpdatedOn(now1);
         entity.setDeletedFlag(IntegerDeletedFlagMapping.instance().getDisableFlag());
-        entity.setOrganizationId("org");
+        entity.setTenantId("org");
         entity.setBar1("bar111");
 
         EntityUtils.init(entity);
@@ -71,7 +71,7 @@ public class EntityUtilsTest {
         assertThat(entity.getUpdatedBy()).isEqualTo("anit");
         assertThat(entity.getUpdatedOn()).isEqualTo(now1);
         assertThat(entity.getDeletedFlag()).isEqualTo(IntegerDeletedFlagMapping.instance().getDisableFlag());
-        assertThat(entity.getOrganizationId()).isEqualTo("org");
+        assertThat(entity.getTenantId()).isEqualTo("org");
         assertThat(entity.getBar1()).isEqualTo(FooEntity.BAR1_DEFAULT);
     }
 
@@ -98,15 +98,15 @@ public class EntityUtilsTest {
     public void setBoundary4Query() throws Exception {
         FooEntity entity = new FooEntity();
         EntityUtils.setBoundary4Query(entity);
-        assertThat(entity.getOrganizationId()).isEqualTo(ORG_ID);
+        assertThat(entity.getTenantId()).isEqualTo(ORG_ID);
     }
 
     @Test
     public void setBoundary4QueryWhenFieldExistValue() throws Exception {
         FooEntity entity = new FooEntity();
-        entity.setOrganizationId("hello");
+        entity.setTenantId("hello");
         EntityUtils.setBoundary4Query(entity);
-        assertThat(entity.getOrganizationId()).isEqualTo("hello");
+        assertThat(entity.getTenantId()).isEqualTo("hello");
     }
 
     static class FooEntity extends GenericBusinessEntity<String> {
@@ -135,7 +135,7 @@ public class EntityUtilsTest {
                     .append("updatedBy", getUpdatedBy())
                     .append("updatedOn", getUpdatedOn())
                     .append("deletedFlag", getDeletedFlag())
-                    .append("organizationId", getOrganizationId())
+                    .append("tenantId", getTenantId())
                     .append("bar1", bar1)
                     .toString();
         }

@@ -89,7 +89,7 @@ public class RetrievalRepositorySupportTest {
         FooEntity4Retrieval o4 = repository.selectByPrimaryKey("4");
         assertThat(o4).isNotNull();
         assertThat(o4.getBar1()).isEqualTo("bar1_4");
-        assertThat(o4.getOrganizationId()).isEqualTo("anit");
+        assertThat(o4.getTenantId()).isEqualTo("anit");
     }
 
     @Test
@@ -144,7 +144,7 @@ public class RetrievalRepositorySupportTest {
                 }
 
                 @Override
-                public String organizationId() {
+                public String tenantId() {
                     return "tac";
                 }
             };
@@ -156,14 +156,14 @@ public class RetrievalRepositorySupportTest {
     }
 
     @Table(name = "foo")
-    public static class FooEntity4Retrieval extends GenericMinEntity<String> implements DeletedFlagAware<Integer>, BusinessInfoAware<String> {
+    public static class FooEntity4Retrieval extends GenericMinEntity<String> implements DeletedFlagAware<Integer>, TenantAware<String> {
         private String bar1;
 
         @Column(name = GenericEntity.DELETED_FLAG_FIELD_NAME)
         private Integer deletedFlag;
 
-        @Column(name = GenericBusinessEntity.ORGANIZATION_ID_FIELD_NAME)
-        private String organizationId;
+        @Column(name = GenericBusinessEntity.TENANT_ID_FIELD_NAME)
+        private String tenantId;
 
         public String getBar1() {
             return bar1;
@@ -184,13 +184,13 @@ public class RetrievalRepositorySupportTest {
         }
 
         @Override
-        public String getOrganizationId() {
-            return organizationId;
+        public String getTenantId() {
+            return tenantId;
         }
 
         @Override
-        public void setOrganizationId(String organizationId) {
-            this.organizationId = organizationId;
+        public void setTenantId(String tenantId) {
+            this.tenantId = tenantId;
         }
 
         @Override
@@ -209,7 +209,7 @@ public class RetrievalRepositorySupportTest {
                     .append("id", getId())
                     .append("bar1", bar1)
                     .append("deletedFlag", deletedFlag)
-                    .append("organizationId", organizationId)
+                    .append("tenantId", tenantId)
                     .toString();
         }
     }

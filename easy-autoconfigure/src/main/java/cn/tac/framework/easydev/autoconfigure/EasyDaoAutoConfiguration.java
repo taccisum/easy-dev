@@ -40,7 +40,7 @@ public class EasyDaoAutoConfiguration {
             }
 
             @Override
-            public String organizationId() {
+            public String tenantId() {
                 return IDUtils.emptyUUID(easyCoreProperties.isCompactUUID());
             }
         };

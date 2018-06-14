@@ -13,7 +13,7 @@ public interface RuntimeData4Dao {
     Object userId();
 
     /**
-     * 获取当前组织（当前用户所属组织）id
+     * 获取当前租户（当前用户所属租户）id
      */
-    Object organizationId();
+    Object tenantId();
 }

@@ -125,7 +125,7 @@ public class Retrieval4PageRepositorySupportTest {
                 }
 
                 @Override
-                public String organizationId() {
+                public String tenantId() {
                     return "tac";
                 }
             };

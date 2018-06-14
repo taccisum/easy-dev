@@ -29,8 +29,8 @@ public class EntityUtils {
         if (entity instanceof DefaultValue4ParticularFieldsAware) {
             initDefaultValue((DefaultValue4ParticularFieldsAware) entity);
         }
-        if (entity instanceof BusinessInfoAware) {
-            initBusinessInfo((BusinessInfoAware) entity);
+        if (entity instanceof TenantAware) {
+            initTenantInfo((TenantAware) entity);
         }
     }
 
@@ -44,9 +44,9 @@ public class EntityUtils {
     }
 
     public static void setBoundary4Query(MinEntityStructureAware entity) {
-        if (entity instanceof BusinessInfoAware) {
-            if (((BusinessInfoAware) entity).getOrganizationId() == null) {
-                setBusinessBoundary4Query((BusinessInfoAware) entity);
+        if (entity instanceof TenantAware) {
+            if (((TenantAware) entity).getTenantId() == null) {
+                setBusinessBoundary4Query((TenantAware) entity);
             }
         }
     }
@@ -78,13 +78,13 @@ public class EntityUtils {
         entity.initDefaultValue();
     }
 
-    private static void initBusinessInfo(BusinessInfoAware entity) {
-        if (entity.getOrganizationId() == null) {
-            entity.setOrganizationId(runtimeData4Dao == null ? null : runtimeData4Dao.organizationId());
+    private static void initTenantInfo(TenantAware entity) {
+        if (entity.getTenantId() == null) {
+            entity.setTenantId(runtimeData4Dao == null ? null : runtimeData4Dao.tenantId());
         }
     }
 
-    private static void setBusinessBoundary4Query(BusinessInfoAware entity) {
-        entity.setOrganizationId(runtimeData4Dao == null ? null : runtimeData4Dao.organizationId());
+    private static void setBusinessBoundary4Query(TenantAware entity) {
+        entity.setTenantId(runtimeData4Dao == null ? null : runtimeData4Dao.tenantId());
     }
 }
