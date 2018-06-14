@@ -199,7 +199,7 @@ public class TreeHelperTest {
         assertThat(selectedStateMap.get(1L)).isEqualTo(mapping.selectedState());
         assertThat(selectedStateMap.get(2L)).isEqualTo(mapping.selectedState());
         assertThat(selectedStateMap.get(3L)).isEqualTo(mapping.selectedState());
-        assertThat(selectedStateMap.get(3L)).isEqualTo(mapping.selectedState());
+        assertThat(selectedStateMap.get(4L)).isEqualTo(mapping.selectedState());
 
         //测试选中结点2
         GenericIntegerSelectedCapableNode<Long, Foo> tree1 = TreeHelper.build(ls, 1L, GenericIntegerSelectedCapableNode::new);
