@@ -2,7 +2,6 @@ package cn.tac.framework.easydev.autoconfigure.web;
 
 import cn.tac.framework.easydev.core.config.EasyCoreProperties;
 import cn.tac.framework.easydev.web.messageconverter.GenericObjectMapperBuilder;
-import cn.tac.framework.easydev.web.messageconverter.MessageConverterConfigurator;
 import cn.tac.framework.easydev.web.messageconverter.config.MessageConverterProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -13,10 +12,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import java.util.List;
 
 /**
  * @author tac
@@ -31,29 +28,21 @@ public class MessageConverterAutoConfiguration extends WebMvcConfigurerAdapter {
     private EasyCoreProperties easyCoreProperties;
     @Autowired
     private MessageConverterProperties messageConverterProperties;
-    @Autowired
-    private MessageConverterConfigurator messageConverterConfigurator;
 
     @Bean
     @ConditionalOnMissingBean
-    public MessageConverterConfigurator messageConverterConfigurator() {
-        MessageConverterConfigurator bean = new MessageConverterConfigurator();
+    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
+        logger.info("override default MappingJackson2HttpMessageConverter");
         String dateFormatPattern = StringUtils.isNotBlank(messageConverterProperties.getDateFormatPattern()) ?
                 messageConverterProperties.getDateFormatPattern() :
                 easyCoreProperties.getFormatPattern().getDatetime();
         GenericObjectMapperBuilder objectMapperBuilder = new GenericObjectMapperBuilder();
         objectMapperBuilder.dateFormatPattern(dateFormatPattern);
-        objectMapperBuilder.long2String(messageConverterProperties.getLongToString());
-        bean.setObjectMapperBuilder(objectMapperBuilder);
-        return bean;
-    }
+        logger.info("global date format pattern: {}", dateFormatPattern);
+        Boolean longToString = messageConverterProperties.getLongToString();
+        objectMapperBuilder.long2String(longToString);
+        if(longToString) logger.info("add jackson module: serialize type long to string");
 
-    @Override
-    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        if (logger.isInfoEnabled()) {
-            logger.info("扩展mvc的http消息转换器");
-        }
-        super.extendMessageConverters(converters);
-        messageConverterConfigurator.extendMessageConverters(converters);
+        return new MappingJackson2HttpMessageConverter(objectMapperBuilder.build());
     }
 }
