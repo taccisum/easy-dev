@@ -61,4 +61,6 @@ include 'easy-web:web-response-wrapper-support'
 findProject(':easy-web:web-response-wrapper-support')?.name = 'web-response-wrapper-support'
 include 'easy-web:web-arguments-validation-support'
 findProject(':easy-web:web-arguments-validation-support')?.name = 'web-arguments-validation-support'
+include 'easy-web:web-feign-client-support'
+findProject(':easy-web:web-feign-client-support')?.name = 'web-feign-client-support'
 
