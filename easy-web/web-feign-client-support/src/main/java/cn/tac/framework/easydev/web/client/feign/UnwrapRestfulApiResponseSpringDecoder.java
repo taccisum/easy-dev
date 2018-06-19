@@ -1,5 +1,6 @@
 package cn.tac.framework.easydev.web.client.feign;
 
+import cn.tac.framework.easydev.web.core.exception.RethrowingException;
 import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
 import feign.FeignException;
 import feign.Response;
@@ -46,11 +47,9 @@ public class UnwrapRestfulApiResponseSpringDecoder extends SpringDecoder {
                     if (!RestfulApiResponse.class.isAssignableFrom(clazz)) {
                         ParameterizedTypeImpl wrapperType = ParameterizedTypeImpl.make(RestfulApiResponse.class, new Type[]{type}, null);
                         extractor = new HttpMessageConverterExtractor(wrapperType, this.messageConverters.getObject().getConverters());
-                        Object r = extractor.extractData(new DuplicatedFeignResponseAdapter(response));
-                        if (r instanceof RestfulApiResponse) {
-                            return ((RestfulApiResponse) r).getData();
-                        }
-                        return r;
+                        RestfulApiResponse r = (RestfulApiResponse) extractor.extractData(new DuplicatedFeignResponseAdapter(response));
+                        check(r);
+                        return r.getData();
                     }
                 }
             }
@@ -58,6 +57,12 @@ public class UnwrapRestfulApiResponseSpringDecoder extends SpringDecoder {
             return extractor.extractData(new DuplicatedFeignResponseAdapter(response));
         }
         throw new DecodeException("type is not an instance of Class or ParameterizedType: " + type);
+    }
+
+    private void check(RestfulApiResponse restfulApiResponse) {
+        if (restfulApiResponse.getState() != RestfulApiResponse.SUCCESS_STATE) {
+            throw new RethrowingException(restfulApiResponse);
+        }
     }
 
     /**
