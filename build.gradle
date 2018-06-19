@@ -8,7 +8,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5..RELEASE")
         classpath 'io.spring.gradle:propdeps-plugin:0.0.9.RELEASE'
         classpath "io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE"
     }
@@ -68,31 +68,6 @@ subprojects {
         }
 
         repositories {
-//            def NEXUS_URL = "http://172.10.10.66:8081/nexus/content/repositories"
-//            def NEXUS_URL = "http://ikentop.xicp.net:6681/nexus/content/repositories"
-
-            def NEXUS_URL = "http://117.78.35.197:8081/repository/maven"
-//            def NEXUS_URL = "http://193.112.19.220:8081/repository/maven"
-            if (project.version.endsWith("SNAPSHOT")) {
-//                NEXUS_URL = "$NEXUS_URL/snapshots/"
-                NEXUS_URL = "$NEXUS_URL-snapshots/"
-            } else {
-//                NEXUS_URL = "$NEXUS_URL/releases/"
-                NEXUS_URL = "$NEXUS_URL-releases/"
-            }
-
-            maven {
-                url "$buildDir/repo"
-            }
-            maven {
-                url NEXUS_URL
-                credentials {
-//                    username = "admin"
-//                    password = "admin123"
-                    username = "liaojinfeng"
-                    password = "liaojf@cheegu.com"
-                }
-            }
         }
 
     }
