@@ -6,4 +6,5 @@ dependencyManagement {
 
 dependencies {
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign'
+    compile project(":easy-web:web-core")
 }
