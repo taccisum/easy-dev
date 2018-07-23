@@ -1,4 +1,6 @@
 dependencies {
     compile project(":easy-core")
     compile group: 'io.swagger', name: 'swagger-annotations', version: '1.5.16'
+
+    optional group: 'com.github.pagehelper', name: 'pagehelper', version: '5.1.4'
 }

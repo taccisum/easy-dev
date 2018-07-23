@@ -1,5 +1,6 @@
 package cn.tac.framework.easydev.web.core.pojo;
 
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
@@ -50,6 +51,13 @@ public class TableData<T> {
         TableData<T> o = new TableData<>();
         o.setTotal(0L);
         o.setRows(new ArrayList<>());
+        return o;
+    }
+
+    public static <T> TableData<T> fromPageInfo(PageInfo<T> pageInfo) {
+        TableData<T> o = new TableData<>();
+        o.setTotal(pageInfo.getTotal());
+        o.setRows(pageInfo.getList());
         return o;
     }
 }
