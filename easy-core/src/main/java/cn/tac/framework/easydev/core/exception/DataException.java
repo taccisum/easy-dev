@@ -6,6 +6,6 @@ package cn.tac.framework.easydev.core.exception;
  */
 public class DataException extends RuntimeException {
     public DataException(String reason) {
-        super(String.format("数据异常：%s", reason));
+        super(String.format("error data：%s", reason));
     }
 }

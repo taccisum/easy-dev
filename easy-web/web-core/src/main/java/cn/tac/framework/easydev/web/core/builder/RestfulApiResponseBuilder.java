@@ -7,10 +7,10 @@ import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
  * @since 2.0
  */
 public interface RestfulApiResponseBuilder<T> {
-    String DEFAULT_SUCCESS_MSG = "操作成功";
-    String DEFAULT_FAILURE_MSG = "未知业务异常";
-    String DEFAULT_FAILURE_FRIENDLY_MSG = "无法执行此操作哦";
-    String DEFAULT_ERROR_MSG = "系统异常";
+    String DEFAULT_SUCCESS_MSG = "success";
+    String DEFAULT_FAILURE_MSG = "unknown business exception";
+    String DEFAULT_FAILURE_FRIENDLY_MSG = "can not execute this request";
+    String DEFAULT_ERROR_MSG = "system error";
 
     static SuccessRestfulApiResponseBuilder success() {
         return new SuccessRestfulApiResponseBuilder();
