@@ -34,7 +34,7 @@ subprojects {
     sourceCompatibility = 1.8
 
     group 'cn.tac.framework'
-    version '2.3.1'
+    version '2.3'
 
     dependencies {
         compile(
