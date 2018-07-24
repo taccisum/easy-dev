@@ -73,6 +73,13 @@ public class BeanUtilsWrapperTest {
         assertThat(foo.bar4).isEqualTo("4");
     }
 
+    @Test
+    public void trimAllStringWhenBeanBaseDataType() throws Exception {
+        BeanUtilsWrapper.trimAllStringField("  123  ");
+        BeanUtilsWrapper.trimAllStringField(123);
+        BeanUtilsWrapper.trimAllStringField(true);
+    }
+
     public class Foo {
         public Foo() {
         }
