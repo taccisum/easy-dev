@@ -82,6 +82,7 @@ public abstract class BeanUtilsWrapper {
      * trim bean中所有类型为字符串的字段
      *
      * @param bean 要操作的bean
+     * @since 2.3
      */
     public static void trimAllStringField(Object bean) {
         trimAllStringField(bean, true);
@@ -89,6 +90,7 @@ public abstract class BeanUtilsWrapper {
 
     /**
      * @param containNonPublic 是否包含non-public字段，false则只trim public及带有getter、setter的字段
+     * @since 2.3
      */
     public static void trimAllStringField(Object bean, boolean containNonPublic) {
         try {
