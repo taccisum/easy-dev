@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 
+import static cn.tac.framework.easydev.core.domain.converter.ConverterUtils.convertAll;
+
 /**
  * @author tac
  * @since 2.0
@@ -54,10 +56,24 @@ public class TableData<T> {
         return o;
     }
 
-    public static <T> TableData<T> fromPageInfo(PageInfo<T> pageInfo) {
-        TableData<T> o = new TableData<>();
-        o.setTotal(pageInfo.getTotal());
-        o.setRows(pageInfo.getList());
-        return o;
+    /**
+     * 将通过PageHelper分页后的内容转换成TableData
+     */
+    public static <T> TableData<T> fromPageHelper(PageInfo<T> pageInfo) {
+        return fromPageHelper(pageInfo, null);
+    }
+
+    /**
+     * 将通过PageHelper分页后的内容转换成TableData，同时将行数据转换为指定类型
+     */
+    public static <T> TableData<T> fromPageHelper(PageInfo pageInfo, Class<T> toClazz) {
+        TableData<T> table = TableData.empty();
+        table.setTotal(pageInfo.getTotal());
+        if (toClazz == null) {
+            table.setRows(pageInfo.getList());
+        } else {
+            table.setRows(convertAll(pageInfo.getList(), toClazz));
+        }
+        return table;
     }
 }
