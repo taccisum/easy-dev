@@ -59,14 +59,14 @@ public class TableData<T> {
     /**
      * 将通过PageHelper分页后的内容转换成TableData
      */
-    public static <T> TableData<T> fromPageHelper(PageInfo<T> pageInfo) {
-        return fromPageHelper(pageInfo, null);
+    public static <T> TableData<T> fromPageInfo(PageInfo<T> pageInfo) {
+        return fromPageInfo(pageInfo, null);
     }
 
     /**
      * 将通过PageHelper分页后的内容转换成TableData，同时将行数据转换为指定类型
      */
-    public static <T> TableData<T> fromPageHelper(PageInfo pageInfo, Class<T> toClazz) {
+    public static <T> TableData<T> fromPageInfo(PageInfo pageInfo, Class<T> toClazz) {
         TableData<T> table = TableData.empty();
         table.setTotal(pageInfo.getTotal());
         if (toClazz == null) {
