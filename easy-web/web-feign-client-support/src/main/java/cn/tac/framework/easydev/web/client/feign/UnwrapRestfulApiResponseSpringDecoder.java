@@ -35,28 +35,32 @@ public class UnwrapRestfulApiResponseSpringDecoder extends SpringDecoder {
         this.messageConverters = messageConverters;
     }
 
-    @Override
     public Object decode(Response response, Type type) throws IOException, FeignException {
-        if (type instanceof Class || type instanceof ParameterizedType || type instanceof WildcardType) {
+        if (!(type instanceof Class) && !(type instanceof ParameterizedType) && !(type instanceof WildcardType)) {
+            throw new DecodeException("type is not an instance of Class or ParameterizedType: " + type);
+        } else {
             HttpMessageConverterExtractor<?> extractor = null;
-            if (type instanceof ParameterizedType) {
-                ParameterizedType pt = (ParameterizedType) type;
-                Type rt = pt.getRawType();
-                if (rt instanceof Class) {
-                    Class clazz = (Class) rt;
-                    if (!RestfulApiResponse.class.isAssignableFrom(clazz)) {
-                        ParameterizedTypeImpl wrapperType = ParameterizedTypeImpl.make(RestfulApiResponse.class, new Type[]{type}, null);
-                        extractor = new HttpMessageConverterExtractor(wrapperType, this.messageConverters.getObject().getConverters());
-                        RestfulApiResponse r = (RestfulApiResponse) extractor.extractData(new DuplicatedFeignResponseAdapter(response));
-                        check(r);
-                        return r.getData();
-                    }
-                }
+            if (!RestfulApiResponse.class.isAssignableFrom(getRawClass(type))) {
+                ParameterizedTypeImpl wrapperType = ParameterizedTypeImpl.make(RestfulApiResponse.class, new Type[]{type}, null);
+                extractor = new HttpMessageConverterExtractor(wrapperType, this.messageConverters.getObject().getConverters());
+                RestfulApiResponse r = (RestfulApiResponse) extractor.extractData(new UnwrapRestfulApiResponseSpringDecoder.DuplicatedFeignResponseAdapter(response));
+                this.check(r);
+                return r.getData();
+            } else {
+                extractor = new HttpMessageConverterExtractor(type, this.messageConverters.getObject().getConverters());
+                return extractor.extractData(new UnwrapRestfulApiResponseSpringDecoder.DuplicatedFeignResponseAdapter(response));
             }
-            extractor = new HttpMessageConverterExtractor(type, this.messageConverters.getObject().getConverters());
-            return extractor.extractData(new DuplicatedFeignResponseAdapter(response));
         }
-        throw new DecodeException("type is not an instance of Class or ParameterizedType: " + type);
+    }
+
+    Class getRawClass(Type type) {
+        Class clazz = null;
+        if (type instanceof Class) {
+            clazz = (Class) type;
+        } else if (type instanceof ParameterizedType) {
+            clazz = (Class) ((ParameterizedType) type).getRawType();
+        }
+        return clazz;
     }
 
     private void check(RestfulApiResponse restfulApiResponse) {
