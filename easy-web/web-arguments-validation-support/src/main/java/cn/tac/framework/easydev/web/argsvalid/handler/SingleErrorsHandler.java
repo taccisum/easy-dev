@@ -23,7 +23,7 @@ public class SingleErrorsHandler implements ErrorsHandler {
 
     String buildMsg(String field, Object rejectedValue, String errorMsg) {
         StringBuilder sb = new StringBuilder();
-        sb.append(field).append("值(\"").append(rejectedValue == null ? "null" : rejectedValue).append("\")").append("校验未通过");
+        sb.append(field).append("'s value (\"").append(rejectedValue == null ? "null" : rejectedValue).append("\")").append("is invalid");
         if (!StringUtils.isEmpty(errorMsg)) {
             sb.append("：").append(errorMsg);
         }
