@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.BindException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -41,6 +42,15 @@ public class ArgumentsValidationSupportAutoConfiguration {
                 .code(CommonErrorCode.ARGUMENTS_VALIDATION.getCode())
                 .msg(CommonErrorCode.ARGUMENTS_VALIDATION.getMessage())
                 .friendlyMsg(handler.extractMsg(e))
+                .build();
+    }
+
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public RestfulApiResponse bindException(MethodArgumentNotValidException e) {
+        return RestfulApiResponseBuilder.failure()
+                .code(CommonErrorCode.ARGUMENTS_VALIDATION.getCode())
+                .msg(CommonErrorCode.ARGUMENTS_VALIDATION.getMessage())
+                .friendlyMsg(handler.extractMsg(e.getBindingResult()))
                 .build();
     }
 }
