@@ -32,11 +32,11 @@ public class ExceptionHandlerAutoConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
         if (logger.isInfoEnabled()) {
-            logger.info("扩展全局的异常处理器");
+            logger.info("extend global exception handler");
         }
         super.extendHandlerExceptionResolvers(exceptionResolvers);
         DefaultGlobalExceptionHandler handler = new DefaultGlobalExceptionHandler(webExceptionHandlerProperties);
-        if(logger.isTraceEnabled()){
+        if(logger.isDebugEnabled()){
             logger.debug("handler: {}", handler.getClass());
         }
         exceptionResolvers.add(handler);
