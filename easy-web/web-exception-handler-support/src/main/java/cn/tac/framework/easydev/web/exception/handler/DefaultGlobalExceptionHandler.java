@@ -52,9 +52,9 @@ public class DefaultGlobalExceptionHandler implements HandlerExceptionResolver {
 
     protected RestfulApiResponse doProcess(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
         ErrorMessage message = ExceptionUtils.extractErrorMessage(e);
-        System.err.println(message.getStackTrace());
         RestfulApiResponse resp;
         if (e instanceof BusinessException) {
+            logger.debug(message.getStackTrace());
             resp = RestfulApiResponseBuilder.failure()
                     .code(message.getCode())
                     .msg(message.getMessage())
@@ -62,6 +62,7 @@ public class DefaultGlobalExceptionHandler implements HandlerExceptionResolver {
                     .stackTrace(getStackTrace(message))
                     .build();
         } else {
+            logger.error(message.getStackTrace());
             resp = RestfulApiResponseBuilder.error()
                     .stackTrace(getStackTrace(message))
                     .build();
@@ -80,6 +81,6 @@ public class DefaultGlobalExceptionHandler implements HandlerExceptionResolver {
     }
 
     protected String getStackTrace(ErrorMessage message) {
-        return properties.getOutputStackTrace() ? message.getStackTrace() : "详情请查看日志";
+        return properties.getOutputStackTrace() ? message.getStackTrace() : "check log for details";
     }
 }
