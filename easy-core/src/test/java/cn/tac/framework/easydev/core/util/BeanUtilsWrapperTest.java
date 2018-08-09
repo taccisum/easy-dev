@@ -64,6 +64,17 @@ public class BeanUtilsWrapperTest {
     }
 
     @Test
+    public void trimAllStringWhenFieldNull() throws Exception {
+        Foo4Trim foo = new Foo4Trim(null, " 2 ", " 3 ", " 4 ", 5);
+        BeanUtilsWrapper.trimAllStringField(foo);
+        assertThat(foo.getBar1()).isEqualTo(null);
+        assertThat(foo.bar2).isEqualTo("2");
+        assertThat(foo.bar3).isEqualTo("3");
+        assertThat(foo.bar4).isEqualTo("4");
+        assertThat(foo.bar5).isEqualTo(5);
+    }
+
+    @Test
     public void trimAllStringWithoutNonPublic() throws Exception {
         Foo4Trim foo = new Foo4Trim(" 1 ", " 2 ", " 3 ", " 4 ", 5);
         BeanUtilsWrapper.trimAllStringField(foo, false);
@@ -78,6 +89,11 @@ public class BeanUtilsWrapperTest {
         BeanUtilsWrapper.trimAllStringField("  123  ");
         BeanUtilsWrapper.trimAllStringField(123);
         BeanUtilsWrapper.trimAllStringField(true);
+    }
+
+    @Test
+    public void trimAllStringWhenArgNull() throws Exception {
+        BeanUtilsWrapper.trimAllStringField(null);
     }
 
     public class Foo {

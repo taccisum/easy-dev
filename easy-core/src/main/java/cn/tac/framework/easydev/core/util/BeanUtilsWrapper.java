@@ -118,7 +118,8 @@ public abstract class BeanUtilsWrapper {
                     fieldName.substring(0, 1).toUpperCase() +
                     fieldName.substring(1);
             Method method = bean.getClass().getMethod(methodName);
-            return method.invoke(bean).toString();
+            Object result = method.invoke(bean);
+            return result == null ? null : result.toString();
         } catch (NoSuchMethodException e) {
             Field field = bean.getClass().getDeclaredField(fieldName);
             if (containNonPublic || field.getModifiers() == Modifier.PUBLIC) {
