@@ -3,6 +3,8 @@ package cn.tac.framework.easydev.logging.support.logstash;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
+ * 只供生成yaml文件输入提示使用
+ *
  * @author tac
  * @since 2.3
  */
@@ -14,6 +16,7 @@ public class RedisOutputProperties {
     private Integer port;
     private String key;
     private String password;
+    private Boolean enabled;
 
     public String getSource() {
         return source;
@@ -61,5 +64,13 @@ public class RedisOutputProperties {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }
