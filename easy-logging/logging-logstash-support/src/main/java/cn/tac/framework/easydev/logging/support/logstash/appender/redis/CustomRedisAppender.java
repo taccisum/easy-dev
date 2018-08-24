@@ -37,6 +37,7 @@ public class CustomRedisAppender extends UnsynchronizedAppenderBase<ILoggingEven
 
     protected void append(ILoggingEvent event) {
         if (!enabled) {
+            this.addInfo(this.name + " is disabled");
             return;
         }
         Jedis client;
