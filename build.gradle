@@ -34,7 +34,7 @@ subprojects {
     sourceCompatibility = 1.8
 
     group 'cn.tac.framework'
-    version '2.3'
+    version '2.3.1-SNAPSHOT'
 
     dependencies {
         compile(
@@ -46,6 +46,12 @@ subprojects {
         optional "org.springframework.boot:spring-boot-devtools"
         optional "org.springframework.boot:spring-boot-configuration-processor"
         compileJava.dependsOn(processResources)
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Edgware.SR3'
+        }
     }
 
     publishing {
@@ -69,6 +75,7 @@ subprojects {
 
         repositories {
         }
+
 
     }
 
