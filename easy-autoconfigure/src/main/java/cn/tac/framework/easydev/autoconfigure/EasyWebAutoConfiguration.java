@@ -20,7 +20,8 @@ import org.springframework.context.annotation.Configuration;
         SwaggerAutoConfiguration.class,
         MessageConverterAutoConfiguration.class,
         ResponseWrapperAutoConfiguration.class,
-        ArgumentsValidationSupportAutoConfiguration.class
+        ArgumentsValidationSupportAutoConfiguration.class,
+        FeignClientSupportAutoConfiguration.class
 })
 public class EasyWebAutoConfiguration {
 }

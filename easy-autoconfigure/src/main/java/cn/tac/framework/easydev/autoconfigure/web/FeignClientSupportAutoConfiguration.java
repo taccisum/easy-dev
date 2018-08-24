@@ -7,7 +7,7 @@ import cn.tac.framework.easydev.web.client.feign.config.FeignClientSupportProper
 import cn.tac.framework.easydev.web.core.builder.RestfulApiResponseBuilder;
 import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
 import cn.tac.framework.easydev.web.exception.handler.config.WebExceptionHandlerProperties;
-import feign.FeignException;
+import feign.codec.DecodeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,8 +23,8 @@ public class FeignClientSupportAutoConfiguration {
     @Autowired
     private WebExceptionHandlerProperties webExceptionHandlerProperties;
 
-    @ExceptionHandler(value = FeignException.class)
-    public RestfulApiResponse bindException(FeignException e) {
+    @ExceptionHandler(value = DecodeException.class)
+    public RestfulApiResponse bindException(DecodeException e) {
         int state = RestfulApiResponse.ERROR_STATE;
         Exception ex = e;
         if (e.getCause() instanceof BusinessException) {
