@@ -37,7 +37,6 @@ public class CustomRedisAppender extends UnsynchronizedAppenderBase<ILoggingEven
 
     protected void append(ILoggingEvent event) {
         if (!enabled) {
-            this.addInfo(this.name + " is disabled");
             return;
         }
         Jedis client;
@@ -292,6 +291,9 @@ public class CustomRedisAppender extends UnsynchronizedAppenderBase<ILoggingEven
 
     public void start() {
         this.addInfo("init jedis pool for Appender[" + this.name + "]");
+        if (!enabled) {
+            this.addInfo(this.name + " is disabled");
+        }
         super.start();
         GenericObjectPoolConfig config = new GenericObjectPoolConfig();
         config.setTestOnBorrow(true);
