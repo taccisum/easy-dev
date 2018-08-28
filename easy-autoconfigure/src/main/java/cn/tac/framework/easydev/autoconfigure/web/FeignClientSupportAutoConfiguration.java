@@ -5,6 +5,7 @@ import cn.tac.framework.easydev.core.pojo.ErrorMessage;
 import cn.tac.framework.easydev.core.util.ExceptionUtils;
 import cn.tac.framework.easydev.web.client.feign.config.FeignClientSupportProperties;
 import cn.tac.framework.easydev.web.core.builder.RestfulApiResponseBuilder;
+import cn.tac.framework.easydev.web.core.exception.RethrowingException;
 import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
 import cn.tac.framework.easydev.web.exception.handler.config.WebExceptionHandlerProperties;
 import feign.codec.DecodeException;
@@ -30,6 +31,9 @@ public class FeignClientSupportAutoConfiguration {
         if (e.getCause() instanceof BusinessException) {
             state = RestfulApiResponse.FAILURE_STATE;
             ex = (Exception) e.getCause();
+        }
+        if (ex instanceof RethrowingException) {
+            return ((RethrowingException) ex).getResponse();
         }
         ErrorMessage message = ExceptionUtils.extractErrorMessage(ex);
         return RestfulApiResponseBuilder.generic(state, message.getCode())

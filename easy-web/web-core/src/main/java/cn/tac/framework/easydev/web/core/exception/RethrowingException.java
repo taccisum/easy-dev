@@ -11,11 +11,12 @@ import cn.tac.framework.easydev.web.core.pojo.RestfulApiResponse;
  * @since 2.3
  */
 public class RethrowingException extends BusinessException {
+    private RestfulApiResponse response;
     public RethrowingException(RestfulApiResponse response) {
         super(new ErrorCode() {
             @Override
             public String getMessage(Object... var1) {
-                return String.format(response.getMsg(), var1);
+                return response.getMsg();
             }
 
             @Override
@@ -23,5 +24,10 @@ public class RethrowingException extends BusinessException {
                 return response.getCode();
             }
         }, response.getFriendlyMsg());
+        this.response = response;
+    }
+
+    public RestfulApiResponse getResponse() {
+        return response;
     }
 }
