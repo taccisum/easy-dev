@@ -29,7 +29,7 @@ public abstract class ExceptionUtils {
         } else {
             message.setCode(ErrorCode.SYSTEM_EXCEPTION_CODE);
             //todo::
-            message.setMessage("系统异常");
+            message.setMessage("system error");
             message.setDisplayMessage(e.getMessage());
         }
         message.setStackTrace(extractStackTrace(e));
